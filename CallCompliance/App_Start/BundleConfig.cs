@@ -28,7 +28,8 @@ namespace CallCompliance {
 
 			bundles.Add (new StyleBundle ("~/Content/css").Include (
 					  "~/Content/Bootstrap/bootstrap.css",
-					  "~/Content/font-awesome.css"));
+					  "~/Content/font-awesome.css",
+                      "~/Content/site.css"));
 			
 			// C3's charting (wraps D3)
 			bundles.Add (new StyleBundle ("~/Content/charts").Include (

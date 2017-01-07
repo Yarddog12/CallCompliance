@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    @*<link rel="stylesheet" href="http://www.atlasestateagents.co.uk/css/tether.min.css">*@
+    <link rel="stylesheet" href="http://www.atlasestateagents.co.uk/css/tether.min.css">
 
     @Styles.Render("~/Content/css")
-    @*@Styles.Render("~/Content/charts");*@
+    @Styles.Render("~/Content/charts");
     <link rel="stylesheet" href="~/Content/font-awesome.css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -36,32 +36,35 @@
 <body>
     <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
         <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation"></button>
-        <a class="navbar-brand" href="Unblock"> Call Compliance Portal</a>
+        <a class="navbar-brand"> Call Compliance Portal</a>
         <div id="navbar">
             <nav class="nav navbar-nav float-xs-left">
             </nav>
         </div>
     </nav>
+    
+
     <div class="container-fluid">
+        @*<div class="row">Welcome @MyHelpers.UserFullName()</div>*@
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <nav class="nav nav-pills nav-stacked nav-sidebar">
-                    <a id="menu-dashboard" class="nav-link" href="Unblock">
+                    <a id="menu-unblock" class="nav-link" href="/Unblock/Index">
                         <span style="width:55px" class="fa fa-2x fa-dashboard"></span> UnBlock
                     </a>
-                    <a id="menu-client" class="nav-link" href="WhiteList">
+                    <a id="menu-whitelist" class="nav-link" href="/WhiteList/Index">
                         <span style="width:55px" class="fa fa-2x fa-building-o"></span> White List
                     </a>
-                    <a id="menu-contact" class="nav-link" href="CoolDown">
+                    <a id="menu-cooldown" class="nav-link" href="/CoolDown/Index">
                         <span style="width: 55px" class="fa fa-2x fa-address-card-o"></span> Cool Down
                     </a>
-                    <a id="menu-invoice" class="nav-link" href="Reporting">
+                    <a id="menu-reportring" class="nav-link" href="/Reporting/Index">
                         <span style="width:55px" class="fa fa-2x fa-file-text-o"></span> Reporting
                     </a>
-                    <a id="menu-project" class="nav-link" href="DNC">
+                    <a id="menu-dnc" class="nav-link" href="/DNC/Index">
                         <span style="width:55px" class="fa fa-2x fa-calendar-o"></span> DNC
                     </a>
-                    <a id="menu-provider" class="nav-link" href="Admin">
+                    <a id="menu-admin" class="nav-link" href="/Admin/Index">
                         <span style="width:55px" class="fa fa-2x fa-user-circle-o"></span> Admin
                     </a>
                 </nav>
@@ -72,7 +75,7 @@
         </div>
     </div>
 
-@*<script src="http://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>*@
+<script src="http://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
     @*<script src="~/Scripts/core.js"></script>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

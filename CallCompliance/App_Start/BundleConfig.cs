@@ -22,10 +22,6 @@ namespace CallCompliance {
                       "~/Scripts/knockout-3.4.0.js",
                       "~/Scripts/knockout-mapping-latest.js"));
 
-			//bundles.Add (new StyleBundle ("~/Content/css").Include (
-			//		  "~/Content/bootstrap.css",
-			//		  "~/Content/site.css"));
-
 			bundles.Add (new StyleBundle ("~/Content/css").Include (
 					  "~/Content/Bootstrap/bootstrap.css",
 					  "~/Content/font-awesome.css",

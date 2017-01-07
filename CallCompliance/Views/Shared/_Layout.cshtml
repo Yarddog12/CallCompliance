@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    @*<link rel="stylesheet" href="http://www.atlasestateagents.co.uk/css/tether.min.css">*@
+
+    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/charts");*@
+    <link rel="stylesheet" href="~/Content/font-awesome.css" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+@*<body style="margin-left:10px;margin-right:10px">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Call Compliance Portal
+            </h3>
+        </div>
+        <div class="panel-body">
+            @RenderBody()
+        </div>
+        <div class="panel-footer">
+            <p>&copy; @DateTime.Now.Year - Call Compliance Portal</p>
+        </div>
+    </div>
+
+    <script src="~/Scripts/core.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>*@
+<body>
+    <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
+        <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation"></button>
+        <a class="navbar-brand" href="Unblock"> Call Compliance Portal</a>
+        <div id="navbar">
+            <nav class="nav navbar-nav float-xs-left">
+            </nav>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <nav class="nav nav-pills nav-stacked nav-sidebar">
+                    <a id="menu-dashboard" class="nav-link" href="Unblock">
+                        <span style="width:55px" class="fa fa-2x fa-dashboard"></span> UnBlock
+                    </a>
+                    <a id="menu-client" class="nav-link" href="WhiteList">
+                        <span style="width:55px" class="fa fa-2x fa-building-o"></span> White List
+                    </a>
+                    <a id="menu-contact" class="nav-link" href="CoolDown">
+                        <span style="width: 55px" class="fa fa-2x fa-address-card-o"></span> Cool Down
+                    </a>
+                    <a id="menu-invoice" class="nav-link" href="Reporting">
+                        <span style="width:55px" class="fa fa-2x fa-file-text-o"></span> Reporting
+                    </a>
+                    <a id="menu-project" class="nav-link" href="DNC">
+                        <span style="width:55px" class="fa fa-2x fa-calendar-o"></span> DNC
+                    </a>
+                    <a id="menu-provider" class="nav-link" href="Admin">
+                        <span style="width:55px" class="fa fa-2x fa-user-circle-o"></span> Admin
+                    </a>
+                </nav>
+            </div>
+            <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+@*<script src="http://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>*@
+    @*<script src="~/Scripts/core.js"></script>*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/charts")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

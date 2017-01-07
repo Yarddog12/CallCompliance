@@ -11,7 +11,7 @@
 
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/charts");
-    <link rel="stylesheet" href="~/Content/font-awesome.css" />
+    <link rel="stylesheet" href="~/Content/site.css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
@@ -30,23 +30,23 @@
             @if (MyHelpers.UserFullName ().ToString () == "Authentication failed") {
                 <div class="col-sm-3 col-md-2 sidebar">
                     <nav class="nav nav-pills nav-stacked nav-sidebar">
-                        <a id="menu-unblock" class="nav-link" href="/Unblock/Index">
+                        <a id="menu-unblock" class="nav-link" href="/Unblock">
                             <span style="width:55px" class="fa fa-2x fa-dashboard"></span> UnBlock
                         </a>
-                        <a id="menu-whitelist" class="nav-link" href="/WhiteList/Index">
+                        <a id="menu-whitelist" class="nav-link" href="/WhiteList">
                             <span style="width:55px" class="fa fa-2x fa-building-o"></span> White List
                         </a>
-                        <a id="menu-cooldown" class="nav-link" href="/CoolDown/Index">
+                        <a id="menu-cooldown" class="nav-link" href="/CoolDown">
                             <span style="width: 55px" class="fa fa-2x fa-address-card-o"></span> Cool Down
                         </a>
-                        <a id="menu-reporting" class="nav-link" href="/Reporting/Index">
+                        <a id="menu-reporting" class="nav-link" href="/Reporting">
                             <span style="width:55px" class="fa fa-2x fa-file-text-o"></span> Reporting
                         </a>
-                        <a id="menu-dnc" class="nav-link" href="/DNC/Index">
+                        <a id="menu-dnc" class="nav-link" href="/DNC">
                             <span style="width:55px" class="fa fa-2x fa-calendar-o"></span> DNC
                         </a>
                         @if (!User.IsInRole ("Call_Frequency_Admins_SG")) {
-                            <a id="menu-admin" class="nav-link" href="/Admin/Index">
+                            <a id="menu-admin" class="nav-link" href="/Admin">
                                 <span style="width:55px" class="fa fa-2x fa-user-circle-o"></span> Admin
                             </a>
                         }

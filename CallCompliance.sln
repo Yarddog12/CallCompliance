@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCompliance.Web", "CallC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCompliance.Tests", "CallCompliance.Tests\CallCompliance.Tests.csproj", "{81FEC026-B35B-4755-8C7A-4971C84152C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCompliance.BAL", "CallCompliance.BAL\CallCompliance.BAL.csproj", "{6DE5F55E-FD3B-41B6-8CB5-B620A8F9A317}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCompliance.BLL", "CallCompliance.BAL\CallCompliance.BLL.csproj", "{6DE5F55E-FD3B-41B6-8CB5-B620A8F9A317}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCompliance.DAL", "CallCompliance.DAL\CallCompliance.DAL.csproj", "{0B1DFB09-31D7-436C-B1CF-3A48A0C05069}"
 EndProject

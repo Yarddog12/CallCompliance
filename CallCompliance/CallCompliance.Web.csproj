@@ -169,16 +169,11 @@
     <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\UnblockController.cs" />
     <Compile Include="Controllers\WhiteListController.cs" />
+    <Compile Include="FactoryMapping\UnBlockFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ReasonOverride.cs" />
-    <Compile Include="Models\TestModel.cs" />
-    <Compile Include="Models\UnblockNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\TestRepository.cs" />
-    <Compile Include="Scripts\TestData\TestContext.cs" />
-    <Compile Include="ViewModels\UnblockViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap\bootstrap.css">
@@ -341,6 +336,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="ViewScripts\Admin\" />
+    <Folder Include="ViewScripts\CoolDown\" />
+    <Folder Include="ViewScripts\DNC\" />
+    <Folder Include="ViewScripts\Reporting\" />
+    <Folder Include="ViewScripts\Unblock\" />
+    <Folder Include="ViewScripts\WhiteList\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -348,6 +350,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CallCompliance.DAL\CallCompliance.DAL.csproj">
+      <Project>{0b1dfb09-31d7-436c-b1cf-3a48a0c05069}</Project>
+      <Name>CallCompliance.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCompliance.Domain\CallCompliance.Domain.csproj">
+      <Project>{35873ff4-ca51-4679-afb1-7f745bbd765e}</Project>
+      <Name>CallCompliance.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,10 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="365a8a08778f40c8a195ae43f2bbf892" Name="Diagram1" >
-        <EntityTypeShape EntityType="SomeDatabase.NumberUnBlock" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SomeDatabase.ReasonToOverride" Width="1.5" PointX="2.75" PointY="0.75" />
-      </Diagram>
+      <Diagram DiagramId="6d46623a114347398b361be9346caa3e" Name="Diagram1" />
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

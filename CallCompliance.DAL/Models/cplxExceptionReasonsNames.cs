@@ -10,18 +10,13 @@
 namespace CallCompliance.DAL.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class NumberUnBlock
+    public partial class cplxExceptionReasonsNames
     {
         public int Id { get; set; }
-        public string PhoneNumber { get; set; }
-        public int ReasonOverrideId { get; set; }
-        public int StudentTypeId { get; set; }
-        public Nullable<int> StudentId { get; set; }
-        public string Notes { get; set; }
-        public int ModifiedBy { get; set; }
-        public System.DateTime DateAdded { get; set; }
-        public System.DateTime DateModified { get; set; }
+        public string ReasonName { get; set; }
+        public System.DateTime DateTimeAdded { get; set; }
+        public System.DateTime DateTimeModified { get; set; }
+        public bool ActiveFlag { get; set; }
     }
 }

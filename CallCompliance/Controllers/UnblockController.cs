@@ -1,9 +1,9 @@
-﻿using CallCompliance.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CallCompliance.DAL.Models;
 
 namespace CallCompliance.Controllers
 {
@@ -12,10 +12,13 @@ namespace CallCompliance.Controllers
         // GET: Unblock
         public ActionResult Index() {
 
-            //var viewModel = new UnblockViewModel {
-            //    ReasonOverrides = dbContext.ReasonOverrides.ToList ();
-            //}
-            return View ();
+			// var repo = new TestRepository();
+			// var models = repo.GetTestModels();
+			// return View(models);
+
+
+
+			return View ();
         }
     }
 }

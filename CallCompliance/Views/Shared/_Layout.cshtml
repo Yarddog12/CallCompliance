@@ -14,15 +14,14 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
-        @*<text type="text" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation"> Welcome Welcome @MyHelpers.UserFullName()</text>*@
-        <div class="col-form-label"
-        <a class="navbar-brand"> Call Compliance Portal </a>
-    </nav>
+<nav class="navbar navbar-dark navbar-fixed-top bg-primary">
+    <span class="navbar-brand">Welcome @MyHelpers.UserFullName()</span>
+    <span class="navbar-brand" >Call Compliance Portal</span>
+</nav>
 
     <div class="container-fluid">
         <div class="row">
-            @if (MyHelpers.UserFullName ().ToString () == "Authentication failed") {
+            @if (MyHelpers.UserFullName ().ToString () != "Authentication failed") {
                 <div class="col-sm-3 col-md-2 sidebar">
                     <nav class="nav nav-pills nav-stacked nav-sidebar">
                         <a id="menu-unblock" class="nav-link" href="/Unblock">

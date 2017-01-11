@@ -51,41 +51,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\NumberUnBlock.cs">
-      <DependentUpon>SomeDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ReasonToOverride.cs">
-      <DependentUpon>SomeDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SomeDatabaseModel.Context.cs">
+    <Compile Include="Models\CallComplianceModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SomeDatabaseModel.Context.tt</DependentUpon>
+      <DependentUpon>CallComplianceModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SomeDatabaseModel.cs">
+    <Compile Include="Models\CallComplianceModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SomeDatabaseModel.tt</DependentUpon>
+      <DependentUpon>CallComplianceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CallComplianceModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CallComplianceModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cplxExceptionReasonsNames.cs">
+      <DependentUpon>CallComplianceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cplxStudentInfoByPhoneNumber.cs">
+      <DependentUpon>CallComplianceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\SomeDatabase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SomeDatabase.edmx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\SomeDatabase.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SomeDatabase.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="Repository\Unblock\UnBlockNumberRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
-    <None Include="Models\SomeDatabase.edmx.diagram">
-      <DependentUpon>SomeDatabase.edmx</DependentUpon>
+    <EntityDeploy Include="Models\CallComplianceModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CallComplianceModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\CallComplianceModel.edmx.diagram">
+      <DependentUpon>CallComplianceModel.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -95,19 +94,18 @@
     <Folder Include="Repository\CoolDown\" />
     <Folder Include="Repository\DNC\" />
     <Folder Include="Repository\Reporting\" />
-    <Folder Include="Repository\Unblock\" />
     <Folder Include="Repository\WhiteList\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\SomeDatabaseModel.Context.tt">
+    <Content Include="Models\CallComplianceModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SomeDatabaseModel.Context.cs</LastGenOutput>
-      <DependentUpon>SomeDatabase.edmx</DependentUpon>
+      <LastGenOutput>CallComplianceModel.Context.cs</LastGenOutput>
+      <DependentUpon>CallComplianceModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\SomeDatabaseModel.tt">
+    <Content Include="Models\CallComplianceModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SomeDatabaseModel.cs</LastGenOutput>
-      <DependentUpon>SomeDatabase.edmx</DependentUpon>
+      <LastGenOutput>CallComplianceModel.cs</LastGenOutput>
+      <DependentUpon>CallComplianceModel.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

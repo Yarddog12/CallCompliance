@@ -10,14 +10,10 @@
 namespace CallCompliance.DAL.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ReasonToOverride
+    public partial class cplxStudentInfoByPhoneNumber
     {
-        public int ReasonOverrideId { get; set; }
-        public string ReasonOverride { get; set; }
-        public int ModifiedBy { get; set; }
-        public System.DateTime DateAdded { get; set; }
-        public System.DateTime DateModified { get; set; }
+        public int SyStudentId { get; set; }
+        public string StudentName { get; set; }
     }
 }

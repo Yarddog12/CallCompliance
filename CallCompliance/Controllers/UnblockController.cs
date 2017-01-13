@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CallCompliance.DAL.Models;
+using CallCompliance.DAL.Repository.Unblock;
 
 namespace CallCompliance.Controllers
 {
@@ -12,13 +13,9 @@ namespace CallCompliance.Controllers
         // GET: Unblock
         public ActionResult Index() {
 
-			// var repo = new TestRepository();
-			// var models = repo.GetTestModels();
-			// return View(models);
-
-
-
-			return View ();
+			var repo = new UnBlockNumberRepository();
+	        var model = repo.GetExceptionReasonNames();
+			return View (model);
         }
     }
 }

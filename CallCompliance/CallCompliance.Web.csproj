@@ -308,10 +308,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.4.0.debug.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="ViewScripts\Unblock\UnBlockReasonNameDropDown.js" />
+    <Content Include="ViewScripts\Unblock\UnBlock_ViewModel.js" />
     <Content Include="Views\Home\Index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -326,13 +330,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Unblock\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\CoolDown\Index.cshtml" />
     <Content Include="Views\DNC\Index.cshtml" />
     <Content Include="Views\Reporting\Index.cshtml" />
     <Content Include="Views\WhiteList\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -341,7 +345,6 @@
     <Folder Include="ViewScripts\CoolDown\" />
     <Folder Include="ViewScripts\DNC\" />
     <Folder Include="ViewScripts\Reporting\" />
-    <Folder Include="ViewScripts\Unblock\" />
     <Folder Include="ViewScripts\WhiteList\" />
   </ItemGroup>
   <ItemGroup>

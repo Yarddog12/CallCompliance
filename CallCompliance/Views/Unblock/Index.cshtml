@@ -1,31 +1,97 @@
-﻿@model CallCompliance.ViewModels.UnblockViewModel
+﻿@using Newtonsoft.Json
 
 @{
     ViewBag.Title = "Unblock";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label" for="inputEmail3">Enter phone number needing temporary override:</label>
+            <div class="col-sm-3">
+                <input type="email" class="form-control" id="inputPhoneUnBlock" placeholder="(000) 000-0000">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label" for="inlineFormCustomSelect">Reason for overriding daily dial limit cap:</label>
+            <select class="custom-select col-sm-3" data-bind="options: someModel.ReasonName,
+                       optionsCaption: 'Choose...'">
+                
+            </select>
+        </div>
+        <div class="form-inline row">
+            <div class="col-sm-5">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                        Student name
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                        Employer name
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <input type="email" class="form-control" id="inputPhoneUxnBlock">
+            </div>
+        </div>
+        <div class="form-group row"></div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label" for="inputEmail3">If Student, enter studentId</label>
+            <div class="col-sm-3">
+                <input type="email" class="form-control" id="inputPhoneUnBlock">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label" for="inputEmail3">Include additional details (student name, system student number, business reason, etc...)</label>
+            <div class="col-sm-3">
+                <textarea type="email" class="form-control" id="inputPhoneUnBlock" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="form-inline row">
 
-<form>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PhoneNumber)
-        @Html.TextBoxFor(m => m.PhoneNumber, new { @class="form-control"})
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PhoneNumber)
-        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ReasonOverrides)
-        @Html.TextBoxFor(m => m.PhoneNumber, new SelectList (Model.ReasonOverrides, "Id", "Name");
-    </div>
-</form>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary" onclick="someModel.doSaveProfile()">Save</button>
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary">Reset</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+@*<section class="col-xs-12">
+    <section class="row" style="height: 15px">
+        <section class="form-horizontal">
+            <section class="form-group">
+                <section class="col-xs-4">
+                    <label for="courseInstructor">Enter Phone Number needing Temporary Override:</label>
+                </section>
+                <section class="col-xs-4 ">
+                    <input id="courseInstructor" class="form-control" data-bind="value: masterViewModel.CurrentStudentCourse().instructor" />
+                </section>
+            </section>
+        </section>
+    </section>
+</section>*@
+
+
+
 
 @section scripts {
-    <script type="text/javascript">
+    
+    <script src="~/ViewScripts/Unblock/UnBlock_ViewModel.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script>
         $(function () {
+            someModel.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            someModel.init();
             $("#menu-unblock").addClass("active");
-            ko.applyBindings();
         })
     </script>
 }

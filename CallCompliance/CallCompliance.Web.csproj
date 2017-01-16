@@ -173,9 +173,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\UnblockViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-dialog.css" />
     <Content Include="Content\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.scss</DependentUpon>
     </Content>
@@ -186,6 +188,7 @@
     <Content Include="Content\c3.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\jquery.modal.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -290,6 +293,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Documentation\Call Compliance.docx" />
+    <Content Include="Content\bootstrap-dialog.less" />
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\c3.js" />
     <Content Include="Scripts\c3.min.js" />
@@ -302,6 +306,7 @@
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.modal.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -337,10 +342,10 @@
     <Content Include="Views\Reporting\Index.cshtml" />
     <Content Include="Views\WhiteList\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\UMA.Core.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="ViewScripts\Admin\" />
     <Folder Include="ViewScripts\CoolDown\" />
     <Folder Include="ViewScripts\DNC\" />
@@ -358,10 +363,6 @@
     <ProjectReference Include="..\CallCompliance.DAL\CallCompliance.DAL.csproj">
       <Project>{0b1dfb09-31d7-436c-b1cf-3a48a0c05069}</Project>
       <Name>CallCompliance.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CallCompliance.Domain\CallCompliance.Domain.csproj">
-      <Project>{35873ff4-ca51-4679-afb1-7f745bbd765e}</Project>
-      <Name>CallCompliance.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

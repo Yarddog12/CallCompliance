@@ -1,20 +1,119 @@
 ﻿
-someModel = {
+Declare("UMA.UnBlock", {
     serverModel: null,
     self: null,
     model: ko.observable(),
     validationErrors: [],
-    DropDownItems: ko.observableArray([new UnBlockReasonNameDropDown()]),
+
+    // A list of the Exception Reason Name objects for drop down.
+    reasonCollection: ko.observableArray(),
+
+    availableCountries: ko.observableArray(),
+    selectedCountryId: ko.observable(""),
 
     init: function () {
-        self = someModel;
+
+        var self = UMA.UnBlock;
+
+        // fill in the dropdown
+        self.fillCollectionDropDown();
+
         if (self.serverModel) {
             self.model(ko.mapping.fromJS(self.serverModel));
         }
 
         // apply bindings after the computed functions
         ko.applyBindings(self.model);
+    },
 
+    // this method will fill the collection dropdown 
+    // from the server model's list of reason Collections
+    fillCollectionDropDown: function () {
+
+        var self = UMA.UnBlock;
+
+        var dropDownModel = function(id, name) {
+            this.selectedId = id;
+            this.country = name;
+        };
+
+        self.ignoreEvents = true;
+
+        // get the array of reasonCollectionDto objects
+        var collectionDtoList = self.model.ExceptionReasonNames;
+
+        // for each reasonCollectionDto, add it to the drop down list
+        for (var index = 0; index != collectionDtoList.length; index++) {
+            var collectionDto = collectionDtoList[index];
+            var item1 = new dropDownModel(collectionDto.Id, collectionDto.ReasonName);
+            self.availableCountries.push(item1);
+        };
+
+        ko.applyBindings(self);
+        self.ignoreEvents = false;
+    },
+
+    doSaveProfile: function () {
+
+        var self = UMA.UnBlock;
+
+        var url = '/Unblock/SaveUnblockNumber/';
+        var data = ko.mapping.toJSON(self.model);
+
+        var phoneNumber = self.model.PhoneNumber;
+        var reasonId = self.selectedCountryId().selectedId;
+
+        $.ajax({
+                url: url,
+                data: data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8"
+            })
+
+            // look this up...new in JQuery 3.0
+            .done(function(x) {
+
+                if (x) {
+                    var msg = 'Phone Number ' + phoneNumber + ' has been unblocked';
+                    modal({
+                        type: 'inverted',
+                        title: 'Unblock Phone Number',
+                        text: msg,
+                        size: 'normal',
+                        buttons: [
+                        {
+                            text: 'OK',
+                            val: 'ok',
+                            eKey: true,
+                            addClass: 'btn-light-blue'
+                        }]
+                    });
+
+                    //var url = "/Internal/Admin/Profile/" + userId;
+                    //location.href = url;
+                }
+            })
+            .fail(function (errorMessage) {
+                var msg = 'Phone Number ' + phoneNumber + ' has *** NOT *** been unblocked';
+                modal({
+                    type: 'error',
+                    title: 'Unblock Phone Number failure',
+                    text: msg,
+                    size: 'normal',
+                    buttons: [
+                    {
+                        text: 'OK',
+                        val: 'ok',
+                        eKey: true,
+                        addClass: 'btn-light-blue'
+                    }]
+                });
+                console.log(errorMessage);
+            })
+            .always(function() {
+                //self.toggleSaveLoader(false);
+            });
     },
 
     // this method is called when the Reset Password button is clicked
@@ -43,69 +142,7 @@ someModel = {
         });
     },
 
-    doSaveProfile: function () {
 
-        var url = '/Internal/Admin/SaveUserProfile/';
-        var model = self.model();
-        var data = ko.mapping.toJSON(model);
-        var userName = model.UserName();
-
-        if (self.isModelValid(model)) {
-
-            self.toggleSaveLoader(true);
-
-            $.ajax({
-                url: url,
-                data: data,
-                dataType: "json",
-                type: "POST",
-                contentType: "application/json; charset=utf-8"
-            })
-
-           .success(function (data) {
-               var userId = data.UserId;
-               if (data) {
-                   var msg = 'Your profile data has been saved';
-                   BootstrapDialog.alert({
-                       title: 'My Profile',
-                       message: msg,
-                       type: BootstrapDialog.TYPE_SUCCESS,
-                       closable: true,
-                       draggable: true,
-                       buttonLabel: 'Close'
-                   });
-
-                   var url = "/Internal/Admin/Profile/" + userId;
-                   location.href = url;
-               }
-           })
-                t
-           .fail(function (errorMessage) {
-               console.log(errorMessage);
-           })
-
-           .always(function () {
-               self.toggleSaveLoader(false);
-           })
-        } else {
-            var message = "<div>Please review the following errors:</div><br/><ul>";
-
-            _.each(self.validationErrors, function (item) {
-                message = message + "<li>" + item + "</li>";
-            });
-            message = message + "</ul>";
-
-            if (userName == null) {
-                userName = '<Empty>';
-            }
-
-            BootstrapDialog.alert({
-                title: 'Problem saving your profile data',
-                message: message,
-                type: BootstrapDialog.TYPE_DANGER
-            });
-        }
-    },
 
     //isModelValid: function (model) {
     //    self.validationErrors = [];
@@ -171,7 +208,9 @@ someModel = {
             $("#save").prop("disabled", false);
         }
     },
-};
+});
+
+//ko.applyBindings(someModel);
 
 ko.bindingHandlers.formatPhone = {
     update: function (element, valueAccessor) {
@@ -184,3 +223,6 @@ ko.bindingHandlers.formatPhone = {
         }
     }
 };
+
+
+

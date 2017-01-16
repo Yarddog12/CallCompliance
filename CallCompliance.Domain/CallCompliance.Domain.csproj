@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Unblock\ExceptionReasonNames.cs" />
-    <Compile Include="Domain\Unblock\StudentInfoByPhoneNumber.cs" />
+    <Compile Include="Domain\Unblock\ExceptionReasonNames-dog.cs" />
+    <Compile Include="Domain\Unblock\StudentInfoByPhoneNumber-dog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

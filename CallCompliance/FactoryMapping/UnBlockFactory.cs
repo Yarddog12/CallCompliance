@@ -4,18 +4,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using CallCompliance.DAL.Models;
-using CallCompliance.Domain.Domain.Unblock;
+using CallCompliance.Models;
 
 
 namespace CallCompliance.FactoryMapping {
 	public class UnBlockFactory {
 
-		public ExceptionReasonNames Create(cplxExceptionReasonsNames c) {
+		public ExceptionReasonNamesModel Create(cplxExceptionReasonsNames c) {
 			if (c == null) {
 				throw new ArgumentNullException("cplxExceptionNames", "No Exception reasons for dropdown box returned.");
 			}
 
-			return new ExceptionReasonNames (c.Id, c.ReasonName, c.DateTimeAdded, c.DateTimeModified, c.ActiveFlag);
+			return new ExceptionReasonNamesModel(c.Id, c.ReasonName);
 		}
 	}
 }

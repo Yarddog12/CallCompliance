@@ -294,6 +294,7 @@
     </None>
     <Content Include="Documentation\Call Compliance.docx" />
     <Content Include="Content\bootstrap-dialog.less" />
+    <Content Include="Documentation\Call Compliance Portal SRS_V2 working.docx" />
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\c3.js" />
     <Content Include="Scripts\c3.min.js" />

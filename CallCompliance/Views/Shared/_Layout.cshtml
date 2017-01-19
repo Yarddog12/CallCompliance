@@ -15,7 +15,7 @@
 
 <body>
 <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
-    <span class="navbar-brand">Welcome to the Call Compliance Portal @MyHelpers.UserFullName()!  Enjoy your stay and don't break anything.</span>
+    <span class="navbar-brand">User: @MyHelpers.UserFullName()</span>
 </nav>
 
     <div class="container-fluid">
@@ -38,7 +38,7 @@
                         <a id="menu-dnc" class="nav-link" href="/DNC">
                             <span style="width:55px" class="fa fa-2x fa-user-times"></span> DNC
                         </a>
-                        @if (!User.IsInRole ("Call_Frequency_Admins_SG")) {
+                        @if (User.IsInRole ("Call_Frequency_Admins_SG")) {
                             <a id="menu-admin" class="nav-link" href="/Admin">
                                 <span style="width:55px" class="fa fa-2x fa-user-circle-o"></span> Admin
                             </a>

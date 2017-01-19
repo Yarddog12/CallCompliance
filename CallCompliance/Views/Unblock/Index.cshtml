@@ -11,12 +11,12 @@
         <div class="form-group row">
             <label class="col-sm-5 col-form-label" for="inputEmail3">Enter phone number needing temporary override:</label>
             <div class="col-sm-3">
-                <input type="email" class="form-control" id="inputPhoneUnBlock" data-bind="value: model.PhoneNumber" placeholder="(000) 000-0000">
+                <input type="text" class="form-control" id="inputPhoneUnBlock" data-bind="value: model.PhoneNumber" placeholder="(000) 000-0000" maxlength="20">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-5 col-form-label" for="inlineFormCustomSelect">Reason for overriding daily dial limit cap:</label>
-            <select class="custom-select col-sm-3" data-bind="value: selectedCountryId, options: availableCountries, optionsText: 'country',
+            <select class="custom-select col-sm-3" data-bind="value: selectedReasonId, options: reasonCollection, optionsText: 'country',
                        optionsCaption: 'Choose...'">
                 
             </select>
@@ -37,29 +37,29 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <input type="email" class="form-control" id="inputPhoneUxnBlock">
+                <input type="text" class="form-control" id="inputPhoneUxnBlock" data-bind="value: model.NameAssigned" maxlength="100">
             </div>
         </div>
         <div class="form-group row"></div>
         <div class="form-group row">
             <label class="col-sm-5 col-form-label" for="inputEmail3">If Student, enter studentId</label>
             <div class="col-sm-3">
-                <input type="email" class="form-control" id="inputStudentId">
+                <input type="text" class="form-control" id="inputStudentId"  data-bind="value: model.StudentId" maxlength="100">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-5 col-form-label" for="inputEmail3">Include additional details (student name, system student number, business reason, etc...)</label>
             <div class="col-sm-3">
-                <textarea type="email" class="form-control" id="txtAreaNotes" rows="3"></textarea>
+                <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: model.Notes" maxlength="500"></textarea>
             </div>
         </div>
         <div class="form-inline row">
 
             <div class="col-sm-1">
-                <button type="submit" class="btn btn-primary" data-bind="click: doSaveProfile">Save</button>
+                <button type="submit" class="btn btn-primary" data-bind="click: doSaveUnblock">Save</button>
             </div>
             <div class="col-sm-1">
-                <button type="submit" class="btn btn-primary">Reset</button>
+                <button type="submit" class="btn btn-primary" data-bind="click: doReset">Reset</button>
             </div>
         </div>
 
@@ -90,6 +90,8 @@
     <link href="~/Content/jquery.modal.css" type="text/css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="~/Scripts/jquery.modal.js"></script>
+    <script src="~/Scripts/underscore.js"></script>
+    <script src="~/Scripts/UMA.Validation.js"></script>
     <script src="~/ViewScripts/Unblock/UnBlock_ViewModel.js"></script>
 
     <script>

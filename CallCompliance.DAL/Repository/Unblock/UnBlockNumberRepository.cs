@@ -51,7 +51,7 @@ namespace CallCompliance.DAL.Repository.Unblock {
 					dbContext.AddExceptionsPhoneNumber(phoneNumber, dt, reqId, reqName, reqDepartment, reasonId, studentId, nameAssigned, notes);
 				}
 			} catch (Exception ex) {
-				// log something.
+				throw ex;
 			}
 		}
 	}

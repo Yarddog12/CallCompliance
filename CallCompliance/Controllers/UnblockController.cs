@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Web.Mvc;
 using CallCompliance.DAL.Repository.Unblock;
@@ -30,22 +31,48 @@ namespace CallCompliance.Controllers
 			var model = new UnblockViewModel();
 			model.ExceptionReasonNames.AddRange(data);
 
+			// move into a base class
+			try {
+
+				using (var context = new PrincipalContext(ContextType.Domain)) {
+					var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+					if (principal != null) {
+						model.RequestName = principal.DisplayName;
+						model.RequestId = principal.SamAccountName.ToUpper();
+						// TODO: put all of this in a base class, and find department name.
+						model.ReqDepartment = "App Dev";
+					}
+				}
+			}
+			catch (Exception ex) {
+				model.FullName = "Authentication failed";
+			}
+
 			return View (model);
         }
 
 		[HttpPost]
 		public ActionResult SaveUnblockNumber(UnblockViewModel vm) {
-			var result = "dog";
-			return Json (result, JsonRequestBehavior.AllowGet);
-			//int userId = 0;
-			//// phoneNumber, reqId, reqName, reqDepartment, reasonId, studentId, nameAssigned, notes
-			var repo = new UnBlockNumberRepository();
-			repo.AddExceptionPhoneNumber("555-1212", "JBECKWITH", "John Beckwith", "App Dev", 8, 0, "Charles", "awesome notes");
-			//ControllerReturnStatus status = ControllerReturnStatus.Success;
-
-			//var result = new { UserId = userId, Status = status, Message = "User data for username (" + vm.UserName + ") was successfully " + (vm.IsNew ? "added." : "updated.") };
 			//var result = "dog";
 			//return Json (result, JsonRequestBehavior.AllowGet);
+
+			ControllerReturnStatus status = ControllerReturnStatus.Success;
+
+			try {
+				var repo = new UnBlockNumberRepository();
+				repo.AddExceptionPhoneNumber(vm.PhoneNumber, vm.RequestId, vm.RequestName, vm.ReqDepartment, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes);
+			}
+			catch (Exception ex) {
+				status = ControllerReturnStatus.Fail;
+			}
+
+			string message = "Phone number: " + vm.PhoneNumber;
+			message += (status == 0 ? " was successfully Un-Blocked." : " was NOT Un-Blocked.");
+
+			string title = (status == 0 ? "Success on Un-Blocking phone number " + vm.PhoneNumber: "Error on Un-Blocking phone number " + vm.PhoneNumber);
+			
+			var result = new { Status = status, Title = title, Message = message};
+			return Json (result, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

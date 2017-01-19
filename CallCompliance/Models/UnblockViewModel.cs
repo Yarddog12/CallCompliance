@@ -6,16 +6,21 @@ using System.Web;
 namespace CallCompliance.Models {
 	public class UnblockViewModel {
 
+		// move into a base class
+		public string LoginIdentity { get; set; }
+		public string FullName { get; set; }
+
+
 		public string PhoneNumber { get; set; }
 		public List<ExceptionReasonNamesModel> ExceptionReasonNames { get; set; } = new List<ExceptionReasonNamesModel>();
 
-		public string requestId { get; set; }
-		public string requestName { get; set; }
-		public string reqDepartment { get; set; }
-		public int reasonId { get; set; }
-		public int studentId { get; set; }
-		public string nameAssigned { get; set; }
-		public string notes { get; set; }
+		public string RequestId { get; set; }
+		public string RequestName { get; set; }
+		public string ReqDepartment { get; set; }
+		public int ReasonId { get; set; }
+		public int StudentId { get; set; }
+		public string NameAssigned { get; set; }
+		public string Notes { get; set; }
 
 		public UnblockViewModel()
 		{

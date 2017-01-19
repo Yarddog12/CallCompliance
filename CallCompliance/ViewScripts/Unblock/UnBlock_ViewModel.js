@@ -7,9 +7,7 @@ Declare("UMA.UnBlock", {
 
     // A list of the Exception Reason Name objects for drop down.
     reasonCollection: ko.observableArray(),
-
-    availableCountries: ko.observableArray(),
-    selectedCountryId: ko.observable(""),
+    selectedReasonId: ko.observable(""),
 
     init: function () {
 
@@ -23,7 +21,7 @@ Declare("UMA.UnBlock", {
         }
 
         // apply bindings after the computed functions
-        ko.applyBindings(self.model);
+        //ko.applyBindings(self.model);
     },
 
     // this method will fill the collection dropdown 
@@ -46,171 +44,152 @@ Declare("UMA.UnBlock", {
         for (var index = 0; index != collectionDtoList.length; index++) {
             var collectionDto = collectionDtoList[index];
             var item1 = new dropDownModel(collectionDto.Id, collectionDto.ReasonName);
-            self.availableCountries.push(item1);
+            self.reasonCollection.push(item1);
         };
 
         ko.applyBindings(self);
         self.ignoreEvents = false;
     },
 
-    doSaveProfile: function () {
+    doSaveUnblock: function () {
 
         var self = UMA.UnBlock;
-
         var url = '/Unblock/SaveUnblockNumber/';
+        self.model.ReasonId = self.selectedReasonId().selectedId;
+
         var data = ko.mapping.toJSON(self.model);
+        var msg = "";
 
-        var phoneNumber = self.model.PhoneNumber;
-        var reasonId = self.selectedCountryId().selectedId;
+        if (self.isModelValid(self.model)) {
 
-        $.ajax({
-                url: url,
-                data: data,
-                dataType: "json",
-                type: "POST",
-                contentType: "application/json; charset=utf-8"
-            })
+            $.ajax({
+                    url: url,
+                    data: data,
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8"
+                })
+
 
             // look this up...new in JQuery 3.0
             .done(function(x) {
 
-                if (x) {
-                    var msg = 'Phone Number ' + phoneNumber + ' has been unblocked';
+                if (x) { 
+                    //msg = 'Phone Number ' + self.model.PhoneNumber + ' has been unblocked';
                     modal({
-                        type: 'inverted',
-                        title: 'Unblock Phone Number',
-                        text: msg,
+                        type: x.Status ? 'error' : 'inverted',
+                        title: x.Title,
+                        text:  x.Message,
                         size: 'normal',
                         buttons: [
-                        {
-                            text: 'OK',
-                            val: 'ok',
-                            eKey: true,
-                            addClass: 'btn-light-blue'
-                        }]
+                            {
+                                text: 'OK',
+                                val: 'ok',
+                                eKey: true,
+                                addClass: 'btn-light-blue'
+                            }
+                        ]
                     });
 
                     //var url = "/Internal/Admin/Profile/" + userId;
                     //location.href = url;
                 }
             })
-            .fail(function (errorMessage) {
-                var msg = 'Phone Number ' + phoneNumber + ' has *** NOT *** been unblocked';
+                // This would be some AJAX error....
+            .fail(function(errorMessage) {
+                msg = 'Phone Number (' + self.model.PhoneNumber + ') has *** NOT *** been unblocked.  Check that you entered a phone number. (ajax error)';
                 modal({
                     type: 'error',
                     title: 'Unblock Phone Number failure',
                     text: msg,
                     size: 'normal',
                     buttons: [
-                    {
-                        text: 'OK',
-                        val: 'ok',
-                        eKey: true,
-                        addClass: 'btn-light-blue'
-                    }]
+                        {
+                            text: 'OK',
+                            val: 'ok',
+                            eKey: true,
+                            addClass: 'btn-light-blue'
+                        }
+                    ]
                 });
                 console.log(errorMessage);
             })
             .always(function() {
                 //self.toggleSaveLoader(false);
             });
-    },
 
-    // this method is called when the Reset Password button is clicked
-    onResetPswdBtnClick: function () {
-        BootstrapDialog.show({
-            type: BootstrapDialog.TYPE_DANGER,
-            title: 'Reset Password',
-            message: "<p>Resetting your password will log your account out of Lendscape and invalidate your current password. " + 
-                "You will be prompted to type in your new password the next time you login.</p>" +
-                "<p style='font-size:12pt'><b>Do you want to proceed?</h2></b>",
-            buttons: [
-                {
-                    label: 'Cancel',
-                    action: function (dialog) {
-                        dialog.close();
+        } else {
+            var message = "<div>Please review the following errors:</div><br/><ul>";
+            
+            _.each(self.validationErrors, function (item) {
+                message = message + "<li>" + item + "</li>";
+            });
+            message = message + "</ul>";
+
+            modal({
+                type: 'error',
+                title: 'Unblock Phone Number failure',
+                text: message,
+                size: 'normal',
+                buttons: [
+                    {
+                        text: 'OK',
+                        val: 'ok',
+                        eKey: true,
+                        addClass: 'btn-light-blue'
                     }
-                },
-                {
-                    label: 'Confirm',
-                    cssClass: 'btn-success',
-                    action: function (dialog) {
-                        dialog.close();
-                        self.doPasswordReset();
-                }
-            }]
-        });
+                ]
+            });
+        }
     },
 
+    // Check to see if the model is valid per requirements before we save it.
+    isModelValid: function (model) {
 
+        var self = UMA.UnBlock;
+        self.validationErrors = [];
 
-    //isModelValid: function (model) {
-    //    self.validationErrors = [];
+        // **********************// Validation for UNBLOCK page **********************//
 
-    //    fpf.validation.isRequiredField(model.LegalFirstName(), "Legal First Name required.", self.validationErrors);
-    //    fpf.validation.isRequiredField(model.FirstName(), "Alias First Name required.", self.validationErrors);
-    //    fpf.validation.isRequiredField(model.LastName(), "Last Name required.", self.validationErrors);
+        // Phone Number
+        uma.validation.isRequiredField (model.PhoneNumber, "Phone number to block is required.", self.validationErrors);
+        uma.validation.isPhoneNumberValid ("Invalid phone Number", model.PhoneNumber, self.validationErrors);
+        uma.validation.isTextFieldOverMaxLength ('Phone number too long.  Max length = 20', model.PhoneNumber, 20, self.validationErrors);
 
-    //    var ssn = model.SSN();
-    //    if (!fpf.validation.validSSN(ssn)) {
-    //        self.validationErrors.push("Invalid SSN (" + ssn + ")");
-    //        model.SSN("");
-    //    }
+        // Reason for overriding daily dial limit cap (ExceptionReasonId)  This is a dropdown.
+        uma.validation.isRequiredField(model.ReasonId, "You must choose a reason for overriding the daily dial limit cap.", self.validationErrors);
 
-    //    var birthDate = model.BirthDate();
-    //    var years = moment().diff(birthDate, 'years');
+        // Student or Employer name (Requestor department)
+        uma.validation.isTextFieldOverMaxLength ('Student or Employer name too long.  Max length = 100', model.RequestorDepartment, 100, self.validationErrors);
+       
+        // StudentId should be an integer, no characthers
+        uma.validation.isNumeric(1, self.validationErrors);
 
-    //    // Greater than 13 and less than 100 years old.
-    //    if (years < 14 || years > 99) {
-    //        self.validationErrors.push("Valid age is greater than 13 and less than 100.  Age (" + years + ") is invalid.");
-    //    }
+        // Included additional details (notes)
+        uma.validation.isRequiredField(model.Notes, "You must enter a few additional details please.", self.validationErrors);
+        uma.validation.isTextFieldOverMaxLength('Additional details field too long.  Max length = 500', model.Notes, 500, self.validationErrors);
 
-    //    fpf.validation.isTextFieldOverMaxLength('Social Security Number', model.SSN(), 9, self.validationErrors);
-
-    //    fpf.validation.isTextFieldOverMaxLength('Legal First Name', model.LegalFirstName(), 50, self.validationErrors);
-    //    fpf.validation.isTextFieldOverMaxLength('Alias First Name', model.FirstName(), 50, self.validationErrors);
-    //    fpf.validation.isTextFieldOverMaxLength('Middle Initial', model.MiddleInitial(), 50, self.validationErrors);
-    //    fpf.validation.isTextFieldOverMaxLength('Last Name', model.LastName(), 50, self.validationErrors);
-    //    fpf.validation.isTextFieldOverMaxLength('Suffix', model.Suffix(), 15, self.validationErrors);
-    //    fpf.validation.isTextFieldOverMaxLength('My Notes', model.MyNotes(), 10000, self.validationErrors);
-        
-    //    return self.validationErrors.length == 0;
-    //},
+        return self.validationErrors.length == 0;
+    },
 
     // this method is called when the user clicks the Save button in the 
     // Reset Password pop up dialog
-    doPasswordReset: function () {
-        var url = "/Internal/Admin/DoResetProfilePassword";
-        var redirect = "/Account/Logout";
-        $.ajax({
-            url: url,
-            data: null,
-            dataType: "json",
-            type: "POST",
-            contentType: "application/json; charset=utf-8"
-        })
-        .success(function (data, status, xhr) {
-            console.log("Success");
-            location.href = redirect;
-        })
-        .fail(function (errorMessage) {
-            console.log(errorMessage);
-        })
+    doReset: function () {
+        var url = "/Unblock/";
+        location.href = url;
     },
 
-    toggleSaveLoader: function (isLoading) {
-        if (isLoading) {
-            $("#save").addClass("active");
-            $("#save").prop("disabled", true);
-        }
-        else {
-            $("#save").removeClass("active");
-            $("#save").prop("disabled", false);
-        }
-    },
+    //toggleSaveLoader: function (isLoading) {
+    //    if (isLoading) {
+    //        $("#save").addClass("active");
+    //        $("#save").prop("disabled", true);
+    //    }
+    //    else {
+    //        $("#save").removeClass("active");
+    //        $("#save").prop("disabled", false);
+    //    }
+    //}
 });
-
-//ko.applyBindings(someModel);
 
 ko.bindingHandlers.formatPhone = {
     update: function (element, valueAccessor) {

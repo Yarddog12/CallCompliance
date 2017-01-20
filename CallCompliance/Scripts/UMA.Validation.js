@@ -14,17 +14,23 @@
     //
     isRequiredField: function (val, errText, validationErrors) {
 
-        if (val == null || val.length == 0) {
+        if (val == null || val.length === 0) {
             validationErrors.push(errText);
         }
     },
 
+    isRequiredDropDown: function (val, errText, validationErrors) {
+
+        if (val == null || val.length === 0 || val === 0) {
+            validationErrors.push(errText);
+        }
+    },
     // Check the lengths of the fields so we don't over run the text box.
     //
     // fpf.validation.isTextFieldOverMaxLength('Display Name', model.DisplayName(), 75, self.validationErrors);
     //
     isTextFieldOverMaxLength: function (txtFieldName, txtFieldValue, len, validationErrors) {
-        if (txtFieldValue == null || txtFieldValue.length == 0) {
+        if (txtFieldValue == null || txtFieldValue.length === 0) {
             return;
         }
 
@@ -48,7 +54,7 @@
     //
     isPhoneNumberValid: function (txt, phoneNum, validationErrors) {
         var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-        if (phoneNum == null || phoneNum.length == 0) {
+        if (phoneNum == null || phoneNum.length === 0) {
             return true;
         }
         if (phoneNum.match(phoneno)) {
@@ -120,19 +126,19 @@
             return false;
         }
         var temp = value;
-        if (value.indexOf("-") != -1) {
+        if (value.indexOf("-") !== -1) {
             temp = (value.split("-")).join("");
         }
-        if (value.indexOf(" ") != -1) {
+        if (value.indexOf(" ") !== -1) {
             temp = (value.split(" ")).join("");
         }
-        if (temp.substring(0, 3) == "000") {
+        if (temp.substring(0, 3) === "000") {
             return false;
         }
-        if (temp.substring(3, 5) == "00") {
+        if (temp.substring(3, 5) === "00") {
             return false;
         }
-        if (temp.substring(5, 9) == "0000") {
+        if (temp.substring(5, 9) === "0000") {
             return false;
         }
         return true;

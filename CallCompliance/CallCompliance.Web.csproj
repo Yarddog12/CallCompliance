@@ -181,7 +181,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\CoolDownViewModel.cs" />
+    <Compile Include="Models\DncViewModel.cs" />
     <Compile Include="Models\UnblockViewModel.cs" />
+    <Compile Include="Models\WhiteListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -325,13 +329,13 @@
     <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\KnockOutExtensions.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\UMA.Validation.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="ViewScripts\Unblock\UnBlockReasonNameDropDown.js" />
     <Content Include="ViewScripts\Unblock\UnBlock_ViewModel.js" />
     <Content Include="Views\Home\Index.js" />
     <Content Include="Web.config" />

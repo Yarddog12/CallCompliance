@@ -14,50 +14,67 @@
 </head>
 
 <body>
-<nav class="navbar navbar-dark navbar-fixed-top bg-primary">
-    <span class="navbar-brand">User: @MyHelpers.UserFullName()</span>
-</nav>
+    <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
+        <div class="form-inline row">
+            <div class="col-sm-12">
+                <div class="col-sm-10">
+                    <span class="navbar-brand">Welcome to the Call Compliance Portal @MyHelpers.UserFullName()!</span>
+                </div>
+                <div class="col-sm-2">
+                    <span class="navbar-brand">
+                        <i class="fa fa-search" onclick="alert('clickme')"></i>
+                        <input type="text" class="form-control" id="inputPhoneUxnBlock" maxlength="100">
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div class="container-fluid">
         <div class="row">
-            @if (MyHelpers.UserFullName ().ToString () != "Authentication failed") {
-                <div class="col-sm-3 col-md-2 sidebar">
-                    <nav class="nav nav-pills nav-stacked nav-sidebar">
-                        <a id="menu-unblock" class="nav-link" href="/Unblock">
-                            <span style="width:55px" class="fa fa-2x fa-thumbs-up"></span> UnBlock
+            @if (MyHelpers.UserFullName().ToString() != "Authentication failed") {
+            <div class="col-sm-3 col-md-2 sidebar">
+                <nav class="nav nav-pills nav-stacked nav-sidebar">
+                    <a id="menu-home" class="nav-link" href="/Home">
+                        <span style="width:55px" class="fa fa-2x fa fa-home"></span> Home
+                    </a>
+                    <a id="menu-unblock" class="nav-link" href="/Unblock">
+                        <span style="width: 55px" class="fa fa-2x fa-thumbs-up"></span> UnBlock
+                    </a>
+                    <a id="menu-whitelist" class="nav-link" href="/WhiteList">
+                        <span style="width: 55px" class="fa fa-2x fa-snowflake-o"></span> White List
+                    </a>
+                    <a id="menu-cooldown" class="nav-link" href="/CoolDown">
+                        <span style="width: 55px" class="fa fa-2x fa-shower"></span> Cool Down
+                    </a>
+                    <a id="menu-reporting" class="nav-link" href="/Reporting">
+                        <span style="width: 55px" class="fa fa-2x fa-file-text-o"></span> Reporting
+                    </a>
+                    <a id="menu-dnc" class="nav-link" href="/DNC">
+                        <span style="width: 55px" class="fa fa-2x fa-user-times"></span> DNC
+                    </a>
+                    @if (User.IsInRole("Call_Frequency_Admins_SG")) {
+                        <a id="menu-admin" class="nav-link" href="/Admin">
+                            <span style="width: 55px" class="fa fa-2x fa-user-circle-o"></span> Admin
                         </a>
-                        <a id="menu-whitelist" class="nav-link" href="/WhiteList">
-                            <span style="width:55px" class="fa fa-2x fa-snowflake-o"></span> White List
-                        </a>
-                        <a id="menu-cooldown" class="nav-link" href="/CoolDown">
-                            <span style="width: 55px" class="fa fa-2x fa-shower"></span> Cool Down
-                        </a>
-                        <a id="menu-reporting" class="nav-link" href="/Reporting">
-                            <span style="width:55px" class="fa fa-2x fa-file-text-o"></span> Reporting
-                        </a>
-                        <a id="menu-dnc" class="nav-link" href="/DNC">
-                            <span style="width:55px" class="fa fa-2x fa-user-times"></span> DNC
-                        </a>
-                        @if (User.IsInRole ("Call_Frequency_Admins_SG")) {
-                            <a id="menu-admin" class="nav-link" href="/Admin">
-                                <span style="width:55px" class="fa fa-2x fa-user-circle-o"></span> Admin
-                            </a>
-                        }
-                    </nav>
-                </div>
-            } else {
-                <h1> You are not authenticated at UMA.  Check your VPN.</h1>
-            }
+                    }
+                </nav>
+            </div>} else {
+                    <h1> You are not authenticated at UMA.  Check your VPN.</h1>
+}
             <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
                 @RenderBody()
             </div>
         </div>
     </div>
 
-<script src="http://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+    <script src="http://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @*@Scripts.Render("~/bundles/charts")*@
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

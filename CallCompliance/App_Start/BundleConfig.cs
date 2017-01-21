@@ -6,11 +6,12 @@ namespace CallCompliance {
 		// For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
 		public static void RegisterBundles (BundleCollection bundles) {
 			bundles.Add (new ScriptBundle ("~/bundles/jquery").Include (
-						"~/Scripts/jquery-{version}.js"));
+						"~/Scripts/jquery-{version}.js",
+						"~/Scripts/jquery.modal.js",
+						"~/Scripts/UMA.Core.js"));
 
 			bundles.Add (new ScriptBundle ("~/bundles/jqueryval").Include (
 						"~/Scripts/jquery.validate*",
-						"~/Scripts/jquery.modal.js",
 						"~/Scripts/underscore.js"));
 
 			// Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -22,14 +23,15 @@ namespace CallCompliance {
 					  "~/Scripts/bootstrap.js",
 					  "~/Scripts/respond.js",
                       "~/Scripts/knockout-3.4.0.js",
-                      "~/Scripts/knockout-mapping-latest.js",
-					  "~/Scripts/UMA.Core.js",
+                      "~/Scripts/knockout.mapping-latest.js",
+					  "~/Scripts/KnockOutExtensions.js",
 					  "~/Scripts/UMA.validation.js"));
 
 			bundles.Add (new StyleBundle ("~/Content/css").Include (
 					  "~/Content/Bootstrap/bootstrap.css",
 					  "~/Content/font-awesome.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+					  "~/Content/jquery.modal.css"));
 			
 			// C3's charting (wraps D3)
 			bundles.Add (new StyleBundle ("~/Content/charts").Include (

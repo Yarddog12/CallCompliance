@@ -1,9 +1,9 @@
 ﻿
 Declare("UMA.UnBlock", {
-    serverModel: null,
-    self: null,
-    model: ko.observable(),
-    validationErrors: [],
+    serverModel:        null,
+    self:               null,
+    model:              ko.observable(),
+    validationErrors:   [],
 
     init: function () {
 
@@ -32,7 +32,7 @@ Declare("UMA.UnBlock", {
                     dataType: "json",
                     type: "POST",
                     contentType: "application/json; charset=utf-8"
-                })
+            })
 
 
             // look this up...new in JQuery 3.0

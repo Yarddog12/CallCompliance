@@ -1,6 +1,9 @@
 ﻿
+@using Newtonsoft.Json
+@model CallCompliance.Models.LoginViewModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
 }
 
 <h2>Welcome to the Call Compliance Portal - @MyHelpers.UserFullName()!</h2>
@@ -10,11 +13,24 @@
 
 @section scripts {
 
+    <script>
+        $(function() {
+            alert($("#userName"));
+            alert($("#password"));
+        })
+    </script>
+}
+
+@section scripts {
+
     <script src="~/ViewScripts/Unblock/UnBlock_ViewModel.js"></script>
 
     <script>
         $(function () {
-            $("#menu-home").addClass("active");
+            Uma.UnBlock.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.UnBlock.init();
+
+            $("#menu-unblock").addClass("active");
         })
     </script>
 }

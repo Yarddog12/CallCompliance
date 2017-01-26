@@ -7,10 +7,7 @@ namespace CallCompliance.Models {
 	public class UnblockViewModel {
 
 		// move into a base class
-		public string LoginIdentity { get; set; }
 		public string FullName { get; set; }
-
-
 		public string PhoneNumber { get; set; }
 		public List<ExceptionReasonNamesModel> ExceptionReasonNames { get; set; } = new List<ExceptionReasonNamesModel>();
 

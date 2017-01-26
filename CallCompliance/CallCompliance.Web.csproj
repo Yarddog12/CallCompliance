@@ -170,6 +170,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Content\tether.min.css" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CoolDownController.cs" />
     <Compile Include="Controllers\DNCController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\CoolDownViewModel.cs" />
     <Compile Include="Models\DncViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\UnblockViewModel.cs" />
     <Compile Include="Models\WhiteListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -308,6 +310,7 @@
     <Content Include="Documentation\Call Compliance.docx" />
     <Content Include="Content\bootstrap-dialog.less" />
     <Content Include="Documentation\Call Compliance Portal SRS_V2 working.docx" />
+    <None Include="Properties\PublishProfiles\Development.pubxml" />
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\c3.js" />
     <Content Include="Scripts\c3.min.js" />
@@ -333,9 +336,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\UMA.Validation.js" />
+    <Content Include="Scripts\tether.min.js" />
+    <Content Include="Scripts\Uma.Validation.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="ViewScripts\Login\Login_ViewModel.js" />
     <Content Include="ViewScripts\Unblock\UnBlock_ViewModel.js" />
     <Content Include="Views\Home\Index.js" />
     <Content Include="Web.config" />
@@ -358,7 +363,8 @@
     <Content Include="Views\Reporting\Index.cshtml" />
     <Content Include="Views\WhiteList\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\UMA.Core.js" />
+    <Content Include="Scripts\Uma.Core.js" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

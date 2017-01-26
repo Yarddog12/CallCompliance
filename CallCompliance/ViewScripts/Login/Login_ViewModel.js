@@ -1,5 +1,4 @@
-﻿
-Declare("Uma.UnBlock", {
+﻿Declare("Uma.Login", {
     serverModel:        null,
     self:               null,
     model:              ko.observable(),
@@ -7,7 +6,7 @@ Declare("Uma.UnBlock", {
 
     init: function () {
 
-        var self = Uma.UnBlock;
+        var self = Uma.Login;
 
         if (self.serverModel) {
             self.model(ko.mapping.fromJS(self.serverModel));
@@ -16,10 +15,10 @@ Declare("Uma.UnBlock", {
 
     },
 
-   doSaveUnblock: function () {
+    logIn: function () {
 
-        var self = Uma.UnBlock;
-        var url = '/Unblock/SaveUnblockNumber/';
+        var self = Uma.Login;
+        var url = '/Login/SaveUnblockNumber/';
         var msg = "";
 
         if (self.isModelValid(self.model())) {
@@ -27,11 +26,11 @@ Declare("Uma.UnBlock", {
             var data = ko.mapping.toJSON(self.model);
 
             $.ajax({
-                    url: url,
-                    data: data,
-                    dataType: "json",
-                    type: "POST",
-                    contentType: "application/json; charset=utf-8"
+                url: url,
+                data: data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8"
             })
 
 
@@ -109,29 +108,13 @@ Declare("Uma.UnBlock", {
     // Check to see if the model is valid per requirements before we save it.
     isModelValid: function (model) {
 
-        var self = Uma.UnBlock;
+        var self = Uma.Login;
         self.validationErrors = [];
 
         // **********************// Validation for UNBLOCK page **********************//
         // Use the () to un-wrap
         // Phone Number
-        Uma.validation.isRequiredField (model.PhoneNumber(), "Phone number to block is required.", self.validationErrors);
-        Uma.validation.isPhoneNumberValid ("Invalid phone Number", model.PhoneNumber(), self.validationErrors);
-        Uma.validation.isTextFieldOverMaxLength ('Phone number too long.  Max length = 20', model.PhoneNumber(), 20, self.validationErrors);
-
-        // Reason for overriding daily dial limit cap (ExceptionReasonId)  This is a dropdown.
-        Uma.validation.isRequiredField(model.ReasonId(), "You must choose a reason for overriding the daily dial limit cap.", self.validationErrors);
-
-        // Student or Employer name (Requestor department)
-        Uma.validation.isTextFieldOverMaxLength('Student or Employer name too long.  Max length = 100', model.ReqDepartment(), 100, self.validationErrors);
-       
-        // StudentId should be an integer, no characthers
-        Uma.validation.isNumeric(model.StudentId(), self.validationErrors);
-
-        // Included additional details (notes)
-        Uma.validation.isRequiredField(model.Notes(), "You must enter a few additional details please.", self.validationErrors);
-        Uma.validation.isTextFieldOverMaxLength('Additional details field too long.  Max length = 500', model.Notes(), 500, self.validationErrors);
-
+        //Uma.validation.isRequiredField(model.PhoneNumber(), "Phone number to block is required.", self.validationErrors);
         return self.validationErrors.length === 0;
     },
 
@@ -142,7 +125,6 @@ Declare("Uma.UnBlock", {
         document.location.href = url;
     }
 });
-
 
 
 

@@ -57,6 +57,7 @@ namespace CallCompliance.Controllers
 			//return Json (result, JsonRequestBehavior.AllowGet);
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
+			string buf = string.Empty;
 
 			try {
 				var repo = new UnBlockNumberRepository();
@@ -64,12 +65,13 @@ namespace CallCompliance.Controllers
 			}
 			catch (Exception ex) {
 				status = ControllerReturnStatus.Fail;
+				buf = ex.Message + ex.InnerException;
 			}
 
 			string message = "Phone number: " + vm.PhoneNumber;
 			message += (status == 0 ? " was successfully Un-Blocked." : " was NOT Un-Blocked.");
 
-			string title = (status == 0 ? "Success on Un-Blocking phone number " + vm.PhoneNumber: "Error on Un-Blocking phone number " + vm.PhoneNumber);
+			string title = (status == 0 ? "Success on Un-Blocking phone number " + vm.PhoneNumber: "Error on Un-Blocking phone number " + vm.PhoneNumber + " : " + buf);
 			
 			var result = new { Status = status, Title = title, Message = message};
 			return Json (result, JsonRequestBehavior.AllowGet);

@@ -3,19 +3,27 @@
 
 @helper UserFullName () {
 
-string fullName = string.Empty;
+    string fullName = "Default";
 
-    try {
+try {
 
-        using (var context = new PrincipalContext (ContextType.Domain)) {
-            var principal = UserPrincipal.FindByIdentity (context, User.Identity.Name);
-            if (principal != null) {
-                fullName = string.Format ("{0} {1}", principal.GivenName, principal.Surname);
-                    @fullName
-            }
+    using (var context = new PrincipalContext (ContextType.Domain)) {
+
+        if (context.ValidateCredentials("jbeckwith", "Johx03101")) {
+            fullName = "john";
+
         }
-    } catch (Exception ex) {
-        fullName = "Authentication failed";
+
+        @fullName
+
+            @*var principal = UserPrincipal.FindByIdentity (context, User.Identity.Name);
+            if (principal != null) {
+                fullName = principal.DisplayName;
+                @fullName
+            }*@
+    }
+} catch (Exception ex) {
+    fullName = "Debug";
         @fullName
     }
 }

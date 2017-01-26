@@ -175,6 +175,7 @@
     <Compile Include="Controllers\CoolDownController.cs" />
     <Compile Include="Controllers\DNCController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\UnblockController.cs" />
     <Compile Include="Controllers\WhiteListController.cs" />
@@ -373,6 +374,7 @@
     <Folder Include="ViewScripts\DNC\" />
     <Folder Include="ViewScripts\Reporting\" />
     <Folder Include="ViewScripts\WhiteList\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -7,18 +7,16 @@
     init: function () {
 
         var self = Uma.Login;
-
         if (self.serverModel) {
             self.model(ko.mapping.fromJS(self.serverModel));
         }
         ko.applyBindings(self.model);
-
     },
 
     logIn: function () {
 
         var self = Uma.Login;
-        var url = '/Login/SaveUnblockNumber/';
+        var url = '/Login/ValidateLogin/';
         var msg = "";
 
         if (self.isModelValid(self.model())) {

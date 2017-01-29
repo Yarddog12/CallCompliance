@@ -16,13 +16,13 @@
     logIn: function () {
 
         var self = Uma.Login;
+
         var url = '/Login/ValidateLogin/';
         var msg = "";
 
         if (self.isModelValid(self.model())) {
 
             var data = ko.mapping.toJSON(self.model);
-
             $.ajax({
                 url: url,
                 data: data,
@@ -35,32 +35,17 @@
             // look this up...new in JQuery 3.0
             .done(function(x) {
 
-                if (x) { 
-                    modal({
-                        type: x.Status ? 'error' : 'inverted',
-                        title: x.Title,
-                        text:  x.Message,
-                        size: 'normal',
-                        buttons: [
-                            {
-                                text: 'OK',
-                                val: 'ok',
-                                eKey: true,
-                                addClass: 'btn-light-blue'
-                            }
-                        ]
-                    });
-
-                    //var url = "/Internal/Admin/Profile/" + userId;
-                    //location.href = url;
+                if (x) {
+                    //url = "/Unblock/Index";
+                    document.location.href = "/Unblock/Index";
                 }
             })
                 // This would be some AJAX error....
             .fail(function(errorMessage) {
-                msg = 'Phone Number (' + self.model.PhoneNumber + ') has *** NOT *** been unblocked.  Check that you entered a phone number. (ajax error)';
+                msg = 'User Name (' + self.model.UserName + ') could not be authenticated. (ajax error)';
                 modal({
                     type: 'error',
-                    title: 'Unblock Phone Number failure',
+                    title: 'Login failure.',
                     text: msg,
                     size: 'normal',
                     buttons: [
@@ -88,7 +73,7 @@
 
             modal({
                 type: 'error',
-                title: 'Unblock Phone Number failure',
+                title: 'Login Failure',
                 text: message,
                 size: 'normal',
                 buttons: [

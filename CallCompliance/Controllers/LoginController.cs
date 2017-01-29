@@ -1,48 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CallCompliance.Models;
 using System.DirectoryServices.AccountManagement;
 
 namespace CallCompliance.Controllers
 {
-    public class LoginController : Controller
-    {
-        // GET: Login
-        public ActionResult Index() {
-            return View();
+    public class LoginController : Controller {
+
+		public enum ControllerReturnStatus : byte {
+			Success,
+			Fail
+		}
+
+		// GET: Login
+		public ActionResult Index() {
+
+			var model = new LoginViewModel();
+			return View(model);
         }
 
 		[HttpPost]
-		public ActionResult SaveUnblockNumber(LoginViewModel vm) {
-			//var result = "dog";
-			//return Json (result, JsonRequestBehavior.AllowGet);
+		public ActionResult ValidateLogin(LoginViewModel vm) {
 
-			//ControllerReturnStatus status = ControllerReturnStatus.Success;
-			string buf = string.Empty;
+			ControllerReturnStatus status = ControllerReturnStatus.Success;
 			var model = new LoginViewModel();
-
 			try {
 
 				using (var context = new PrincipalContext(ContextType.Domain)) {
-					var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
-					if (principal != null) {
-						model.RequestName = principal.DisplayName;
-						model.RequestId = principal.SamAccountName.ToUpper();
-						// TODO: put all of this in a base class, and find department name.
-						model.ReqDepartment = "App Dev";
+					if (context.ValidateCredentials(vm.UserName, vm.Password)) {
+						var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+						if (principal != null) {
+							model.FullName = principal.DisplayName;                 // RequestName
+							model.UserName = principal.SamAccountName.ToUpper();    // RequestId
+							model.ReqDepartment = "App Dev";                        // TODO: put all of this in a base class, and find department name.
+						}
 					}
 				}
 			} catch (Exception ex) {
 				model.FullName = "Authentication failed";
 			}
 
-			string message = "Phone number: " + vm.PhoneNumber;
-			message += (status == 0 ? " was successfully Un-Blocked." : " was NOT Un-Blocked.");
-
-			string title = (status == 0 ? "Success on Un-Blocking phone number " + vm.PhoneNumber: "Error on Un-Blocking phone number " + vm.PhoneNumber + " : " + buf);
+			string message = (status == ControllerReturnStatus.Fail ? "Login Failed for " + vm.UserName : "Welcome to the Call Compliance Portal, " + model.FullName + "!");
+			string title   = (status == ControllerReturnStatus.Fail ? "Login Failed" : "Login Successful.");
 
 			var result = new { Status = status, Title = title, Message = message};
 			return Json(result, JsonRequestBehavior.AllowGet);

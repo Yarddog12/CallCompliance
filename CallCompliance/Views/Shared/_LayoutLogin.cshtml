@@ -7,49 +7,30 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/charts");
+    @Styles.Render("~/Content/charts")
     <link rel="stylesheet" href="~/Content/site.css" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
-        <div class="form-inline row">
-            <div class="col-md-4 col-md-offset-5">
-                <span class="navbar-brand">Login to the Compliance Portal</span>
-            </div>
-        </div>
-    </nav>
-
-<div class="container-fluid">
-    <br/>
-    <div class="form-group row">
-        <label class="col-sm-1 col-form-label">UserName</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control" id="userName" data-bind="userName: UserName">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Password</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control" id="password"  data-bind="password: Password">
-        </div>
-    </div>
+<nav class="navbar navbar-dark navbar-fixed-top bg-primary">
     <div class="form-inline row">
-        <label class="col-sm-1 col-form-label"></label>
-        <div class="col-sm-1">
-            <button type="submit" class="btn btn-primary">Save</button>
+        <div class="col-md-4 col-md-offset-5">
+            <span class="navbar-brand">Login to the Compliance Portal</span>
         </div>
-        <div class="col-sm-1">
-            <button type="submit" class="btn btn-primary" data-bind="phoneNumber: PhoneNumber">Cancel</button>
-        </div>
+    </div>
+</nav>
+    
+<div class="form-group row">
+    <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
+        @RenderBody()
     </div>
 </div>
 
 @Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

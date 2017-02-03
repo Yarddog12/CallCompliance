@@ -36,8 +36,7 @@
             .done(function(x) {
 
                 if (x) {
-                    //url = "/Unblock/Index";
-                    document.location.href = "/Unblock/Index";
+                    document.location.href = "/Home/Index";
                 }
             })
                 // This would be some AJAX error....
@@ -104,7 +103,7 @@
     // this method is called when the user clicks the Save button in the 
     // Reset Password pop up dialog
     doReset: function () {
-        var url = "/Unblock/";
+        var url = "/Login/";
         document.location.href = url;
     }
 });

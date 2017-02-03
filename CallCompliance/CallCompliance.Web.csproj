@@ -341,9 +341,12 @@
     <Content Include="Scripts\Uma.Validation.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="ViewScripts\Admin\Admin_ViewModel.js" />
+    <Content Include="ViewScripts\CoolDown\Cooldown_ViewModel.js" />
+    <Content Include="ViewScripts\DNC\Dnc_ViewModel.js" />
     <Content Include="ViewScripts\Login\Login_ViewModel.js" />
     <Content Include="ViewScripts\Unblock\UnBlock_ViewModel.js" />
-    <Content Include="Views\Home\Index.js" />
+    <Content Include="ViewScripts\WhiteList\Whitelist_ViewModel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -366,15 +369,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\Uma.Core.js" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewScripts\Admin\" />
-    <Folder Include="ViewScripts\CoolDown\" />
-    <Folder Include="ViewScripts\DNC\" />
     <Folder Include="ViewScripts\Reporting\" />
-    <Folder Include="ViewScripts\WhiteList\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

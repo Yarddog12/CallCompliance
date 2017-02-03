@@ -22,7 +22,7 @@ namespace CallCompliance.Controllers
 		[HttpPost]
 		public ActionResult ValidateLogin(LoginViewModel vm) {
 
-			ControllerReturnStatus status = ControllerReturnStatus.Success;
+			bool status = true;
 			var model = new LoginViewModel();
 			try {
 
@@ -38,10 +38,11 @@ namespace CallCompliance.Controllers
 				}
 			} catch (Exception ex) {
 				model.FullName = "Authentication failed";
+				status = false;
 			}
 
-			string message = (status == ControllerReturnStatus.Fail ? "Login Failed for " + vm.UserName : "Welcome to the Call Compliance Portal, " + model.FullName + "!");
-			string title   = (status == ControllerReturnStatus.Fail ? "Login Failed" : "Login Successful.");
+			string message = (!status ? "Login Failed for user " + vm.UserName : "Welcome to the Call Compliance Portal, " + model.FullName + "!");
+			string title   = (!status ? "Login Failed" : "Login Successful.");
 
 			var result = new { Status = status, Title = title, Message = message};
 			return Json(result, JsonRequestBehavior.AllowGet);

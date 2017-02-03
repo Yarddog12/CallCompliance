@@ -35,8 +35,38 @@
             // look this up...new in JQuery 3.0
             .done(function(x) {
 
-                if (x) {
+                if (x.Status) {
+                    modal({
+                        type: 'success',
+                        title: x.Title,
+                        text: x.Message,
+                        size: 'normal',
+                        buttons: [
+                            {
+                                text: 'OK',
+                                val: 'ok',
+                                eKey: true,
+                                addClass: 'btn-light-blue'
+                            }
+                        ]
+                    });
+
                     document.location.href = "/Home/Index";
+                } else {
+                    modal({
+                        type: 'error',
+                        title: x.Title,
+                        text: x.Message,
+                        size: 'normal',
+                        buttons: [
+                            {
+                                text: 'OK',
+                                val: 'ok',
+                                eKey: true,
+                                addClass: 'btn-light-blue'
+                            }
+                        ]
+                    });
                 }
             })
                 // This would be some AJAX error....

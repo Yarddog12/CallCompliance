@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace CallCompliance.Models {
-	public class UnblockViewModel {
+	public class UnblockViewModel : UserManagementModelBase {
 
 		// move into a base class
 		public string FullName { get; set; }

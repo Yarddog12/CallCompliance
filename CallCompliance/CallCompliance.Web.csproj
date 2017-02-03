@@ -170,6 +170,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Content\Images\DefaultUserImage.png" />
     <Content Include="Content\tether.min.css" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CoolDownController.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Models\DncViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\UnblockViewModel.cs" />
+    <Compile Include="Models\UserManagementModelBase.cs" />
     <Compile Include="Models\WhiteListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

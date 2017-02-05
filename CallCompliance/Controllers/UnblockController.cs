@@ -9,8 +9,7 @@ using CallCompliance.Models;
 
 namespace CallCompliance.Controllers
 {
-    public class UnblockController : Controller
-    {
+    public class UnblockController : CallComplianceController {
 
 		public enum ControllerReturnStatus : byte {
 			Success,
@@ -32,21 +31,21 @@ namespace CallCompliance.Controllers
 			model.ExceptionReasonNames.AddRange(data);
 
 			// move into a base class
-			try {
+			//try {
 
-				using (var context = new PrincipalContext(ContextType.Domain)) {
-					var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
-					if (principal != null) {
-						model.RequestName = principal.DisplayName;
-						model.RequestId = principal.SamAccountName.ToUpper();
-						// TODO: put all of this in a base class, and find department name.
-						model.ReqDepartment = "App Dev";
-					}
-				}
-			}
-			catch (Exception ex) {
-				model.FullName = "Authentication failed";
-			}
+			//	using (var context = new PrincipalContext(ContextType.Domain)) {
+			//		var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+			//		if (principal != null) {
+			//			model.RequestName = principal.DisplayName;
+			//			model.RequestId = principal.SamAccountName.ToUpper();
+			//			// TODO: put all of this in a base class, and find department name.
+			//			model.ReqDepartment = "App Dev";
+			//		}
+			//	}
+			//}
+			//catch (Exception ex) {
+			//	model.FullName = "Authentication failed";
+			//}
 
 			return View (model);
         }
@@ -62,16 +61,17 @@ namespace CallCompliance.Controllers
 			try {
 				var repo = new UnBlockNumberRepository();
 				repo.AddExceptionPhoneNumber(vm.PhoneNumber, vm.RequestId, vm.RequestName, vm.ReqDepartment, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes);
+				_logger.Info("Phone number " + vm.PhoneNumber + " successfully blocked by user " + vm.FullName);
 			}
 			catch (Exception ex) {
 				status = ControllerReturnStatus.Fail;
-				buf = ex.Message + ex.InnerException;
+				_logger.Error(ex, "Phone number " + vm.PhoneNumber + " could not be blocked by user " + vm.FullName);
 			}
 
 			string message = "Phone number: " + vm.PhoneNumber;
-			message += (status == 0 ? " was successfully Un-Blocked." : " was NOT Un-Blocked.");
+			message += (status == 0 ? " was successfully Un-Blocked by user " + vm.FullName : " was NOT Un-Blocked by user " + vm.FullName);
 
-			string title = (status == 0 ? "Success on Un-Blocking phone number " + vm.PhoneNumber: "Error on Un-Blocking phone number " + vm.PhoneNumber + " : " + buf);
+			string title = (status == 0 ? "Success on Un-Blocking phone number " + vm.PhoneNumber : "Error on Un-Blocking phone number " + vm.PhoneNumber);
 			
 			var result = new { Status = status, Title = title, Message = message};
 			return Json (result, JsonRequestBehavior.AllowGet);

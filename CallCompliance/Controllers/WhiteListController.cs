@@ -6,8 +6,7 @@ using System.Web.Mvc;
 
 namespace CallCompliance.Controllers
 {
-    public class WhiteListController : Controller
-    {
+    public class WhiteListController : CallComplianceController {
         // GET: WhiteList
         public ActionResult Index()
         {

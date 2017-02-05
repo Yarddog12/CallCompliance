@@ -31,27 +31,26 @@
                 contentType: "application/json; charset=utf-8"
             })
 
-
             // look this up...new in JQuery 3.0
             .done(function(x) {
 
                 if (x.Status) {
-                    modal({
-                        type: 'success',
-                        title: x.Title,
-                        text: x.Message,
-                        size: 'normal',
-                        buttons: [
-                            {
-                                text: 'OK',
-                                val: 'ok',
-                                eKey: true,
-                                addClass: 'btn-light-blue'
-                            }
-                        ]
-                    });
 
-                    document.location.href = "/Home/Index";
+                    //var data1 = {
+                    //    fullName: "Jim Boa"
+                    //};
+                    //url = '/Home/Welcome/';
+                    //var jsonData = ko.mapping.toJSON(data1);
+                    //$.ajax({
+                    //    url: url,
+                    //    data: jsonData,
+                    //    dataType: "json",
+                    //    type: "POST",
+                    //    contentType: "application/json; charset=utf-8"
+                    //});
+
+                    document.location.href = "/Home/Welcome";
+
                 } else {
                     modal({
                         type: 'error',

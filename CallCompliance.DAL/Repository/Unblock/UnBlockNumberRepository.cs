@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CallCompliance.DAL.Logging;
 using CallCompliance.DAL.Models;
 
 namespace CallCompliance.DAL.Repository.Unblock {
-	public class UnBlockNumberRepository {
+	public class UnBlockNumberRepository : UserManagementBase {
 
 		public IEnumerable<cplxExceptionReasonsNames> GetExceptionReasonNames() {
-			
+
+			//DiagnosticLogging.LoggerInitialization();
+
 			List<cplxExceptionReasonsNames> ret = new List<cplxExceptionReasonsNames>();
 			try {
+				_logger.Info ("Logger initialized.");
 				using (var dbContext = new CallComplianceModelContainer()) {
 					ret = dbContext.GetExceptionReasonsNames().ToList();
 				}
 			}
 			catch (Exception ex) {
-				// log something.
+				_logger.Error(ex, ex.ToString());
 			}
 
 			return ret;
@@ -29,7 +33,7 @@ namespace CallCompliance.DAL.Repository.Unblock {
 					ret = dbContext.GetStudentInfoByPhoneNumber(phoneNumber).ToList();
 				}
 			} catch (Exception ex) {
-				// log something.
+				_logger.Error (ex, ex.ToString ());
 			}
 
 			return ret;
@@ -51,6 +55,7 @@ namespace CallCompliance.DAL.Repository.Unblock {
 					dbContext.AddExceptionsPhoneNumber(phoneNumber, dt, reqId, reqName, reqDepartment, reasonId, studentId, nameAssigned, notes);
 				}
 			} catch (Exception ex) {
+				_logger.Error (ex, "Could not unblock " + phoneNumber, ex.ToString ());
 				throw ex;
 			}
 		}

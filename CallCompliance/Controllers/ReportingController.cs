@@ -6,8 +6,7 @@ using System.Web.Mvc;
 
 namespace CallCompliance.Controllers
 {
-    public class ReportingController : Controller
-    {
+    public class ReportingController : CallComplianceController {
         // GET: Reporting
         public ActionResult Index()
         {

@@ -6,8 +6,7 @@ using System.Web.Mvc;
 
 namespace CallCompliance.Controllers
 {
-    public class DNCController : Controller
-    {
+    public class DNCController : CallComplianceController {
         // GET: Dnc
         public ActionResult Index()
         {

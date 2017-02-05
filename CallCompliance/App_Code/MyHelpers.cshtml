@@ -1,20 +1,29 @@
 ﻿@using System.DirectoryServices.AccountManagement
+@using System.Threading
 
 
 @helper UserFullName () {
 
-    string fullName = "Default";
+string fullName = "Default";
+
+
+        @*fullName = Thread.CurrentPrincipal.Identity.Name;
+        @fullName*@
+
 
 try {
 
     using (var context = new PrincipalContext (ContextType.Domain)) {
 
-        if (context.ValidateCredentials("jbeckwith", "Johx03101")) {
-            fullName = "john";
-
-        }
-
+        fullName = context.Name;
         @fullName
+
+        //if (context.ValidateCredentials("jbeckwith", "Johx03101")) {
+        //    fullName = "john";
+        //        context.
+        //}
+
+
 
             @*var principal = UserPrincipal.FindByIdentity (context, User.Identity.Name);
             if (principal != null) {

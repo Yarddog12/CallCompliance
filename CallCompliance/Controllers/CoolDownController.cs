@@ -6,8 +6,7 @@ using System.Web.Mvc;
 
 namespace CallCompliance.Controllers
 {
-    public class CoolDownController : Controller
-    {
+    public class CoolDownController : CallComplianceController {
         // GET: CoolDown
         public ActionResult Index()
         {

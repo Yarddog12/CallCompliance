@@ -89,6 +89,10 @@
       <HintPath>..\packages\MicosoftReportViewerWebForms_v11.1.0.1\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.1\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ReportViewerForMvc, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ReportViewerForMvc.1.0.1\lib\net45\ReportViewerForMvc.dll</HintPath>
       <Private>True</Private>
@@ -173,6 +177,7 @@
     <Content Include="Content\Images\DefaultUserImage.png" />
     <Content Include="Content\tether.min.css" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CallComplianceController.cs" />
     <Compile Include="Controllers\CoolDownController.cs" />
     <Compile Include="Controllers\DNCController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -372,10 +377,12 @@
     <Content Include="Scripts\Uma.Core.js" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Home\Welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ViewScripts\Reporting\" />
+    <Folder Include="Views\CallCompliance\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

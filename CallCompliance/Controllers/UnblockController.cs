@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Web.Mvc;
 using CallCompliance.DAL.Repository.Unblock;
@@ -10,11 +8,6 @@ using CallCompliance.Models;
 namespace CallCompliance.Controllers
 {
     public class UnblockController : CallComplianceController {
-
-		public enum ControllerReturnStatus : byte {
-			Success,
-			Fail
-		}
 
 		// GET: Unblock
 		public ActionResult Index() {
@@ -30,37 +23,25 @@ namespace CallCompliance.Controllers
 			var model = new UnblockViewModel();
 			model.ExceptionReasonNames.AddRange(data);
 
-			// move into a base class
-			//try {
-
-			//	using (var context = new PrincipalContext(ContextType.Domain)) {
-			//		var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
-			//		if (principal != null) {
-			//			model.RequestName = principal.DisplayName;
-			//			model.RequestId = principal.SamAccountName.ToUpper();
-			//			// TODO: put all of this in a base class, and find department name.
-			//			model.ReqDepartment = "App Dev";
-			//		}
-			//	}
-			//}
-			//catch (Exception ex) {
-			//	model.FullName = "Authentication failed";
-			//}
+			// TODO: temporary until I map the RequesterId (JBECKWITH), and RequesterName (FullName)
+			model.LoginIdentity = User.Identity.Name;
 
 			return View (model);
         }
 
 		[HttpPost]
 		public ActionResult SaveUnblockNumber(UnblockViewModel vm) {
-			//var result = "dog";
-			//return Json (result, JsonRequestBehavior.AllowGet);
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
-			string buf = string.Empty;
+
+			// TODO: temp until get vm working
+			vm.LoginIdentity = "JBECKWITH";			// UserName
+			vm.FullName = "John Beckwith";	// FullName
+			vm.Department= "App Dev";
 
 			try {
 				var repo = new UnBlockNumberRepository();
-				repo.AddExceptionPhoneNumber(vm.PhoneNumber, vm.RequestId, vm.RequestName, vm.ReqDepartment, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes);
+				repo.AddExceptionPhoneNumber(vm.PhoneNumber, vm.LoginIdentity, vm.FullName, vm.Department, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes);
 				_logger.Info("Phone number " + vm.PhoneNumber + " successfully blocked by user " + vm.FullName);
 			}
 			catch (Exception ex) {

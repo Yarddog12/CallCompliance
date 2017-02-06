@@ -82,5 +82,64 @@ namespace CallCompliance.DAL.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cplxStudentInfoByPhoneNumber>("GetStudentInfoByPhoneNumber", phoneNumberParameter);
         }
+    
+        public virtual int AddCooldownsPhoneNumber(string phoneNumber, Nullable<System.DateTime> dateTimeInitiated, string requestorId, string requestorName, string requestorDepartment, string notes)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var dateTimeInitiatedParameter = dateTimeInitiated.HasValue ?
+                new ObjectParameter("DateTimeInitiated", dateTimeInitiated) :
+                new ObjectParameter("DateTimeInitiated", typeof(System.DateTime));
+    
+            var requestorIdParameter = requestorId != null ?
+                new ObjectParameter("RequestorId", requestorId) :
+                new ObjectParameter("RequestorId", typeof(string));
+    
+            var requestorNameParameter = requestorName != null ?
+                new ObjectParameter("RequestorName", requestorName) :
+                new ObjectParameter("RequestorName", typeof(string));
+    
+            var requestorDepartmentParameter = requestorDepartment != null ?
+                new ObjectParameter("RequestorDepartment", requestorDepartment) :
+                new ObjectParameter("RequestorDepartment", typeof(string));
+    
+            var notesParameter = notes != null ?
+                new ObjectParameter("Notes", notes) :
+                new ObjectParameter("Notes", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddCooldownsPhoneNumber", phoneNumberParameter, dateTimeInitiatedParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, notesParameter);
+        }
+    
+        public virtual int AddDNCPhoneNumber(string phoneNumber, Nullable<int> dNCListId, string requestorId, string requestorName, string requestorDepartment)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var dNCListIdParameter = dNCListId.HasValue ?
+                new ObjectParameter("DNCListId", dNCListId) :
+                new ObjectParameter("DNCListId", typeof(int));
+    
+            var requestorIdParameter = requestorId != null ?
+                new ObjectParameter("RequestorId", requestorId) :
+                new ObjectParameter("RequestorId", typeof(string));
+    
+            var requestorNameParameter = requestorName != null ?
+                new ObjectParameter("RequestorName", requestorName) :
+                new ObjectParameter("RequestorName", typeof(string));
+    
+            var requestorDepartmentParameter = requestorDepartment != null ?
+                new ObjectParameter("RequestorDepartment", requestorDepartment) :
+                new ObjectParameter("RequestorDepartment", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddDNCPhoneNumber", phoneNumberParameter, dNCListIdParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter);
+        }
+    
+        public virtual ObjectResult<cplxDNCListsListNames> GetDNCListsListNames()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cplxDNCListsListNames>("GetDNCListsListNames");
+        }
     }
 }

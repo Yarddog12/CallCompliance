@@ -13,5 +13,10 @@ namespace CallCompliance.Controllers
 
 		protected static Logger _logger = DiagnosticLogging.LoggerInitialization();
 
+		public enum ControllerReturnStatus : byte {
+			Success,
+			Fail
+		}
+
 	}
 }

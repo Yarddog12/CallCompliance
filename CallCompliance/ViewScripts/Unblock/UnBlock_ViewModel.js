@@ -53,9 +53,6 @@ Declare("Uma.UnBlock", {
                             }
                         ]
                     });
-
-                    //var url = "/Internal/Admin/Profile/" + userId;
-                    //location.href = url;
                 }
             })
                 // This would be some AJAX error....
@@ -123,7 +120,7 @@ Declare("Uma.UnBlock", {
         Uma.validation.isRequiredField(model.ReasonId(), "You must choose a reason for overriding the daily dial limit cap.", self.validationErrors);
 
         // Student or Employer name (Requestor department)
-        Uma.validation.isTextFieldOverMaxLength('Student or Employer name too long.  Max length = 100', model.ReqDepartment(), 100, self.validationErrors);
+        Uma.validation.isTextFieldOverMaxLength('Student or Employer name too long.  Max length = 100', model.Department(), 100, self.validationErrors);
        
         // StudentId should be an integer, no characthers
         Uma.validation.isNumeric(model.StudentId(), self.validationErrors);

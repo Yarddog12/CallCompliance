@@ -1,15 +1,63 @@
-﻿
+﻿@using Newtonsoft.Json
+@model CallCompliance.Models.CoolDownViewModel
+
 @{
-    ViewBag.Title = "24 Hour Cool Down";
+    ViewBag.Title = "Cool Down";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Cool Down - no requirements or wireframe except talking to Rob</h2>
+<div class="unBlockcontainer">
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Enter phone number for 24 hour Cool Down</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" data-bind="phoneNumberCoolDown: PhoneNumberCoolDown" placeholder="(000) 000-0000" maxlength="20">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Enter Student Name (as appears in CampusNexus)</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" data-bind="studentName: StudentName"  maxlength="50">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Enter Stunum (from CampusNexus)</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" data-bind="studentNumber: StudentNumber"  maxlength="10">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Add details/reason number should be placed on cool down.</label>
+            <div class="col-sm-3">
+                <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: Notes" maxlength="500"></textarea>
+            </div>
+        </div>
+        <div class="form-inline row">
+
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary" data-bind="click: Uma.CoolDown.doSaveUnblock">Save</button>
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary" data-bind="click: Uma.CoolDown.doReset">Reset</button>
+            </div>
+        </div>
+
+    </form>
+</div>
 
 @section scripts {
-    <script type="text/javascript">
+
+    <script src="~/ViewScripts/CoolDown/CoolDown_ViewModel.js"></script>
+
+    <script>
         $(function () {
+            Uma.CoolDown.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.CoolDown.init();
+
             $("#menu-cooldown").addClass("active");
             ko.applyBindings();
         })
     </script>
 }
+
+

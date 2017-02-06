@@ -72,6 +72,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CallComplianceModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\cplxDNCListsListNames.cs">
+      <DependentUpon>CallComplianceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\cplxExceptionReasonsNames.cs">
       <DependentUpon>CallComplianceModel.tt</DependentUpon>
     </Compile>

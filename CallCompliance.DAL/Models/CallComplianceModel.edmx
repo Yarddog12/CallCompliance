@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CallComplianceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="AddCooldownsPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="DateTimeInitiated" Type="datetime" Mode="In" />
+          <Parameter Name="RequestorId" Type="varchar" Mode="In" />
+          <Parameter Name="RequestorName" Type="varchar" Mode="In" />
+          <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
+          <Parameter Name="Notes" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddDNCPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="DNCListId" Type="int" Mode="In" />
+          <Parameter Name="RequestorId" Type="varchar" Mode="In" />
+          <Parameter Name="RequestorName" Type="varchar" Mode="In" />
+          <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="AddExceptionsPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
           <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
           <Parameter Name="DateTimeExceptionGranted" Type="datetime" Mode="In" />
@@ -16,6 +31,7 @@
           <Parameter Name="NameAssigned" Type="varchar" Mode="In" />
           <Parameter Name="Notes" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetDNCListsListNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetExceptionReasonsNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetStudentInfoByPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
           <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
@@ -39,8 +55,24 @@
           </FunctionImport>
           <FunctionImport Name="GetExceptionReasonsNames" ReturnType="Collection(CallComplianceModel.cplxExceptionReasonsNames)" />
           <FunctionImport Name="GetStudentInfoByPhoneNumber" ReturnType="Collection(CallComplianceModel.cplxStudentInfoByPhoneNumber)">
-            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          <Parameter Name="PhoneNumber" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AddCooldownsPhoneNumber">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="DateTimeInitiated" Mode="In" Type="DateTime" />
+            <Parameter Name="RequestorId" Mode="In" Type="String" />
+            <Parameter Name="RequestorName" Mode="In" Type="String" />
+            <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddDNCPhoneNumber">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="DNCListId" Mode="In" Type="Int32" />
+            <Parameter Name="RequestorId" Mode="In" Type="String" />
+            <Parameter Name="RequestorName" Mode="In" Type="String" />
+            <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDNCListsListNames" ReturnType="Collection(CallComplianceModel.cplxDNCListsListNames)" />
         </EntityContainer>
         <ComplexType Name="cplxExceptionReasonsNames">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -52,6 +84,13 @@
         <ComplexType Name="cplxStudentInfoByPhoneNumber">
           <Property Type="Int32" Name="SyStudentId" Nullable="false" />
           <Property Type="String" Name="StudentName" Nullable="false" MaxLength="51" />
+        </ComplexType>
+        <ComplexType Name="cplxDNCListsListNames">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ListName" Nullable="false" MaxLength="25" />
+          <Property Type="DateTime" Name="DateTimeAdded" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DateTimeModified" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="ActiveFlag" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -81,6 +120,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddCooldownsPhoneNumber" FunctionName="CallComplianceModel.Store.AddCooldownsPhoneNumber" />
+          <FunctionImportMapping FunctionImportName="AddDNCPhoneNumber" FunctionName="CallComplianceModel.Store.AddDNCPhoneNumber" />
+          <FunctionImportMapping FunctionImportName="GetDNCListsListNames" FunctionName="CallComplianceModel.Store.GetDNCListsListNames">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CallComplianceModel.cplxDNCListsListNames">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ListName" ColumnName="ListName" />
+                <ScalarProperty Name="DateTimeAdded" ColumnName="DateTimeAdded" />
+                <ScalarProperty Name="DateTimeModified" ColumnName="DateTimeModified" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -95,7 +147,7 @@
     <edmx:Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />

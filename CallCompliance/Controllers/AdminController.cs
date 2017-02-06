@@ -7,8 +7,9 @@ using System.Web.Mvc;
 namespace CallCompliance.Controllers
 {
     public class AdminController : CallComplianceController {
-        // GET: Admin
-        public ActionResult Index()
+
+		// GET: Admin
+		public ActionResult Index()
         {
             return View();
         }

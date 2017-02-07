@@ -11,17 +11,15 @@ namespace CallCompliance.Controllers
 		public ActionResult Index() {
 
 			var model = new LoginViewModel();
-			model.Password = "Johx203101";
-			model.UserName = "JBECKWITH";
 			return View(model);
         }
 
 		[HttpPost]
-		public ActionResult ValidateLogin(LoginViewModel vm) {
+		[AllowAnonymous]
+		[ValidateAntiForgeryToken]
+		public ActionResult Index(LoginViewModel vm) {
 
-			bool status = true;
 			var model = new LoginViewModel();
-
 
 			if (!string.IsNullOrEmpty(vm.UserName) || !string.IsNullOrEmpty(vm.Password)) {
 
@@ -33,42 +31,32 @@ namespace CallCompliance.Controllers
 						if (principal != null) {
 							model.FullName = principal.DisplayName;					// ReqestorName
 							model.UserName = principal.SamAccountName.ToUpper ();	// RequestId
-							model.Department = "App Dev";						// ReqDepartment TODO: put all of this in a base class, and find department name.
+							model.Department = "App Dev";							// ReqDepartment TODO: put all of this in a base class, and find department name.
 						} else {
-							model.FullName = "Authentication failed vm.UserName1 " + vm.UserName + " " + vm.Password;
-							status = false;
+							return View(vm);
 						}
 					}
-						//using (var context = new PrincipalContext(ContextType.Domain)) {
-						//	if (context.ValidateCredentials(vm.UserName, vm.Password)) {
-						//		var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
-						//		if (principal != null) {
-						//			model.FullName = principal.DisplayName; // RequestName
-						//			model.UserName = principal.SamAccountName.ToUpper(); // RequestId
-						//			model.ReqDepartment = "App Dev"; // TODO: put all of this in a base class, and find department name.
-						//		}
-						//	}
-						//	else {
-						//		model.FullName = "Authentication failed vm.UserName1 " + vm.UserName + " " + vm.Password;
-						//		status = false;
-						//	}
-						//}
-					}
+				}
 				catch (Exception ex) {
-					model.FullName = "Authentication failed vm.UserName2 " + vm.UserName + " " + vm.Password + " :" + ex.Message + " inner:";
-					status = false;
+					return View(vm);
 				}
 			}
 			else {
-				model.FullName = "Authentication failed vm.UserName3 " + vm.UserName + " " + vm.Password;
-				status = false;
+				return View(vm);
 			}
 
-			string message = (!status ? "Login Failed for user " + model.FullName : "Welcome to the Call Compliance Portal, " + model.FullName + "!");
-			string title   = (!status ? "Login Failed" : "Login Successful.");
+			// This is good.
+			return RedirectToAction("Welcome", "Home");
+		}
 
-			var result = new { Status = status, Title = title, Message = message, DisplayName = model.FullName, UserName = vm.UserName };
-			return Json(result, JsonRequestBehavior.AllowGet);
+		// POST: /Account/LogOff  (Rick's logout is in his business layer.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult LogOff() {
+			//HttpContext.GetOwinContext().Authentication;
+
+			// I need to wipe the cookie when logging out.
+			return RedirectToAction ("Index", "Home");
 		}
 	}
 }

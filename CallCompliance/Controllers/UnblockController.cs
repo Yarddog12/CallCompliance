@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 using CallCompliance.DAL.Repository.Unblock;
 using CallCompliance.FactoryMapping;
@@ -33,6 +34,8 @@ namespace CallCompliance.Controllers
 		public ActionResult SaveUnblockNumber(UnblockViewModel vm) {
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
+
+			var prince = Thread.CurrentPrincipal;
 
 			// TODO: temp until get vm working
 			vm.LoginIdentity = "JBECKWITH";			// UserName

@@ -35,20 +35,6 @@
             .done(function(x) {
 
                 if (x.Status) {
-
-                    //var data1 = {
-                    //    fullName: "Jim Boa"
-                    //};
-                    //url = '/Home/Welcome/';
-                    //var jsonData = ko.mapping.toJSON(data1);
-                    //$.ajax({
-                    //    url: url,
-                    //    data: jsonData,
-                    //    dataType: "json",
-                    //    type: "POST",
-                    //    contentType: "application/json; charset=utf-8"
-                    //});
-
                     document.location.href = "/Home/Welcome";
 
                 } else {

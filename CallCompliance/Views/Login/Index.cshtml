@@ -9,30 +9,31 @@
 <br />
 <p><i>I need to authenticate you...</i></p>
 
-<div class="container-fluid">
-    <br />
-    <div class="form-group row">
-        <label class="col-sm-1 col-form-label">UserName</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control" data-bind="userName: UserName">
+@using (Html.BeginForm("Index", "Login")) {
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <br/>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">UserName</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Password</label>
+            <div class="col-sm-2">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-inline row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-1 col-form-label">Password</label>
-        <div class="col-sm-2">
-            <input type="password" class="form-control" data-bind="password: Password">
-        </div>
-    </div>
-    <div class="form-inline row">
-        <label class="col-sm-1 col-form-label"></label>
-        <div class="col-sm-1">
-            <button type="submit" class="btn btn-primary" data-bind="click: Uma.Login.logIn">Login</button>
-        </div>
-        <div class="col-sm-1">
-            <button type="submit" class="btn btn-primary">Cancel</button>
-        </div>
-    </div>
-</div>
+}
 
 @section scripts {
 

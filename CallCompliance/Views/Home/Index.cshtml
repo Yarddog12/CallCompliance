@@ -8,19 +8,20 @@
 }
 
 <br/>
-<p><i>Hello, if you made it here, you are authenticated!</i></p>
+<div class="jumbotron">
+    <p><i>Hello, if you made it here, you are authenticated!</i></p>
+</div>
+    @section scripts {
 
-@section scripts {
+        @*<script src="~/ViewScripts/Login/Login_ViewModel.js"></script>*@
 
-    <script src="~/ViewScripts/Login/Login_ViewModel.js"></script>
+        <script>
+            $(function () {
+                Uma.Login.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+                Uma.Login.init();
 
-    <script>
-        $(function () {
-            Uma.Login.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
-            Uma.Login.init();
-
-            $("#menu-home").addClass("active");
-        })
-    </script>
-}
+                $("#menu-home").addClass("active");
+            })
+        </script>
+    }
 

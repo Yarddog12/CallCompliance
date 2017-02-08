@@ -7,12 +7,12 @@
 }
 
 <br />
-<p><i>I need to authenticate you...</i></p>
+<p><i>I need to authenticate you 1...</i></p>
 
 @using (Html.BeginForm("Index", "Login")) {
     @Html.AntiForgeryToken()
 
-    <div class="container-fluid">
+    <div class="jumbotron">
         <br/>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">UserName</label>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,13 @@ namespace CallCompliance.DAL.Repository {
 		protected CallComplianceModelContainer _ctx;
 		private bool _disposed = false;
 		protected static Logger _logger = DiagnosticLogging.LoggerInitialization();
+		public static string Comma = ",";
 
 		public UserManagementBase(CallComplianceModelContainer ctx) {
 			_ctx = ctx;
 
 #if DEBUG
-			_ctx.Database.Log = s => System.Diagnostics.Debug.WriteLine (s);
+			_ctx.Database.Log = s => Debug.WriteLine (s);
 #endif
 		}
 
@@ -36,7 +38,7 @@ namespace CallCompliance.DAL.Repository {
 			_ctx = new CallComplianceModelContainer ();
 
 #if DEBUG
-			_ctx.Database.Log = s => System.Diagnostics.Debug.WriteLine (s);
+			_ctx.Database.Log = s => Debug.WriteLine (s);
 #endif
 		}
 

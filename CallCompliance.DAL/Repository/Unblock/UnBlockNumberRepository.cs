@@ -7,19 +7,19 @@ using CallCompliance.DAL.Models;
 namespace CallCompliance.DAL.Repository.Unblock {
 	public class UnBlockNumberRepository : UserManagementBase {
 
-		public IEnumerable<cplxExceptionReasonsNames> GetExceptionReasonNames() {
+		public static string ClassNameError = "Error in UnblockNumberRepository ->";
 
-			//DiagnosticLogging.LoggerInitialization();
+		public IEnumerable<cplxExceptionReasonsNames> GetExceptionReasonNames() {
 
 			List<cplxExceptionReasonsNames> ret = new List<cplxExceptionReasonsNames>();
 			try {
 				_logger.Info ("Logger initialized.");
-				using (var dbContext = new CallComplianceModelContainer()) {
-					ret = dbContext.GetExceptionReasonsNames().ToList();
-				}
+				//using (var dbContext = new CallComplianceModelContainer()) {
+					ret = _ctx.GetExceptionReasonsNames().ToList();
+				//}
 			}
 			catch (Exception ex) {
-				_logger.Error(ex, ex.ToString());
+				_logger.Error(ex, ClassNameError + "GetExceptionReasonNames()");
 			}
 
 			return ret;
@@ -29,11 +29,11 @@ namespace CallCompliance.DAL.Repository.Unblock {
 			
 			List<cplxStudentInfoByPhoneNumber> ret = new List<cplxStudentInfoByPhoneNumber>();
 			try {
-				using (var dbContext = new CallComplianceModelContainer()) {
-					ret = dbContext.GetStudentInfoByPhoneNumber(phoneNumber).ToList();
-				}
+				//using (var dbContext = new CallComplianceModelContainer()) {
+					ret = _ctx.GetStudentInfoByPhoneNumber(phoneNumber).ToList();
+				//}
 			} catch (Exception ex) {
-				_logger.Error (ex, ex.ToString ());
+				_logger.Error (ex, ClassNameError + "GetStudentInfoByPhoneNumbers (" + phoneNumber + ")");
 			}
 
 			return ret;
@@ -51,11 +51,18 @@ namespace CallCompliance.DAL.Repository.Unblock {
 			DateTime? dt = DateTime.Now;
 
 			try {
-				using (var dbContext = new CallComplianceModelContainer()) {
-					dbContext.AddExceptionsPhoneNumber(phoneNumber, dt, reqId, reqName, reqDepartment, reasonId, studentId, nameAssigned, notes);
-				}
+				//using (var dbContext = new CallComplianceModelContainer()) {
+					_ctx.AddExceptionsPhoneNumber(phoneNumber, dt, reqId, reqName, reqDepartment, reasonId, studentId, nameAssigned, notes);
+				//}
 			} catch (Exception ex) {
-				_logger.Error (ex, "Could not unblock " + phoneNumber, ex.ToString ());
+				_logger.Error (ex, ClassNameError + "AddExceptionsPhoneNumber parameters: " + phoneNumber + Comma + 
+					reqId + Comma + 
+					reqName + Comma + 
+					reqDepartment + Comma + 
+					reasonId + Comma + 
+					studentId + Comma + 
+					nameAssigned + Comma + 
+					notes);
 				throw ex;
 			}
 		}

@@ -12,6 +12,8 @@
           <Parameter Name="RequestorName" Type="varchar" Mode="In" />
           <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
           <Parameter Name="Notes" Type="varchar" Mode="In" />
+          <Parameter Name="SyStudentId" Type="int" Mode="In" />
+          <Parameter Name="StudentName" Type="varchar" Mode="In" />
         </Function>
         <Function Name="AddDNCPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
           <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
@@ -57,14 +59,6 @@
           <FunctionImport Name="GetStudentInfoByPhoneNumber" ReturnType="Collection(CallComplianceModel.cplxStudentInfoByPhoneNumber)">
           <Parameter Name="PhoneNumber" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="AddCooldownsPhoneNumber">
-            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
-            <Parameter Name="DateTimeInitiated" Mode="In" Type="DateTime" />
-            <Parameter Name="RequestorId" Mode="In" Type="String" />
-            <Parameter Name="RequestorName" Mode="In" Type="String" />
-            <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
-            <Parameter Name="Notes" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="AddDNCPhoneNumber">
             <Parameter Name="PhoneNumber" Mode="In" Type="String" />
             <Parameter Name="DNCListId" Mode="In" Type="Int32" />
@@ -73,6 +67,16 @@
             <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDNCListsListNames" ReturnType="Collection(CallComplianceModel.cplxDNCListsListNames)" />
+          <FunctionImport Name="AddCooldownsPhoneNumber">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="DateTimeInitiated" Mode="In" Type="DateTime" />
+            <Parameter Name="RequestorId" Mode="In" Type="String" />
+            <Parameter Name="RequestorName" Mode="In" Type="String" />
+            <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="SyStudentId" Mode="In" Type="Int32" />
+            <Parameter Name="StudentName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cplxExceptionReasonsNames">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -120,7 +124,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AddCooldownsPhoneNumber" FunctionName="CallComplianceModel.Store.AddCooldownsPhoneNumber" />
           <FunctionImportMapping FunctionImportName="AddDNCPhoneNumber" FunctionName="CallComplianceModel.Store.AddDNCPhoneNumber" />
           <FunctionImportMapping FunctionImportName="GetDNCListsListNames" FunctionName="CallComplianceModel.Store.GetDNCListsListNames">
             <ResultMapping>
@@ -133,6 +136,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddCooldownsPhoneNumber" FunctionName="CallComplianceModel.Store.AddCooldownsPhoneNumber" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

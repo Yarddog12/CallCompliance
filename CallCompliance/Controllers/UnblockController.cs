@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Web.Mvc;
 using CallCompliance.DAL.Repository.Unblock;
 using CallCompliance.FactoryMapping;
 using CallCompliance.Models;
+
+using CallCompliance.App_Code;
 
 namespace CallCompliance.Controllers
 {
@@ -35,12 +36,9 @@ namespace CallCompliance.Controllers
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
-			var prince = Thread.CurrentPrincipal;
-
-			// TODO: temp until get vm working
-			vm.LoginIdentity = "JBECKWITH";			// UserName
-			vm.FullName = "John Beckwith";	// FullName
-			vm.Department= "App Dev";
+			vm.FullName      = MyAuth.FullName;
+			vm.Department    = MyAuth.Department;
+			vm.LoginIdentity = MyAuth.LoginIdentity;
 
 			try {
 				var repo = new UnBlockNumberRepository();

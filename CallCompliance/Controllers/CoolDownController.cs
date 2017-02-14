@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using CallCompliance.App_Code;
 using CallCompliance.Models;
 
 namespace CallCompliance.Controllers {
@@ -10,13 +8,10 @@ namespace CallCompliance.Controllers {
 
 		// GET: CoolDown
 		public ActionResult Index() {
+
 			var model = new CoolDownViewModel();
-
-			// TODO: temporary until I map the RequesterId (JBECKWITH), and RequesterName (FullName)
-			model.LoginIdentity = User.Identity.Name;
-
-			return View(model);
-
+			_logger.Info ("CoolDownController/Index()");
+			return View (model);
 		}
 
 		[HttpPost]
@@ -24,10 +19,9 @@ namespace CallCompliance.Controllers {
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
-			// TODO: temp until get vm working
-			vm.LoginIdentity = "JBECKWITH";         // UserName
-			vm.FullName = "John Beckwith";  // FullName
-			vm.Department = "App Dev";
+			vm.FullName      = MyAuth.FullName;
+			vm.Department    = MyAuth.Department;
+			vm.LoginIdentity = MyAuth.LoginIdentity;
 
 			try {
 				//var repo = new UnBlockNumberRepository ();

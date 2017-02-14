@@ -82,6 +82,7 @@
       <DependentUpon>CallComplianceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CoolDown\CoolDownNumberRepository.cs" />
     <Compile Include="Repository\Unblock\UnBlockNumberRepository.cs" />
     <Compile Include="Repository\UserManagementBase.cs" />
     <Compile Include="Settings.cs" />
@@ -103,7 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\Admin\" />
-    <Folder Include="Repository\CoolDown\" />
     <Folder Include="Repository\DNC\" />
     <Folder Include="Repository\Reporting\" />
     <Folder Include="Repository\WhiteList\" />

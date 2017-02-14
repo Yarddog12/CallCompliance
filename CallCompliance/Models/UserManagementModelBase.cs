@@ -15,8 +15,13 @@ namespace CallCompliance.Models {
 		public string PhotoData { get; set; }
 		public string GoogleApiUserId { get; set; }
 
-		public UserManagementModelBase() {
+		protected UserManagementModelBase (string fullName, string department) {
+			this.FullName = fullName;
+			this.Department = department;
 			this.PhotoData = "/Content/Images/DefaultUserImage.png";
 		}
+
+		protected UserManagementModelBase () { }
+
 	}
 }

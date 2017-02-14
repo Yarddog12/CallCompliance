@@ -9,5 +9,10 @@ namespace CallCompliance.Models {
 		public string Password { get; set; }
 
 		public LoginViewModel() { }
+
+		public LoginViewModel(string fullName, string displayName) {
+			base.FullName = fullName;
+			base.FullName = displayName;
+		}
 	}
 }

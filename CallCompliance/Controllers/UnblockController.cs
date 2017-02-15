@@ -17,17 +17,16 @@ namespace CallCompliance.Controllers
 			var factory = new UnBlockFactory();
 			var repo = new UnBlockNumberRepository();
 
+			// Map the Exception Reason names from the cplx EF class to the ExceptionReasonNamesModel
 			var data = repo
 				.GetExceptionReasonNames ()
 				.ToList ()
 				.Select (x => factory.Create (x));
 
 			var model = new UnblockViewModel();
+
+			// Put the list of Exception Reasons in the List for the drop down.
 			model.ExceptionReasonNames.AddRange(data);
-
-			// TODO: temporary until I map the RequesterId (JBECKWITH), and RequesterName (FullName)
-			model.LoginIdentity = User.Identity.Name;
-
 			return View (model);
         }
 
@@ -43,13 +42,12 @@ namespace CallCompliance.Controllers
 			try {
 				var repo = new UnBlockNumberRepository();
 				repo.AddExceptionPhoneNumber(vm.PhoneNumber, vm.LoginIdentity, vm.FullName, vm.Department, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes);
-				_logger.Info("Phone number " + vm.PhoneNumber + " successfully blocked by user " + vm.FullName);
 			}
-			catch (Exception ex) {
+			catch {
 				status = ControllerReturnStatus.Fail;
-				_logger.Error(ex, "Phone number " + vm.PhoneNumber + " could not be blocked by user " + vm.FullName);
 			}
 
+			// Tell the modal what happened when we tried to save.
 			string message = "Phone number: " + vm.PhoneNumber;
 			message += (status == 0 ? " was successfully Un-Blocked by user " + vm.FullName : " was NOT Un-Blocked by user " + vm.FullName);
 

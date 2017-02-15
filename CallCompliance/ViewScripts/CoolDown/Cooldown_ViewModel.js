@@ -13,7 +13,6 @@ Declare("Uma.CoolDown", {
             self.model(ko.mapping.fromJS(self.serverModel));
         }
         ko.applyBindings(self.model);
-
     },
 
     doSaveUnblock: function () {
@@ -57,7 +56,7 @@ Declare("Uma.CoolDown", {
             })
                 // This would be some AJAX error....
             .fail(function (errorMessage) {
-                msg = 'Phone Number (' + self.model.PhoneNumber + ') has *** NOT *** been unblocked.  Check that you entered a phone number. (ajax error)';
+                msg = 'Phone Number (' + self.model.PhoneNumberCoolDown + ') has *** NOT *** been cooled down.  Check that you entered a phone number. (ajax error)';
                 modal({
                     type: 'error',
                     title: 'CoolDown Phone Number failure',
@@ -112,18 +111,15 @@ Declare("Uma.CoolDown", {
         // **********************// Validation for CoolDown page **********************//
         // Use the () to un-wrap
         // Phone Number to Cool Down
-        Uma.validation.isRequiredField(model.PhoneNumberCoolDown(), "Phone number to block is required.", self.validationErrors);
+        Uma.validation.isRequiredField(model.PhoneNumberCoolDown(), "Phone number to cool down is required.", self.validationErrors);
         Uma.validation.isPhoneNumberValid("Invalid phone Number", model.PhoneNumberCoolDown(), self.validationErrors);
         Uma.validation.isTextFieldOverMaxLength('Phone number too long.  Max length = 20', model.PhoneNumberCoolDown(), 20, self.validationErrors);
 
-        // Reason for overriding daily dial limit cap (ExceptionReasonId)  This is a dropdown.
-        //Uma.validation.isRequiredField(model.ReasonId(), "You must choose a reason for overriding the daily dial limit cap.", self.validationErrors);
-
-        // Student or Employer name (Requestor department)
-        //Uma.validation.isTextFieldOverMaxLength('Student or Employer name too long.  Max length = 100', model.Department(), 100, self.validationErrors);
+        // Student Name
+        Uma.validation.isTextFieldOverMaxLength('Student name too long.  Max length = 50', model.StudentName(), 50, self.validationErrors);
 
         // StudentId should be an integer, no characthers
-        //Uma.validation.isNumeric(model.StudentId(), self.validationErrors);
+        Uma.validation.isNumeric(model.StudentId(), self.validationErrors);
 
         // Included additional details (notes)
         Uma.validation.isRequiredField(model.Notes(), "You must enter a few additional details please.", self.validationErrors);

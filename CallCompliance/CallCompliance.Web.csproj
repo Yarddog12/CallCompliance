@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\UnblockController.cs" />
     <Compile Include="Controllers\WhiteListController.cs" />
+    <Compile Include="FactoryMapping\DncFactory.cs" />
     <Compile Include="FactoryMapping\UnBlockFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

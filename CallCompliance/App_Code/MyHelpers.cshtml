@@ -1,5 +1,4 @@
 ﻿@using System.DirectoryServices.AccountManagement
-@using CallCompliance
 @using CallCompliance.App_Code
 
 
@@ -18,12 +17,12 @@ try {
             fullName = principal.DisplayName;
             @fullName
 
-            MyAuth.FullName = fullName;
-            MyAuth.LoginIdentity = principal.SamAccountName.ToUpper();
-            string [] buf = principal?.DistinguishedName.Split (new [] { "OU=" }, StringSplitOptions.None);
-            string department = buf? [3].Substring (0, buf [3].Length - 1);
+            //MyAuth.FullName = fullName;
+           // MyAuth.LoginIdentity = principal.SamAccountName.ToUpper();
+            //string [] buf = principal?.DistinguishedName.Split (new [] { "OU=" }, StringSplitOptions.None);
+            //string department = buf? [3].Substring (0, buf [3].Length - 1);
 
-            MyAuth.Department = department;
+            //MyAuth.Department = department;
         }
     }
 } catch (Exception ex) {

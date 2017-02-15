@@ -4,9 +4,10 @@ using System.Linq;
 using System.Web;
 
 namespace CallCompliance.Models {
-	public class DncViewModel {
+	public class DncViewModel : UserManagementModelBase {
 
 		public string PhoneNumber { get; set; }
+		public int DncNameId { get; set; }
 		public List<DncListNamesModel> DncListNames { get; set; } = new List<DncListNamesModel> ();
 	}
 

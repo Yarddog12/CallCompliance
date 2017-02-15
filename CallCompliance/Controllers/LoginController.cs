@@ -38,7 +38,7 @@ namespace CallCompliance.Controllers
 						var model = new LoginViewModel(fullName, department);
 						App_Code.MyAuth.FullName = fullName;
 						App_Code.MyAuth.Department = department;
-						App_Code.MyAuth.LoginIdentity = principal?.SamAccountName;
+						App_Code.MyAuth.LoginIdentity = principal?.SamAccountName.ToUpper();
 
 						_logger.Info(principal?.DisplayName + " from Department " + model.Department + " just logged in.");
 						return RedirectToAction("Welcome", "Home");

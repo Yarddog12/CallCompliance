@@ -33,6 +33,13 @@
           <Parameter Name="NameAssigned" Type="varchar" Mode="In" />
           <Parameter Name="Notes" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="AddWhitelistPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+          <Parameter Name="RequestorId" Type="varchar" Mode="In" />
+          <Parameter Name="RequestorName" Type="varchar" Mode="In" />
+          <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
+          <Parameter Name="Notes" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetDNCListsListNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetExceptionReasonsNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetStudentInfoByPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
@@ -76,6 +83,13 @@
             <Parameter Name="Notes" Mode="In" Type="String" />
             <Parameter Name="SyStudentId" Mode="In" Type="Int32" />
             <Parameter Name="StudentName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddWhitelistPhoneNumber">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="RequestorId" Mode="In" Type="String" />
+            <Parameter Name="RequestorName" Mode="In" Type="String" />
+            <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cplxExceptionReasonsNames">
@@ -137,6 +151,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AddCooldownsPhoneNumber" FunctionName="CallComplianceModel.Store.AddCooldownsPhoneNumber" />
+          <FunctionImportMapping FunctionImportName="AddWhitelistPhoneNumber" FunctionName="CallComplianceModel.Store.AddWhitelistPhoneNumber" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

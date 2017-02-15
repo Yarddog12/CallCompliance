@@ -149,5 +149,30 @@ namespace CallCompliance.DAL.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddCooldownsPhoneNumber", phoneNumberParameter, dateTimeInitiatedParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, notesParameter, syStudentIdParameter, studentNameParameter);
         }
+    
+        public virtual int AddWhitelistPhoneNumber(string phoneNumber, string requestorId, string requestorName, string requestorDepartment, string notes)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var requestorIdParameter = requestorId != null ?
+                new ObjectParameter("RequestorId", requestorId) :
+                new ObjectParameter("RequestorId", typeof(string));
+    
+            var requestorNameParameter = requestorName != null ?
+                new ObjectParameter("RequestorName", requestorName) :
+                new ObjectParameter("RequestorName", typeof(string));
+    
+            var requestorDepartmentParameter = requestorDepartment != null ?
+                new ObjectParameter("RequestorDepartment", requestorDepartment) :
+                new ObjectParameter("RequestorDepartment", typeof(string));
+    
+            var notesParameter = notes != null ?
+                new ObjectParameter("Notes", notes) :
+                new ObjectParameter("Notes", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddWhitelistPhoneNumber", phoneNumberParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, notesParameter);
+        }
     }
 }

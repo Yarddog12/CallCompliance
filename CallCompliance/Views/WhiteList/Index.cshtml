@@ -1,16 +1,48 @@
-﻿
+﻿@using Newtonsoft.Json
+@model CallCompliance.Models.WhiteListViewModel
+
 @{
-    ViewBag.Title = "White List";
+    ViewBag.Title = "WhiteList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>White List</h2>
+<div class="jumbotron">
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Enter phone number for submission to white list:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputPhoneUnBlock" data-bind="phoneNumber: PhoneNumber" placeholder="(000) 000-0000" maxlength="20">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Add details/reason number should be white listed.</label>
+            <div class="col-sm-3">
+                <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: Notes" maxlength="500"></textarea>
+            </div>
+        </div>
+        <div class="form-inline row">
+
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary" data-bind="click: Uma.WhiteList.doSaveWhiteList">Save</button>
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary" data-bind="click: Uma.WhiteList.doReset">Reset</button>
+            </div>
+        </div>
+
+    </form>
+</div>
 
 @section scripts {
-    <script type="text/javascript">
+
+    <script src="~/ViewScripts/WhiteList/Whitelist_ViewModel.js"></script>
+
+    <script>
         $(function () {
+            Uma.WhiteList.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.WhiteList.init();
+
             $("#menu-whitelist").addClass("active");
-            ko.applyBindings();
         })
     </script>
 }

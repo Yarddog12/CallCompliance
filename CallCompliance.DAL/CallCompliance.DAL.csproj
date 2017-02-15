@@ -105,6 +105,7 @@
     <Compile Include="Repository\Reporting\ReportingRepository.cs" />
     <Compile Include="Repository\Unblock\UnBlockNumberRepository.cs" />
     <Compile Include="Repository\UserManagementBase.cs" />
+    <Compile Include="Repository\WhiteList\WhiteListRepository.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SQL\UserManagement.cs" />
   </ItemGroup>
@@ -131,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\Admin\" />
-    <Folder Include="Repository\WhiteList\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Models\CallComplianceModel.Context.tt">

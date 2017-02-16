@@ -5,7 +5,6 @@ using CallCompliance.DAL.Repository.Unblock;
 using CallCompliance.FactoryMapping;
 using CallCompliance.Models;
 
-using CallCompliance.App_Code;
 
 namespace CallCompliance.Controllers
 {

@@ -13,7 +13,6 @@ Declare("Uma.UnBlock", {
             self.model(ko.mapping.fromJS(self.serverModel));
         }
         ko.applyBindings(self.model);
-
     },
 
    doSaveUnblock: function () {

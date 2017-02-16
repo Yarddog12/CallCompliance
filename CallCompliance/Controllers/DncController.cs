@@ -16,6 +16,8 @@ namespace CallCompliance.Controllers
 		// GET: Dnc
 		public ActionResult Index() {
 
+			ViewBag.Name = FullName;
+
 			var factory = new DncFactory();
 			var repo = new DncRepository();
 
@@ -37,9 +39,9 @@ namespace CallCompliance.Controllers
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
-			vm.FullName      = MyAuth.FullName;
-			vm.Department    = MyAuth.Department;
-			vm.LoginIdentity = MyAuth.LoginIdentity;
+			vm.FullName      = FullName;
+			vm.Department    = Department;
+			vm.LoginIdentity = LoginIdentity;
 
 			try {
 				var repo = new DncRepository();

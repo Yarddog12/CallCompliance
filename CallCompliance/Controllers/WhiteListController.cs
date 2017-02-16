@@ -14,9 +14,8 @@ namespace CallCompliance.Controllers
 
 		// GET: WhiteList
 		public ActionResult Index() {
-
-			WhiteListViewModel model = new WhiteListViewModel();
-            return View (model);
+			ViewBag.Name = FullName;
+			return View ();
         }
 
 		[HttpPost]
@@ -24,9 +23,9 @@ namespace CallCompliance.Controllers
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
-			vm.FullName      = MyAuth.FullName;
-			vm.Department    = MyAuth.Department;
-			vm.LoginIdentity = MyAuth.LoginIdentity;
+			vm.FullName      = FullName;
+			vm.Department    = Department;
+			vm.LoginIdentity = LoginIdentity;
 
 			try {
 				var repo = new WhiteListRepository();

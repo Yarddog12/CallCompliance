@@ -14,6 +14,8 @@ namespace CallCompliance.Controllers
 		// GET: Unblock
 		public ActionResult Index() {
 
+			ViewBag.Name = FullName;
+
 			var factory = new UnBlockFactory();
 			var repo = new UnBlockNumberRepository();
 
@@ -35,9 +37,9 @@ namespace CallCompliance.Controllers
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
-			vm.FullName      = MyAuth.FullName;
-			vm.Department    = MyAuth.Department;
-			vm.LoginIdentity = MyAuth.LoginIdentity;
+			vm.FullName      = FullName;
+			vm.Department    = Department;
+			vm.LoginIdentity = LoginIdentity;
 
 			try {
 				var repo = new UnBlockNumberRepository();

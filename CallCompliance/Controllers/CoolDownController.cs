@@ -9,9 +9,8 @@ namespace CallCompliance.Controllers {
 
 		// GET: CoolDown
 		public ActionResult Index() {
-
-			var model = new CoolDownViewModel();
-			return View (model);
+			ViewBag.Name = FullName;
+			return View ();
 		}
 		/// <summary>
 		/// User pressed the Save on the Cool down page.
@@ -23,9 +22,9 @@ namespace CallCompliance.Controllers {
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
-			vm.FullName      = MyAuth.FullName;
-			vm.Department    = MyAuth.Department;
-			vm.LoginIdentity = MyAuth.LoginIdentity;
+			vm.FullName      = FullName;
+			vm.Department    = Department;
+			vm.LoginIdentity = LoginIdentity;
 
 			try {
 				var repo = new CoolDownNumberRepository();

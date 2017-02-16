@@ -1,5 +1,4 @@
 ﻿
-@using Newtonsoft.Json
 @model CallCompliance.Models.LoginViewModel
 
 @{
@@ -9,20 +8,13 @@
 
 <br />
 <div class="jumbotron">
-    <h3>Welcome to the Call Compliance Portal @MyHelpers.UserFullName()!</h3>
+    <h3>Hello @ViewBag.Name</h3>
 </div>
 
 @section scripts {
 
-    <script src="~/ViewScripts/Login/Login_ViewModel.js"></script>
-
     <script>
         $(function () {
-            Uma.Login.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
-            Uma.Login.init();
-
-            
-
             $("#menu-home").addClass("active");
         })
     </script>

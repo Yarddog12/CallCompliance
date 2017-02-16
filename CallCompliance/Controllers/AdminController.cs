@@ -9,9 +9,9 @@ namespace CallCompliance.Controllers
     public class AdminController : CallComplianceController {
 
 		// GET: Admin
-		public ActionResult Index()
-        {
-            return View();
+		public ActionResult Index() {
+			ViewBag.Name = FullName;
+			return View();
         }
     }
 }

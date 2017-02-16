@@ -9,19 +9,14 @@ namespace CallCompliance.Controllers
 
 		// GET: Login
 		public ActionResult Index() {
-
-			var model = new LoginViewModel();
-			_logger.Info ("LoginController/Index()");
-			return View(model);
-
+			ViewBag.Name = FullName;
+			return View ();
         }
 
 		[HttpPost]
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
 		public ActionResult Index(LoginViewModel vm) {
-
-			//var model = new LoginViewModel();
 
 			string userPrincipalName = vm.UserName + "@" + "ULTIMATEMEDICAL.LOCAL";
 			string password = vm.Password;
@@ -35,12 +30,14 @@ namespace CallCompliance.Controllers
 
 						string department = buf? [3].Substring (0, buf [3].Length - 1);
 						string fullName = principal?.DisplayName;
-						var model = new LoginViewModel(fullName, department);
-						App_Code.MyAuth.FullName = fullName;
-						App_Code.MyAuth.Department = department;
-						App_Code.MyAuth.LoginIdentity = principal?.SamAccountName.ToUpper();
+						//App_Code.MyAuth.FullName = fullName;
+						//App_Code.MyAuth.Department = department;
+						//App_Code.MyAuth.LoginIdentity = principal?.SamAccountName.ToUpper();
 
-						_logger.Info(principal?.DisplayName + " from Department " + model.Department + " just logged in.");
+						_logger.Info(principal?.DisplayName + " from Department " + department + " just logged in.");
+						FullName = fullName;
+						Department = department;
+						LoginIdentity = principal?.SamAccountName.ToUpper ();
 						return RedirectToAction("Welcome", "Home");
 					}
 				}
@@ -51,7 +48,7 @@ namespace CallCompliance.Controllers
 			}
 
 			// This is good.
-			return RedirectToAction("Welcome", "Home");
+			return View (vm);
 		}
 
 		// POST: /Account/LogOff  (Rick's logout is in his business layer.

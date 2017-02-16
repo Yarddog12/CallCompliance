@@ -10,9 +10,5 @@ namespace CallCompliance.Models {
 
 		public LoginViewModel() { }
 
-		public LoginViewModel(string fullName, string displayName) {
-			base.FullName = fullName;
-			base.FullName = displayName;
-		}
 	}
 }

@@ -13,6 +13,8 @@ namespace CallCompliance.Controllers
 		// GET: Reporting
 		public ActionResult Index() {
 
+			ViewBag.Name = FullName;
+
 			var factory = new ReportingFactory();
 			var repo = new ReportingRepository();
 

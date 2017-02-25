@@ -354,10 +354,12 @@
     <Content Include="ViewScripts\Admin\Admin_ViewModel.js" />
     <Content Include="ViewScripts\CoolDown\CoolDown_ViewModel.js" />
     <Content Include="ViewScripts\DNC\Dnc_ViewModel.js" />
-    <Content Include="ViewScripts\Login\Login_ViewModel.js" />
+    <Content Include="ViewScripts\Login\Login_ViewModelXX.js" />
     <Content Include="ViewScripts\Unblock\UnBlock_ViewModel.js" />
     <Content Include="ViewScripts\WhiteList\Whitelist_ViewModel.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

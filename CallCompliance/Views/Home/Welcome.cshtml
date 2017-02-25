@@ -4,11 +4,12 @@
 @{
     ViewBag.Title = "Welcome";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <br />
 <div class="jumbotron">
-    <h3>Welcome to the Call Compliance Portal, @ViewBag.Name!</h3>
+    <h3>Welcome to the Call Compliance Portal, @MyHelpers.UserFullName()!</h3>
 </div>
 
 @section scripts {

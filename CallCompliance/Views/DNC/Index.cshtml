@@ -10,23 +10,23 @@
     <form>
         <div class="form-group row">
             <label class="col-sm-5 col-form-label">Enter phone number for Do Not Call List:</label>
-            <div class="col-sm-3">
+            <div class="col-sm-5">
                 <input type="text" class="form-control" id="inputPhoneUnBlock" data-bind="phoneNumber: PhoneNumber" placeholder="(000) 000-0000" maxlength="20">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-5 col-form-label">Select which list the phone number will be added to.</label>
-            <div class="col-sm-3">
+            <div class="col-sm-5">
                 <select class="custom-select col-sm-3 form-control" data-bind="options: DncListNames, optionsText: 'DncNames', optionsValue: 'Id', value: DncNameId, optionsCaption: 'Choose...'"></select>
             </div>
         </div>
        
         <div class="form-inline row">
 
-            <div class="col-sm-1">
+            <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary" data-bind="click: Uma.Dnc.doSaveDnc">Save</button>
             </div>
-            <div class="col-sm-1">
+            <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary" data-bind="click: Uma.Dnc.doReset">Reset</button>
             </div>
         </div>

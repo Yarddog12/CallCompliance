@@ -9,7 +9,6 @@ namespace CallCompliance.Controllers
 
 		// GET: Login
 		public ActionResult Index() {
-			ViewBag.Name = FullName;
 			return View ();
         }
 
@@ -25,21 +24,21 @@ namespace CallCompliance.Controllers
 				using (var context = new PrincipalContext(ContextType.Domain, "ULTIMATEMEDICAL.LOCAL")) {
 
 					if (context.ValidateCredentials(userPrincipalName, password)) {
-						var principal = UserPrincipal.FindByIdentity (context, vm.UserName);
-						string [] buf = principal?.DistinguishedName.Split (new [] { "OU=" }, StringSplitOptions.None);
+						var principal = UserPrincipal.FindByIdentity(context, vm.UserName);
+						string[] buf = principal?.DistinguishedName.Split(new[] {"OU="}, StringSplitOptions.None);
 
-						string department = buf? [3].Substring (0, buf [3].Length - 1);
+						string department = buf?[3].Substring(0, buf[3].Length - 1);
 						string fullName = principal?.DisplayName;
-						//App_Code.MyAuth.FullName = fullName;
-						//App_Code.MyAuth.Department = department;
-						//App_Code.MyAuth.LoginIdentity = principal?.SamAccountName.ToUpper();
 
 						_logger.Info(principal?.DisplayName + " from Department " + department + " just logged in.");
 						FullName = fullName;
 						Department = department;
-						LoginIdentity = principal?.SamAccountName.ToUpper ();
+						LoginIdentity = principal?.SamAccountName.ToUpper();
+						ViewBag.Login = "no fail";
 						return RedirectToAction("Welcome", "Home");
-					}
+
+					} 
+					ViewBag.Login = "fail";
 				}
 			}
 			catch (Exception ex) {

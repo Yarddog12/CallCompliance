@@ -1,5 +1,4 @@
-﻿@*@using System.DirectoryServices.AccountManagement
-@using CallCompliance.App_Code
+﻿@using System.DirectoryServices.AccountManagement
 
 
 @helper UserFullName () {
@@ -9,7 +8,7 @@ string fullName = "Default";
 
 try {
 
-    using (var context = new PrincipalContext (ContextType.Domain)) {
+    using (var context = new PrincipalContext (ContextType.Domain, "ULTIMATEMEDICAL.LOCAL")) {
 
 
         var principal = UserPrincipal.FindByIdentity (context, User.Identity.Name);
@@ -26,8 +25,8 @@ try {
         }
     }
 } catch (Exception ex) {
-    @*fullName = "Debug";
+    fullName = "Debug";
         @fullName
     }
 }
-    *@
+    

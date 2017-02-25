@@ -17,6 +17,8 @@ namespace CallCompliance.Controllers
 		protected static string Department { get; set; }
 		protected static string FullName { get; set; }
 
+		// asp.net identity.
+
 		public enum ControllerReturnStatus : byte {
 			Success,
 			Fail

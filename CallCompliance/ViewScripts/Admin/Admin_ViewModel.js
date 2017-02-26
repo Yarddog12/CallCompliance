@@ -111,7 +111,7 @@ Declare("Uma.Admin", {
         // **********************// Validation for Call Cap page **********************//
         // Use the () to un-wrap
         // Call caps should be integer?
-        Uma.validation.isNumeric(model.StudentId(), self.validationErrors);
+        //Uma.validation.isNumeric(model.StudentId(), self.validationErrors);
 
         return self.validationErrors.length === 0;
     },

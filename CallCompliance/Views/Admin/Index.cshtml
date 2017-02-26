@@ -1,4 +1,5 @@
-﻿
+﻿@using Newtonsoft.Json
+
 @{
     ViewBag.Title = "Admin";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,28 +10,68 @@
         <div class="form-group row">
             <label class="col-sm-5 text-sm-right col-form-label">Admissions Daily Dial Cap</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" value="7" maxlength="20">
+                <input id="1" type="text" class="form-control" data-bind="value: ParmValue1" maxlength="2">
             </div>
             <label class="col-sm-5 text-sm-right col-form-label">Other Daily Dial Cap</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" value="6" maxlength="20">
+                <input id ="2" type="text" class="form-control" data-bind="value: ParmValue2" maxlength="2">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-5 text-sm-right col-form-label">Admissions Daily Exceptions Dial Cap</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" value="7" maxlength="20">
+                <input id="3" type="text" class="form-control" data-bind="value: ParmValue3" maxlength="2">
             </div>
             <label class="col-sm-5 text-sm-right col-form-label">Other Daily Exceptions Cap</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" value="5" maxlength="20">
+                <input id="4" type="text" class="form-control" data-bind="value: ParmValue4" maxlength="2">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 text-sm-right col-form-label">New Lead Day 1 Cap</label>
+            <div class="col-sm-1">
+                <input id="13" type="text" class="form-control" data-bind="value: ParmValue5" maxlength="2">
+            </div>
+            <label class="col-sm-5 text-sm-right col-form-label">New Lead Day 1 Exception Cap</label>
+            <div class="col-sm-1">
+                <input id="14" type="text" class="form-control" data-bind="value: ParmValue6" maxlength="2">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 text-sm-right col-form-label">New Lead Day 2 Cap</label>
+            <div class="col-sm-1">
+                <input id="15" type="text" class="form-control" data-bind="value: ParmValue7" maxlength="2">
+            </div>
+            <label class="col-sm-5 text-sm-right col-form-label">New Lead Day 2 Exception Cap</label>
+            <div class="col-sm-1">
+                <input id="16" type="text" class="form-control" data-bind="value: ParmValue8" maxlength="2">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 text-sm-right col-form-label">New Lead Day 0 Cap</label>
+            <div class="col-sm-1">
+                <input id="19" type="text" class="form-control" data-bind="value: ParmValue9" maxlength="2">
+            </div>
+            <label class="col-sm-5 text-sm-right col-form-label">New Lead Day 0 Exception Cap</label>
+            <div class="col-sm-1">
+                <input id="20" type="text" class="form-control" data-bind="value: ParmValue10" maxlength="2">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 text-sm-right col-form-label">Not Engaged Cap</label>
+            <div class="col-sm-1">
+                <input id="21" type="text" class="form-control" data-bind="value: ParmValue11" maxlength="2">
+            </div>
+            <label class="col-sm-5 text-sm-right col-form-label">Not Enrolled Cap</label>
+            <div class="col-sm-1">
+                <input id="22" type="text" class="form-control" data-bind="value: ParmValue12" maxlength="2">
             </div>
         </div>
         
         <div class="form-inline row">
             <div class="align-middle">
                 <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary" data-bind="click: Uma.CoolDown.doSaveUnblock">Save</button>
+                    <button type="submit" class="btn btn-primary" data-bind="click: Uma.CoolDown.doSaveCallCaps">Save</button>
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary" data-bind="click: Uma.CoolDown.doReset">Reset</button>
@@ -50,7 +91,7 @@
     <ul class="dropdown-menu">
         <li><a href="#">DNC List</a></li>
         <li><a href="#">Exceptions</a></li>
-        <li><a href="#">Etc</a></li>
+        <li><a href="#">Reports</a></li>
         <li class="divider"></li>
         <li><a href="#">Help!</a></li>
     </ul>
@@ -93,10 +134,19 @@
 
 
 @section scripts {
+    
+<script src="~/ViewScripts/Admin/Admin_ViewModel.js"></script>
     <script type="text/javascript">
         $(function () {
+
+            Uma.Admin.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.Admin.init();
+
             $("#menu-admin").addClass("active");
+            ko.applyBindings();
         })
     </script>
 }
+
+
 

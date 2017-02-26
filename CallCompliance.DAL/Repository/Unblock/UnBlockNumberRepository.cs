@@ -58,12 +58,13 @@ namespace CallCompliance.DAL.Repository.Unblock {
 											int reasonId, 
 											int studentId, 
 											string nameAssigned, 
-											string notes) {
+											string notes,
+											bool isStudent) {
 
 			DateTime? dt = DateTime.Now;
 
 			try {
-				_ctx.AddExceptionsPhoneNumber(phoneNumber, dt, reqId, reqName, reqDepartment, reasonId, studentId, nameAssigned, notes);
+				_ctx.AddExceptionsPhoneNumber(phoneNumber, dt, reqId, reqName, reqDepartment, reasonId, studentId, nameAssigned, notes, isStudent);
 				_logger.Info ("Phone number " + phoneNumber + " successfully blocked by user " + reqName);
 
 			} catch (Exception ex) {

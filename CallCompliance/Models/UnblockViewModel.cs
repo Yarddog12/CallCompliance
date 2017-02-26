@@ -12,6 +12,7 @@ namespace CallCompliance.Models {
 		public int StudentId { get; set; }
 		public string NameAssigned { get; set; }
 		public string Notes { get; set; }
+		public bool IsStudent { get; set; }
 
 		public UnblockViewModel()
 		{

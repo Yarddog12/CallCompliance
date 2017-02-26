@@ -25,13 +25,13 @@
                 <div class="form-inline">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optStudentName" value="option2">
+                            <input type="radio" class="form-check-input" data-bind="value: IsStudent" id="optStudentName" value="option2">
                             Student name
                         </label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optionsRadios" id="optEmployerName" value="option2">
+                            <input type="radio" class="form-check-input" data-bind="value: IsStudent" id="optEmployerName" value="option2">
                             Employer name
                         </label>
                     </div>
@@ -77,6 +77,7 @@
             Uma.UnBlock.init();
 
             $("#menu-unblock").addClass("active");
+            ko.applyBindings();
         })
     </script>
 }

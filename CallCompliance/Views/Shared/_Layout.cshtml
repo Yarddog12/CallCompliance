@@ -27,17 +27,17 @@
 
     <div class="container-fluid">
         <div class="row">
-            @if (true) {
+            @if (User.IsInRole ("Call_Frequency_Admins_SG")) {
             <div class="col-sm-3 col-md-2 sidebar">
                 <nav class="nav nav-pills nav-stacked nav-sidebar">
                     <a id="menu-home" class="nav-link" href="/Home">
                         <span style="width:55px" class="fa fa-2x fa fa-home"></span> Home
                     </a>
                     <a id="menu-unblock" class="nav-link" href="/Unblock">
-                        <span style="width: 55px" class="fa fa-2x fa-thumbs-up"></span> UnBlock
+                        <span style="width: 55px" class="fa fa-2x fa-thumbs-up"></span> Daily Exception Call Cap
                     </a>
                     <a id="menu-cooldown" class="nav-link" href="/CoolDown">
-                        <span style="width: 55px" class="fa fa-2x fa-shower"></span> Cool Down
+                        <span style="width: 55px" class="fa fa-2x fa-shower"></span> No Call Period
                     </a>
                     <a id="menu-dnc" class="nav-link" href="/DNC">
                         <span style="width: 55px" class="fa fa-2x fa-user-times"></span> DNC
@@ -49,10 +49,11 @@
                         <span style="width: 55px" class="fa fa-2x fa-file-text-o"></span> Reporting
                     </a>
 
-                    @*@if (User.IsInRole("Call_Frequency_Admins_SG")) {*@
+                    @if (User.IsInRole("Call_Frequency_Admins_SG")) {
                         <a id="menu-admin" class="nav-link" href="/Admin">
-                        <span style="width: 55px" class="fa fa-2x fa-user-circle-o"></span> Admin
-                    </a>
+                            <span style="width: 55px" class="fa fa-2x fa-user-circle-o"></span> Admin
+                        </a>
+                    }
                 </nav>
 
 

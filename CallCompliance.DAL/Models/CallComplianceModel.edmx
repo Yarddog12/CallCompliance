@@ -32,6 +32,7 @@
           <Parameter Name="SyStudentId" Type="int" Mode="In" />
           <Parameter Name="NameAssigned" Type="varchar" Mode="In" />
           <Parameter Name="Notes" Type="varchar" Mode="In" />
+          <Parameter Name="IsStudent" Type="bit" Mode="In" />
         </Function>
         <Function Name="AddWhitelistPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
           <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
@@ -42,8 +43,22 @@
         </Function>
         <Function Name="GetDNCListsListNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetExceptionReasonsNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
+        <Function Name="GetParametersValues" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetStudentInfoByPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
           <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateDNCListsListName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+          <Parameter Name="OldListName" Type="varchar" Mode="In" />
+          <Parameter Name="NewListName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateExceptionReasonsName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+          <Parameter Name="OldReasonName" Type="varchar" Mode="In" />
+          <Parameter Name="NewReasonName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateParametersValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+          <Parameter Name="ParameterName" Type="varchar" Mode="In" />
+          <Parameter Name="ParameterValue" Type="int" Mode="In" />
+          <Parameter Name="ModifiedBy" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="CallComplianceModelStoreContainer" />
       </Schema></edmx:StorageModels>
@@ -61,6 +76,7 @@
             <Parameter Name="SyStudentId" Mode="In" Type="Int32" />
             <Parameter Name="NameAssigned" Mode="In" Type="String" />
             <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="IsStudent" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="GetExceptionReasonsNames" ReturnType="Collection(CallComplianceModel.cplxExceptionReasonsNames)" />
           <FunctionImport Name="GetStudentInfoByPhoneNumber" ReturnType="Collection(CallComplianceModel.cplxStudentInfoByPhoneNumber)">
@@ -91,6 +107,20 @@
             <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
             <Parameter Name="Notes" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UpdateDNCListsListName">
+            <Parameter Name="OldListName" Mode="In" Type="String" />
+            <Parameter Name="NewListName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateExceptionReasonsName">
+            <Parameter Name="OldReasonName" Mode="In" Type="String" />
+            <Parameter Name="NewReasonName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateParametersValue">
+            <Parameter Name="ParameterName" Mode="In" Type="String" />
+            <Parameter Name="ParameterValue" Mode="In" Type="Int32" />
+            <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetParametersValues" ReturnType="Collection(CallComplianceModel.cplxParametersValues)" />
         </EntityContainer>
         <ComplexType Name="cplxExceptionReasonsNames">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -109,6 +139,10 @@
           <Property Type="DateTime" Name="DateTimeAdded" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="DateTimeModified" Nullable="false" Precision="23" />
           <Property Type="Boolean" Name="ActiveFlag" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="cplxParametersValues">
+          <Property Type="String" Name="ParameterName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ParameterValue" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -152,6 +186,17 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AddCooldownsPhoneNumber" FunctionName="CallComplianceModel.Store.AddCooldownsPhoneNumber" />
           <FunctionImportMapping FunctionImportName="AddWhitelistPhoneNumber" FunctionName="CallComplianceModel.Store.AddWhitelistPhoneNumber" />
+          <FunctionImportMapping FunctionImportName="UpdateDNCListsListName" FunctionName="CallComplianceModel.Store.UpdateDNCListsListName" />
+          <FunctionImportMapping FunctionImportName="UpdateExceptionReasonsName" FunctionName="CallComplianceModel.Store.UpdateExceptionReasonsName" />
+          <FunctionImportMapping FunctionImportName="UpdateParametersValue" FunctionName="CallComplianceModel.Store.UpdateParametersValue" />
+          <FunctionImportMapping FunctionImportName="GetParametersValues" FunctionName="CallComplianceModel.Store.GetParametersValues">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CallComplianceModel.cplxParametersValues">
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="ParameterValue" ColumnName="ParameterValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

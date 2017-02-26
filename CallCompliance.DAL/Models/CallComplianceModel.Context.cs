@@ -28,7 +28,7 @@ namespace CallCompliance.DAL.Models
         }
     
     
-        public virtual int AddExceptionsPhoneNumber(string phoneNumber, Nullable<System.DateTime> dateTimeExceptionGranted, string requestorId, string requestorName, string requestorDepartment, Nullable<int> exceptionReasonId, Nullable<int> syStudentId, string nameAssigned, string notes)
+        public virtual int AddExceptionsPhoneNumber(string phoneNumber, Nullable<System.DateTime> dateTimeExceptionGranted, string requestorId, string requestorName, string requestorDepartment, Nullable<int> exceptionReasonId, Nullable<int> syStudentId, string nameAssigned, string notes, Nullable<bool> isStudent)
         {
             var phoneNumberParameter = phoneNumber != null ?
                 new ObjectParameter("PhoneNumber", phoneNumber) :
@@ -66,7 +66,11 @@ namespace CallCompliance.DAL.Models
                 new ObjectParameter("Notes", notes) :
                 new ObjectParameter("Notes", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddExceptionsPhoneNumber", phoneNumberParameter, dateTimeExceptionGrantedParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, exceptionReasonIdParameter, syStudentIdParameter, nameAssignedParameter, notesParameter);
+            var isStudentParameter = isStudent.HasValue ?
+                new ObjectParameter("IsStudent", isStudent) :
+                new ObjectParameter("IsStudent", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddExceptionsPhoneNumber", phoneNumberParameter, dateTimeExceptionGrantedParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, exceptionReasonIdParameter, syStudentIdParameter, nameAssignedParameter, notesParameter, isStudentParameter);
         }
     
         public virtual ObjectResult<cplxExceptionReasonsNames> GetExceptionReasonsNames()
@@ -173,6 +177,54 @@ namespace CallCompliance.DAL.Models
                 new ObjectParameter("Notes", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddWhitelistPhoneNumber", phoneNumberParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, notesParameter);
+        }
+    
+        public virtual int UpdateDNCListsListName(string oldListName, string newListName)
+        {
+            var oldListNameParameter = oldListName != null ?
+                new ObjectParameter("OldListName", oldListName) :
+                new ObjectParameter("OldListName", typeof(string));
+    
+            var newListNameParameter = newListName != null ?
+                new ObjectParameter("NewListName", newListName) :
+                new ObjectParameter("NewListName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateDNCListsListName", oldListNameParameter, newListNameParameter);
+        }
+    
+        public virtual int UpdateExceptionReasonsName(string oldReasonName, string newReasonName)
+        {
+            var oldReasonNameParameter = oldReasonName != null ?
+                new ObjectParameter("OldReasonName", oldReasonName) :
+                new ObjectParameter("OldReasonName", typeof(string));
+    
+            var newReasonNameParameter = newReasonName != null ?
+                new ObjectParameter("NewReasonName", newReasonName) :
+                new ObjectParameter("NewReasonName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateExceptionReasonsName", oldReasonNameParameter, newReasonNameParameter);
+        }
+    
+        public virtual int UpdateParametersValue(string parameterName, Nullable<int> parameterValue, string modifiedBy)
+        {
+            var parameterNameParameter = parameterName != null ?
+                new ObjectParameter("ParameterName", parameterName) :
+                new ObjectParameter("ParameterName", typeof(string));
+    
+            var parameterValueParameter = parameterValue.HasValue ?
+                new ObjectParameter("ParameterValue", parameterValue) :
+                new ObjectParameter("ParameterValue", typeof(int));
+    
+            var modifiedByParameter = modifiedBy != null ?
+                new ObjectParameter("ModifiedBy", modifiedBy) :
+                new ObjectParameter("ModifiedBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateParametersValue", parameterNameParameter, parameterValueParameter, modifiedByParameter);
+        }
+    
+        public virtual ObjectResult<cplxParametersValues> GetParametersValues()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cplxParametersValues>("GetParametersValues");
         }
     }
 }

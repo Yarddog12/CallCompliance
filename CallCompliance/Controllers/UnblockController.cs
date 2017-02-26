@@ -42,7 +42,7 @@ namespace CallCompliance.Controllers
 
 			try {
 				var repo = new UnBlockNumberRepository();
-				repo.AddExceptionPhoneNumber(vm.PhoneNumber, vm.LoginIdentity, vm.FullName, vm.Department, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes);
+				repo.AddExceptionPhoneNumber(vm.PhoneNumber, vm.LoginIdentity, vm.FullName, vm.Department, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes, vm.IsStudent);
 			}
 			catch {
 				status = ControllerReturnStatus.Fail;

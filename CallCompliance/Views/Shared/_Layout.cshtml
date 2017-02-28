@@ -27,7 +27,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            @if (User.IsInRole ("Call_Frequency_Admins_SG")) {
+            @*@if (User.IsInRole ("Call_Frequency_Users_SG")) {*@
+            @if (true) { 
             <div class="col-sm-3 col-md-2 sidebar">
                 <nav class="nav nav-pills nav-stacked nav-sidebar">
                     <a id="menu-home" class="nav-link" href="/Home">
@@ -55,8 +56,6 @@
                         </a>
                     }
                 </nav>
-
-
             </div>} else {
                 <h1> You are not authenticated at UMA.  Check your VPN.</h1>}
 

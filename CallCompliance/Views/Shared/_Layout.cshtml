@@ -13,29 +13,28 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
-        <div class="form-inline row">
-            <div class="col-sm-9">
-                <span class="navbar-brand">Welcome to the Call Compliance Portal @MyHelpers.UserFullName()!</span>
-                <span class="nav-item col-sm-3 pull-right">
+<nav class="navbar navbar-dark navbar-fixed-top bg-primary">
+    <div class="form-inline row">
+        <div class="col-sm-9">
+            <span class="navbar-brand">Welcome to the Call Compliance Portal @MyHelpers.UserFullName()!</span>
+            <span class="nav-item col-sm-3 pull-right">
                     <i class="fa fa-search" onclick="alert('clickme')"></i>
                     <input type="text" class="nav-inline" id="inputPhoneUxnBlock" maxlength="100">
                 </span>
-            </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            @*@if (User.IsInRole ("Call_Frequency_Users_SG")) {*@
-            @if (true) { 
+<div class="container-fluid">
+    <div class="row">
+        @if (User.IsInRole ("Call_Frequency_Users_SG") || User.IsInRole ("Call_Frequency_Admins_SG")) {
             <div class="col-sm-3 col-md-2 sidebar">
                 <nav class="nav nav-pills nav-stacked nav-sidebar">
                     <a id="menu-home" class="nav-link" href="/Home">
                         <span style="width:55px" class="fa fa-2x fa fa-home"></span> Home
                     </a>
                     <a id="menu-unblock" class="nav-link" href="/Unblock">
-                        <span style="width: 55px" class="fa fa-2x fa-thumbs-up"></span> Daily Exception Call Cap
+                        <span style="width: 55px" class="fa fa-2x fa-thumbs-up"  a href="#" data-toggle="popover" title="Exception Cap" data-content="Daily Exception Call Cap"></span>Exception Call Cap
                     </a>
                     <a id="menu-cooldown" class="nav-link" href="/CoolDown">
                         <span style="width: 55px" class="fa fa-2x fa-shower"></span> No Call Period
@@ -56,19 +55,27 @@
                         </a>
                     }
                 </nav>
-            </div>} else {
-                <h1> You are not authenticated at UMA.  Check your VPN.</h1>}
 
-            <div class="col-md-6 offset-md-3 main">
-                @RenderBody()
-            </div>
+            </div> } else {
+
+            <h1> You are not authenticated at UMA.  Check your VPN.</h1>}
+
+        <div class="col-md-6 offset-md-3 main">
+            @RenderBody()
         </div>
     </div>
+</div>
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>

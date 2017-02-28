@@ -9,17 +9,12 @@
 }
 
 <div class="jumbotron">
-    <form>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Report Type:</label>
-            <div class="col-sm-5">
-                <select class="custom-select col-sm-3 form-control" data-bind="options: ReportListNames, optionsText: 'ReportNames', optionsValue: 'Id', value: ReportingId, optionsCaption: 'Choose a Report...'" a href="#" data-toggle="popover" title="Reports" data-content="Choose an SSRS report to run."></select>
-            </div>
-            <div class="col-sm-8">
-                @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
-            </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Report Type:</label>
+        <div class="col-sm-5">
+            <select class="custom-select col-sm-3 form-control" data-bind="options: ReportListNames, optionsText: 'ReportNames', optionsValue: 'Id', value: ReportingId, optionsCaption: 'Choose a Report...'" onchange="Uma.Reporting.doLaunchSSRS(this.value)"></select>
         </div>
-    </form>
+    </div>
 </div>
 
 
@@ -30,7 +25,7 @@
     <script>
         
         $(document).ready(function(){
-            $('[data-toggle="popover"]').popover(); 
+            $('[data-toggle="popover"]').popover();
         });
 
         $(function () {

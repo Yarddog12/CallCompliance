@@ -14,70 +14,13 @@
         ko.applyBindings(self.model);
     },
 
-    doLaunchSSRS: function () {
+    doLaunchSSRS: function (value) {
+                     Uma.Reporting.serverModel.ReportListNames[2].ReportNames
+        var report = Uma.Reporting.serverModel.ReportListNames[value].ReportNames;
+        alert(report);
 
-        var self = Uma.Reporting;
-
-        var url = '/Reporting/LaunchReport';
-        var msg = "";
-
-        var data = ko.mapping.toJSON(self.model);
-        $.ajax({
-            url: url,
-            data: data,
-            dataType: "json",
-            type: "POST",
-            contentType: "application/json; charset=utf-8"
-        })
-
-        // look this up...new in JQuery 3.0
-        .done(function (x) {
-            //document.location.href = "/Reporting/LaunchReport";
-
-            if (x.Status) {
-                //document.location.href = "/Reporting/LaunchReport";
-                alert("good boy");
-
-            } else {
-                modal({
-                    type: 'error',
-                    title: x.Title,
-                    text: x.Message,
-                    size: 'normal',
-                    buttons: [
-                        {
-                            text: 'OK',
-                            val: 'ok',
-                            eKey: true,
-                            addClass: 'btn-light-blue'
-                        }
-                    ]
-                });
-            }
-        })
-            // This would be some AJAX error....
-        .fail(function (errorMessage) {
-            msg = 'Reporting problem (ajax error)';
-            modal({
-                type: 'error',
-                title: 'Reporting failure.',
-                text: msg,
-                size: 'normal',
-                buttons: [
-                    {
-                        text: 'OK',
-                        val: 'ok',
-                        eKey: true,
-                        addClass: 'btn-light-blue'
-                    }
-                ]
-            });
-            console.log(errorMessage);
-        })
-        .always(function () {
-            //self.toggleSaveLoader(false);
-        });
-
+        //window.open('http://mlk-ssr-d-sq01/Reports/Pages/Report.aspx?ItemPath=%2fCall+Compliance%2fODS+Status', '_blank');
+        window.open('http://mlk-ssr-d-sq01/Reports/Pages/Report.aspx?ItemPath=/Call+Compliance/' + 'ODS Status', '_blank');
     }
 });
 

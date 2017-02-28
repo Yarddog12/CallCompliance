@@ -38,6 +38,11 @@
     <script src="~/ViewScripts/WhiteList/Whitelist_ViewModel.js"></script>
 
     <script>
+        
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover(); 
+        });
+
         $(function () {
             Uma.WhiteList.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
             Uma.WhiteList.init();

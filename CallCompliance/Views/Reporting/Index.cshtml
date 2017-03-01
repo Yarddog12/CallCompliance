@@ -1,6 +1,5 @@
 ﻿
 @using Newtonsoft.Json
-@using ReportViewerForMvc
 @model CallCompliance.Models.ReportingModel
 
 @{
@@ -12,7 +11,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Report Type:</label>
         <div class="col-sm-5">
-            <select class="custom-select col-sm-3 form-control" data-bind="options: ReportListNames, optionsText: 'ReportNames', optionsValue: 'Id', value: ReportingId, optionsCaption: 'Choose a Report...'" onchange="Uma.Reporting.doLaunchSSRS(this.value)"></select>
+            <select class="custom-select col-sm-3 form-control" data-bind="options: ReportListNames, optionsText: 'ReportNames', optionsValue: 'Id', value: ReportingId, optionsCaption: 'Choose a Report...'" onchange="Uma.Reporting.doLaunchSSRS()"></select>
         </div>
     </div>
 </div>
@@ -28,13 +27,14 @@
             $('[data-toggle="popover"]').popover();
         });
 
-        $(function () {
+        $(function() {
             Uma.Reporting.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
             Uma.Reporting.init();
 
             $("#menu-reporting").addClass("active");
             ko.applyBindings();
-        })
+        });
+
     </script>
 }
 

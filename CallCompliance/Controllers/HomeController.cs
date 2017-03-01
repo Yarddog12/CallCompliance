@@ -8,10 +8,10 @@ namespace CallCompliance.Controllers {
 			return View ();
 		}
 
-		public ActionResult Welcome() {
+		//public ActionResult Welcome() {
 
-			ViewBag.Name = FullName;
-			return View ();
-		}
+		//	ViewBag.Name = FullName;
+		//	return View ();
+		//}
 	}
 }

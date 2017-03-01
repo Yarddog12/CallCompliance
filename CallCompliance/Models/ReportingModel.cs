@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace CallCompliance.Models {
 	public class ReportingModel : UserManagementModelBase {
 
-		public int ReportingId { get; set; }
+		public int? ReportingId { get; set; }
 		public List<ReportNamesModel> ReportListNames { get; set; } = new List<ReportNamesModel> ();
 	}
 

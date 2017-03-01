@@ -1,8 +1,7 @@
 ﻿Declare("Uma.Reporting", {
     serverModel:        null,
     self:               null,
-    model:              ko.observable(),
-    validationErrors:   [],
+    model: ko.observable(),
 
     init: function () {
 
@@ -14,12 +13,7 @@
         ko.applyBindings(self.model);
     },
 
-    doLaunchSSRS: function (value) {
-                     Uma.Reporting.serverModel.ReportListNames[2].ReportNames
-        var report = Uma.Reporting.serverModel.ReportListNames[value].ReportNames;
-        alert(report);
-
-        //window.open('http://mlk-ssr-d-sq01/Reports/Pages/Report.aspx?ItemPath=%2fCall+Compliance%2fODS+Status', '_blank');
+    doLaunchSSRS: function () {
         window.open('http://mlk-ssr-d-sq01/Reports/Pages/Report.aspx?ItemPath=/Call+Compliance/' + 'ODS Status', '_blank');
     }
 });

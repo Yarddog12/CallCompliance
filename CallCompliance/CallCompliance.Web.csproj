@@ -193,7 +193,6 @@
     <Compile Include="Controllers\CoolDownController.cs" />
     <Compile Include="Controllers\DNCController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\UnblockController.cs" />
     <Compile Include="Controllers\WhiteListController.cs" />
@@ -206,7 +205,6 @@
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\CoolDownViewModel.cs" />
     <Compile Include="Models\DncViewModel.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ReportingModel.cs" />
     <Compile Include="Models\UnblockViewModel.cs" />
     <Compile Include="Models\UserManagementModelBase.cs" />
@@ -366,7 +364,6 @@
     <Content Include="ViewScripts\Admin\Admin_ViewModel.js" />
     <Content Include="ViewScripts\CoolDown\CoolDown_ViewModel.js" />
     <Content Include="ViewScripts\DNC\Dnc_ViewModel.js" />
-    <Content Include="ViewScripts\Login\Login_ViewModelXX.js" />
     <Content Include="ViewScripts\Unblock\UnBlock_ViewModel.js" />
     <Content Include="ViewScripts\WhiteList\Whitelist_ViewModel.js" />
     <Content Include="Web.config">
@@ -390,9 +387,6 @@
     <Content Include="Views\WhiteList\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\Uma.Core.js" />
-    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Home\Welcome.cshtml" />
     <Content Include="ViewScripts\Reporting\Reporting_ViewModel.js" />
   </ItemGroup>
   <ItemGroup>

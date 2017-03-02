@@ -8,12 +8,14 @@
 }
 
 <div class="jumbotron">
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Report Type:</label>
-        <div class="col-sm-5">
-            <select class="custom-select col-sm-3 form-control" data-bind="options: ReportListNames, optionsText: 'ReportNames', optionsValue: 'Id', value: ReportingId, optionsCaption: 'Choose a Report...'" onchange="Uma.Reporting.doLaunchSSRS()"></select>
+    @if (User.IsInRole("Call_Frequency_Users_SG") || User.IsInRole("Call_Frequency_Admins_SG")) {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Report Type:</label>
+            <div class="col-sm-5">
+                <select class="custom-select col-sm-3 form-control" data-bind="options: ReportListNames, optionsText: 'ReportName', optionsValue: 'ReportName', value: SelectedReportName, optionsCaption: 'Choose a Report...'"></select>
+            </div>
         </div>
-    </div>
+    }
 </div>
 
 
@@ -32,7 +34,6 @@
             Uma.Reporting.init();
 
             $("#menu-reporting").addClass("active");
-            ko.applyBindings();
         });
 
     </script>

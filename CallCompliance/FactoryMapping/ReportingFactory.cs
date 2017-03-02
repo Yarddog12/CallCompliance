@@ -11,7 +11,7 @@ namespace CallCompliance.FactoryMapping {
 				throw new ArgumentNullException ("cplxCallComplianceReports", "No report names for dropdown box returned.");
 			}
 
-			return new ReportNamesModel (id++, c.ReportName);
+			return new ReportNamesModel (c.ReportName);
 		}
 	}
 }

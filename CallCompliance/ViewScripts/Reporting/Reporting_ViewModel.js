@@ -10,11 +10,13 @@
         if (self.serverModel) {
             self.model(ko.mapping.fromJS(self.serverModel));
         }
-        ko.applyBindings(self.model);
-    },
 
-    doLaunchSSRS: function () {
-        window.open('http://mlk-ssr-d-sq01/Reports/Pages/Report.aspx?ItemPath=/Call+Compliance/' + 'ODS Status', '_blank');
+        self.model().SelectedReportName.subscribe(function (rptName) {
+            console.log(rptName);
+            window.open('http://mlk-ssr-d-sq01/Reports/Pages/Report.aspx?ItemPath=/Call+Compliance/' + rptName, '_blank');
+        });
+
+        ko.applyBindings(self.model);
     }
 });
 

@@ -7,64 +7,66 @@
 }
 
 <div class="jumbotron">
-    <form>
-        <div class="form-group row">
-            <label class="col-sm-5 col-form-label">Enter phone number needing temporary override:</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputPhoneUnBlock" data-bind="phoneNumber: PhoneNumber" placeholder="(000) 000-0000" maxlength="20" a href="#" data-toggle="popover" title="Phone Number" data-content="Phone number for call frequency." />
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-5 col-form-label">Reason for overriding daily dial limit cap:</label>
-            <div class="col-sm-5"> <!-- this was missing and messed me up-->
-                <select class="custom-select col-sm-3 form-control" data-bind="options: ExceptionReasonNames, optionsText: 'ReasonName', optionsValue: 'Id', value: ReasonId, optionsCaption: 'Choose...'" a href="#" data-toggle="popover" title="Exception Reason" data-content="Select the reason for this exception."></select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-5">
-                <div class="form-inline">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" data-bind="value: IsStudent" id="optStudentName" value="option2">
-                            Student name
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" data-bind="value: IsStudent" id="optEmployerName" value="option2">
-                            Employer name
-                        </label>
-                    </div>
+    @if (User.IsInRole("Call_Frequency_Users_SG") || User.IsInRole("Call_Frequency_Admins_SG")) {
+        <form>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Enter phone number needing temporary override:</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputPhoneUnBlock" data-bind="phoneNumber: PhoneNumber" placeholder="(000) 000-0000" maxlength="20" a href="#" data-toggle="popover" title="Phone Number" data-content="Phone number for call frequency."/>
                 </div>
             </div>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputPhoneUxnBlock" data-bind="value: NameAssigned" maxlength="100" a href="#" data-toggle="popover" title="Student Name or Business" data-content="Is this the students phone number, or where they work">
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Reason for overriding daily dial limit cap:</label>
+                <div class="col-sm-5"> <!-- this was missing and messed me up-->
+                    <select class="custom-select col-sm-3 form-control" data-bind="options: ExceptionReasonNames, optionsText: 'ReasonName', optionsValue: 'Id', value: ReasonId, optionsCaption: 'Choose...'" a href="#" data-toggle="popover" title="Exception Reason" data-content="Select the reason for this exception."></select>
+                </div>
             </div>
-        </div>
-        <div class="form-group row"></div>
-        <div class="form-group row">
-            <label class="col-sm-5 col-form-label">If Student, enter SyStudentId</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" id="inputStudentId"  data-bind="value: StudentId" maxlength="100" a href="#" data-toggle="popover" title="Student Id" data-content="This is the student Id">
+            <div class="form-group row">
+                <div class="col-sm-5">
+                    <div class="form-inline">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" data-bind="value: IsStudent" id="optStudentName" value="option2">
+                                Student name
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" data-bind="value: IsStudent" id="optEmployerName" value="option2">
+                                Employer name
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputPhoneUxnBlock" data-bind="value: NameAssigned" maxlength="100" a href="#" data-toggle="popover" title="Student Name or Business" data-content="Is this the students phone number, or where they work">
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-5 col-form-label">Include additional details (student name, system student number, business reason, etc...)</label>
-            <div class="col-sm-5">
-                <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: Notes" maxlength="500" a href="#" data-toggle="popover" title="Notes" data-content="You must enter a detailed reason why you want to block or limit the frequency for this phone number."></textarea>
+            <div class="form-group row"></div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">If Student, enter SyStudentId</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="inputStudentId" data-bind="value: StudentId" maxlength="100" a href="#" data-toggle="popover" title="Student Id" data-content="This is the student Id">
+                </div>
             </div>
-        </div>
-        <div class="form-inline row">
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Include additional details (student name, system student number, business reason, etc...)</label>
+                <div class="col-sm-5">
+                    <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: Notes" maxlength="500" a href="#" data-toggle="popover" title="Notes" data-content="You must enter a detailed reason why you want to block or limit the frequency for this phone number."></textarea>
+                </div>
+            </div>
+            <div class="form-inline row">
 
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doSaveUnblock">Save</button>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doSaveUnblock">Save</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doReset">Reset</button>
+                </div>
             </div>
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doReset">Reset</button>
-            </div>
-        </div>
 
-    </form>
+        </form>
+    }
 </div>
 
 @section scripts {
@@ -79,12 +81,11 @@
 
         //$(".has-hover").tooltip({placement: "bottom"});
 
-        $(function () {
+        $(function() {
             Uma.UnBlock.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
             Uma.UnBlock.init();
 
             $("#menu-unblock").addClass("active");
-            ko.applyBindings();
-        })
+        });
     </script>
 }

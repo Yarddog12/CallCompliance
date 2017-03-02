@@ -1,6 +1,4 @@
 ﻿
-@using Newtonsoft.Json
-
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,11 +12,7 @@
 
         <script>
             $(function () {
-                Uma.Login.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
-                Uma.Login.init();
-
                 $("#menu-home").addClass("active");
-                ko.applyBindings();
             })
         </script>
     }

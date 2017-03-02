@@ -27,11 +27,11 @@
 
 <div class="container-fluid">
     <div class="row">
-        @if (User.IsInRole ("Call_Frequency_Users_SG") || User.IsInRole ("Call_Frequency_Admins_SG")) {
+        @if (User.IsInRole("Call_Frequency_Users_SG") || User.IsInRole("Call_Frequency_Admins_SG")) {
             <div class="col-sm-3 col-md-2 sidebar">
                 <nav class="nav nav-pills nav-stacked nav-sidebar">
                     <a id="menu-home" class="nav-link" href="/Home">
-                        <span style="width:55px" class="fa fa-2x fa fa-home"></span> Home
+                        <span style="width: 55px" class="fa fa-2x fa fa-home"></span> Home
                     </a>
                     <a id="menu-unblock" class="nav-link" href="/Unblock">
                         <span style="width: 55px" class="fa fa-2x fa-thumbs-up"  a href="#" data-toggle="popover" title="Exception Cap" data-content="Daily Exception Call Cap"></span>Exception Call Cap
@@ -56,13 +56,12 @@
                     }
                 </nav>
 
-            </div> } else {
+            </div>
 
-            <h1> You are not authenticated at UMA.  Check your VPN.</h1>}
-
-        <div class="col-md-6 offset-md-3 main">
-            @RenderBody()
-        </div>
+            <div class="col-md-6 offset-md-3 main">
+                @RenderBody()
+            </div>
+        }
     </div>
 </div>
 
@@ -70,6 +69,7 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap")
+
 @RenderSection("scripts", required: false)
 </body>
 </html>

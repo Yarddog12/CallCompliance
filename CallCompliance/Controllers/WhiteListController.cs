@@ -10,7 +10,8 @@ namespace CallCompliance.Controllers
 		// GET: WhiteList
 		public ActionResult Index() {
 			ViewBag.Name = FullName;
-			return View ();
+			WhiteListViewModel model = new WhiteListViewModel();
+			return View (model);
         }
 
 		[HttpPost]

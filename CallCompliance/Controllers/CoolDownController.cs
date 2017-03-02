@@ -9,7 +9,8 @@ namespace CallCompliance.Controllers {
 		// GET: CoolDown
 		public ActionResult Index() {
 			ViewBag.Name = FullName;
-			return View ();
+			CoolDownViewModel model = new CoolDownViewModel();
+			return View (model);
 		}
 		/// <summary>
 		/// User pressed the Save on the Cool down page.

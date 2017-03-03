@@ -16,10 +16,15 @@
 <nav class="navbar navbar-dark navbar-fixed-top bg-primary">
     <div class="form-inline row">
         <div class="col-sm-9">
-            <span class="navbar-brand">Welcome to the Call Compliance Portal @MyHelpers.UserFullName()!</span>
+            @if (User.IsInRole("Call_Frequency_Users_SG") || User.IsInRole("Call_Frequency_Admins_SG")) {
+                <span class="navbar-brand">Welcome to the Call Compliance Portal @MyHelpers.UserFullName()!</span>
+            }
+            else {
+                <span class="navbar-brand">@MyHelpers.UserFullName(), Sorry but you don't have rights to use Call Compliance.</span>
+            }
             <span class="nav-item col-sm-3 pull-right">
                     <i class="fa fa-search" onclick="alert('clickme')"></i>
-                    <input type="text" class="nav-inline" id="inputPhoneUxnBlock" maxlength="100">
+                    <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">
                 </span>
         </div>
     </div>
@@ -75,7 +80,69 @@
 </html>
 
 <script>
-    $(document).ready(function () {
-        $('[data-toggle="popover"]').popover();
-    });
+    $(document)
+        .ready(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+
+    function FindPhoneNumber () {
+
+        var url = '/Home/FindPhoneNumber/';
+        var phoneNumber = $("#phoneNumSearch").val();
+        alert(phoneNumber);
+
+        $.ajax({
+                url: url,
+                data: data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8"
+            })
+
+            // look this up...new in JQuery 3.0
+            .done(function(x) {
+
+                if (x) {
+                    modal({
+                        type: x.Status ? 'error' : 'inverted',
+                        title: x.Title,
+                        text: x.Message,
+                        size: 'normal',
+                        buttons: [
+                            {
+                                text: 'OK',
+                                val: 'ok',
+                                eKey: true,
+                                addClass: 'btn-light-blue'
+                            }
+                        ]
+                    });
+                }
+            })
+            // This would be some AJAX error....
+            .fail(function(errorMessage) {
+                msg = 'Phone Number (' +
+                    self.model.PhoneNumber +
+                    ') *** WAS NOT *** added to whilte list.  Check that you entered a phone number. (ajax error)';
+                modal({
+                    type: 'error',
+                    title: 'WhiteList Phone Number failure',
+                    text: msg,
+                    size: 'normal',
+                    buttons: [
+                        {
+                            text: 'OK',
+                            val: 'ok',
+                            eKey: true,
+                            addClass: 'btn-light-blue'
+                        }
+                    ]
+                });
+                console.log(errorMessage);
+            })
+            .always(function() {
+                //self.toggleSaveLoader(false);
+            });
+
+    }
 </script>

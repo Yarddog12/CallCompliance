@@ -8,10 +8,9 @@ namespace CallCompliance.Controllers {
 			return View ();
 		}
 
-		//public ActionResult Welcome() {
+		public ActionResult FindPhoneNumber() {
 
-		//	ViewBag.Name = FullName;
-		//	return View ();
-		//}
+			return View();
+		}
 	}
 }

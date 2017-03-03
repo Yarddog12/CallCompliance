@@ -14,19 +14,19 @@ namespace CallCompliance.Controllers
 
 			ViewBag.Name = FullName;
 
-			var factory = new DncFactory();
-			var repo = new DncRepository();
+			//var factory = new DncFactory();
+			//var repo = new DncRepository();
 
-			// Map the Exception Reason names from the cplx EF class to the ExceptionReasonNamesModel
-			var data = repo
-				.GetDncNames()
-				.ToList ()
-				.Select (x => factory.Create (x));
+			//// Map the Exception Reason names from the cplx EF class to the ExceptionReasonNamesModel
+			//var data = repo
+			//	.GetDncNames()
+			//	.ToList ()
+			//	.Select (x => factory.Create (x));
 
 			var model = new DncViewModel();
 
 			// Put the list of DNC names in the List for the drop down.
-			model.DncListNames.AddRange (data);
+			//model.DncListNames.AddRange (data);
 			return View (model);
 		}
 

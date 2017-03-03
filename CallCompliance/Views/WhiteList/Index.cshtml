@@ -7,7 +7,7 @@
 }
 
 <div class="jumbotron">
-    @if (User.IsInRole("Call_Frequency_Users_SG") || User.IsInRole("Call_Frequency_Admins_SG")) {
+    @if (User.IsInRole("Call_Frequency_Admins_SG")) {
         <form>
             <div class="form-group row">
                 <label class="col-sm-5 col-form-label">Enter phone number for submission to white list:</label>

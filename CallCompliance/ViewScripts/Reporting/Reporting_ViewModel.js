@@ -13,7 +13,7 @@
 
         self.model().SelectedReportName.subscribe(function (rptName) {
             console.log(rptName);
-            window.open('http://mlk-ssr-d-sq01/Reports/Pages/Report.aspx?ItemPath=/Call+Compliance/' + rptName, '_blank');
+            window.open('http://MLK-REP-D-SQ02/Reports/Pages/Report.aspx?ItemPath=/Call+Compliance/' + rptName, '_blank');
         });
 
         ko.applyBindings(self.model);

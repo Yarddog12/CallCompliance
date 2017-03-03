@@ -13,8 +13,6 @@ namespace CallCompliance.Controllers
 		// GET: Unblock
 		public ActionResult Index() {
 
-			ViewBag.Name = FullName;
-
 			var factory = new UnBlockFactory();
 			var repo = new UnBlockNumberRepository();
 
@@ -36,13 +34,15 @@ namespace CallCompliance.Controllers
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
-			vm.FullName      = FullName;
-			vm.Department    = Department;
-			vm.LoginIdentity = LoginIdentity;
+			var ad = GetAdInfo();
+
+			string fullName      = ad[0];
+			string loginIdentity = ad[1];
+			string department    = ad[2];
 
 			try {
 				var repo = new UnBlockNumberRepository();
-				repo.AddExceptionPhoneNumber(vm.PhoneNumber, vm.LoginIdentity, vm.FullName, vm.Department, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes, vm.IsStudent);
+				repo.AddExceptionPhoneNumber(vm.PhoneNumber, loginIdentity, fullName, department, vm.ReasonId, vm.StudentId, vm.NameAssigned, vm.Notes, vm.IsStudent);
 			}
 			catch {
 				status = ControllerReturnStatus.Fail;
@@ -50,7 +50,7 @@ namespace CallCompliance.Controllers
 
 			// Tell the modal what happened when we tried to save.
 			string message = "Phone number: " + vm.PhoneNumber;
-			message += (status == 0 ? " was successfully Un-Blocked by user " + vm.FullName : " was NOT Un-Blocked by user " + vm.FullName);
+			message += (status == 0 ? " was successfully Un-Blocked by user " + fullName : " was NOT Un-Blocked by user " + fullName);
 
 			string title = (status == 0 ? "Success on Un-Blocking phone number " + vm.PhoneNumber : "Error on Un-Blocking phone number " + vm.PhoneNumber);
 			

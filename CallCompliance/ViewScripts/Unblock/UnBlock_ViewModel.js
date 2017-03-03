@@ -127,6 +127,7 @@ Declare("Uma.UnBlock", {
         // Included additional details (notes)
         Uma.validation.isRequiredField(model.Notes(), "You must enter a few additional details please.", self.validationErrors);
         Uma.validation.isTextFieldOverMaxLength('Additional details field too long.  Max length = 500', model.Notes(), 500, self.validationErrors);
+        Uma.validation.isTextFieldUnderMinLength('Additional details field not long enough.  Minimum length = 10', model.Notes(), 10, self.validationErrors);
 
         return self.validationErrors.length === 0;
     },

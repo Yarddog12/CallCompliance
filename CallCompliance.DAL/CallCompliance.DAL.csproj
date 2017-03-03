@@ -102,6 +102,9 @@
     <Compile Include="Models\cplxStudentInfoByPhoneNumber.cs">
       <DependentUpon>CallComplianceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\cplxTableNameWherePhoneNumberIsLocated.cs">
+      <DependentUpon>CallComplianceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Admin\AdminRepository.cs" />
     <Compile Include="Repository\CoolDown\CoolDownNumberRepository.cs" />

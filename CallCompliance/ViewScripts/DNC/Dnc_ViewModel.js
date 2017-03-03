@@ -116,7 +116,7 @@
         Uma.validation.isTextFieldOverMaxLength('Phone number too long.  Max length = 20', model.PhoneNumber(), 20, self.validationErrors);
 
         // Reason for overriding daily dial limit cap (ExceptionReasonId)  This is a dropdown.
-        Uma.validation.isRequiredField(model.DncNameId(), "You must choose a list the phone number will be added too.", self.validationErrors);
+        //Uma.validation.isRequiredField(model.DncNameId(), "You must choose a list the phone number will be added too.", self.validationErrors);
 
         return self.validationErrors.length === 0;
     },

@@ -11,7 +11,6 @@ namespace CallCompliance.Controllers
 
 		// GET: Admin
 		public ActionResult Index() {
-			ViewBag.Name = FullName;
 
 			AdminViewModel model = new AdminViewModel ();
 
@@ -32,20 +31,26 @@ namespace CallCompliance.Controllers
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
+			var ad = GetAdInfo ();
+
+			string fullName = ad [0];
+			string loginIdentity = ad [1];
+			string department = ad [2];
+
 			try {
 				var repo = new AdminRepository();
-				repo.UpdateCallCap (vm.ParmName1,  vm.ParmValue1,  FullName);
-				repo.UpdateCallCap (vm.ParmName2,  vm.ParmValue2,  FullName);
-				repo.UpdateCallCap (vm.ParmName3,  vm.ParmValue3,  FullName);
-				repo.UpdateCallCap (vm.ParmName4,  vm.ParmValue4,  FullName);
-				repo.UpdateCallCap (vm.ParmName5,  vm.ParmValue5,  FullName);
-				repo.UpdateCallCap (vm.ParmName6,  vm.ParmValue6,  FullName);
-				repo.UpdateCallCap (vm.ParmName7,  vm.ParmValue7,  FullName);
-				repo.UpdateCallCap (vm.ParmName8,  vm.ParmValue8,  FullName);
-				repo.UpdateCallCap (vm.ParmName9,  vm.ParmValue9,  FullName);
-				repo.UpdateCallCap (vm.ParmName10, vm.ParmValue10, FullName);
-				repo.UpdateCallCap (vm.ParmName11, vm.ParmValue11, FullName);
-				repo.UpdateCallCap (vm.ParmName12, vm.ParmValue12, FullName);
+				repo.UpdateCallCap (vm.ParmName1,  vm.ParmValue1, fullName);
+				repo.UpdateCallCap (vm.ParmName2,  vm.ParmValue2, fullName);
+				repo.UpdateCallCap (vm.ParmName3,  vm.ParmValue3, fullName);
+				repo.UpdateCallCap (vm.ParmName4,  vm.ParmValue4, fullName);
+				repo.UpdateCallCap (vm.ParmName5,  vm.ParmValue5, fullName);
+				repo.UpdateCallCap (vm.ParmName6,  vm.ParmValue6, fullName);
+				repo.UpdateCallCap (vm.ParmName7,  vm.ParmValue7, fullName);
+				repo.UpdateCallCap (vm.ParmName8,  vm.ParmValue8, fullName);
+				repo.UpdateCallCap (vm.ParmName9,  vm.ParmValue9, fullName);
+				repo.UpdateCallCap (vm.ParmName10, vm.ParmValue10, fullName);
+				repo.UpdateCallCap (vm.ParmName11, vm.ParmValue11, fullName);
+				repo.UpdateCallCap (vm.ParmName12, vm.ParmValue12, fullName);
 
 			} catch {
 				status = ControllerReturnStatus.Fail;
@@ -53,9 +58,9 @@ namespace CallCompliance.Controllers
 
 			// Tell the modal what happened when we tried to save.
 			string message = "Call Cap Update";
-			message += (status == 0 ? " was successfully updated by user " + FullName : " was NOT updated by user " + FullName);
+			message += (status == 0 ? " was successfully updated by user " + fullName : " was NOT updated by user " + fullName);
 
-			string title = (status == 0 ? "Success on Call Cap Update" : "Error on Call Cap Update bu " + FullName);
+			string title = (status == 0 ? "Success on Call Cap Update" : "Error on Call Cap Update bu " + fullName);
 
 			var result = new { Status = status, Title = title, Message = message };
 			return Json (result, JsonRequestBehavior.AllowGet);

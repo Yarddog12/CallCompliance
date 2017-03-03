@@ -12,7 +12,6 @@ namespace CallCompliance.Controllers
 		// GET: Dnc
 		public ActionResult Index() {
 
-			ViewBag.Name = FullName;
 
 			//var factory = new DncFactory();
 			//var repo = new DncRepository();
@@ -34,21 +33,33 @@ namespace CallCompliance.Controllers
 		public ActionResult SaveDncNumber(DncViewModel vm) {
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
+			string additionalErrInfo = string.Empty;
 
-			vm.FullName      = FullName;
-			vm.Department    = Department;
-			vm.LoginIdentity = LoginIdentity;
+			var ad = GetAdInfo ();
+
+			string fullName = ad [0];
+			string loginIdentity = ad [1];
+			string department = ad [2];
 
 			try {
 				var repo = new DncRepository();
-				repo.AddDncPhoneNumber(vm.PhoneNumber, vm.LoginIdentity, vm.FullName, vm.Department, vm.DncNameId);
-			} catch {
+				repo.AddDncPhoneNumber(vm.PhoneNumber, loginIdentity, fullName, department, vm.DncNameId);
+			} catch (Exception ex) {
 				status = ControllerReturnStatus.Fail;
+				if (ex.InnerException != null) {
+					if (ex.InnerException.ToString ().Contains ("duplicate")) {
+						additionalErrInfo = " was NOT added to white list because it already is in the white list - by user ";
+					}
+				}
+			}
+
+			if (additionalErrInfo == string.Empty) {
+				additionalErrInfo = " was NOT added to white list by user ";
 			}
 
 			// Tell the modal what happened when we tried to save.
 			string message = "Phone number: " + vm.PhoneNumber;
-			message += (status == 0 ? " was successfully added to DNC by user " + vm.FullName : " was NOT added to DNC by user " + vm.FullName);
+			message += (status == 0 ? " was successfully added to DNC by user " + fullName : additionalErrInfo + fullName);
 
 			string title = (status == 0 ? "Success on adding to DNC, phone number " + vm.PhoneNumber : "Error on DNC phone number " + vm.PhoneNumber);
 

@@ -40,6 +40,17 @@
         }
     },
 
+    isTextFieldUnderMinLength: function (txtFieldName, txtFieldValue, len, validationErrors) {
+        if (txtFieldValue == null || txtFieldValue.length === 0) {
+            return;
+        }
+
+        var lenTxt = txtFieldValue.length;
+        if (lenTxt < len) {
+            validationErrors.push(txtFieldName + " with length of " + lenTxt + " needs to be at least " + len + " characters long.");
+        }
+    },
+
     // Make sure this number is a valid numeric.
     //
     isNumeric: function (num, validationErrors) {

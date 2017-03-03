@@ -9,12 +9,13 @@ namespace CallCompliance.DAL.Repository.WhiteList {
 											string reqId,
 											string reqName,
 											string reqDepartment,
-											string notes) {
+											string notes,
+											bool? dncOverride) {
 
 			DateTime? dt = DateTime.Now;
 
 			try {
-				_ctx.AddWhitelistPhoneNumber(phoneNumber, reqId, reqName, reqDepartment, notes);
+				_ctx.AddWhitelistPhoneNumber(phoneNumber, reqId, reqName, reqDepartment, notes, dncOverride);
 				_logger.Info ("Phone number " + phoneNumber + " successfully added to white list by user " + reqName);
 
 			} catch (Exception ex) {

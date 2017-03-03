@@ -8,6 +8,7 @@ namespace CallCompliance.Models {
 
 		public string PhoneNumber { get; set; }
 		public string Notes { get; set; }
+		public bool DncOverride { get; set; }
 
 	}
 }

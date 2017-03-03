@@ -8,7 +8,6 @@ namespace CallCompliance.Controllers {
 
 		// GET: CoolDown
 		public ActionResult Index() {
-			ViewBag.Name = FullName;
 			CoolDownViewModel model = new CoolDownViewModel();
 			return View (model);
 		}
@@ -22,13 +21,15 @@ namespace CallCompliance.Controllers {
 
 			ControllerReturnStatus status = ControllerReturnStatus.Success;
 
-			vm.FullName      = FullName;
-			vm.Department    = Department;
-			vm.LoginIdentity = LoginIdentity;
+			var ad = GetAdInfo ();
+
+			string fullName = ad [0];
+			string loginIdentity = ad [1];
+			string department = ad [2];
 
 			try {
 				var repo = new CoolDownNumberRepository();
-				repo.AddCoolDownPhoneNumber(vm.PhoneNumber, vm.LoginIdentity, vm.FullName, vm.Department, vm.Notes, vm.StudentId, vm.StudentName);
+				repo.AddCoolDownPhoneNumber(vm.PhoneNumber, loginIdentity, fullName, department, vm.Notes, vm.StudentId, vm.StudentName);
 				
 			} catch {
 				status = ControllerReturnStatus.Fail;
@@ -36,7 +37,7 @@ namespace CallCompliance.Controllers {
 
 			// Tell the modal what happened when we tried to save.
 			string message = "Phone number: " + vm.PhoneNumber;
-			message += (status == 0 ? " was successfully Cooled Down by user " + vm.FullName : " was NOT Cooled Down by user " + vm.FullName);
+			message += (status == 0 ? " was successfully Cooled Down by user " + fullName : " was NOT Cooled Down by user " + fullName);
 
 			string title = (status == 0 ? "Success on Cooled Down phone number " + vm.PhoneNumber : "Error on Cooled Down phone number " + vm.PhoneNumber);
 

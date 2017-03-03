@@ -154,7 +154,7 @@ namespace CallCompliance.DAL.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddCooldownsPhoneNumber", phoneNumberParameter, dateTimeInitiatedParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, notesParameter, syStudentIdParameter, studentNameParameter);
         }
     
-        public virtual int AddWhitelistPhoneNumber(string phoneNumber, string requestorId, string requestorName, string requestorDepartment, string notes)
+        public virtual int AddWhitelistPhoneNumber(string phoneNumber, string requestorId, string requestorName, string requestorDepartment, string notes, Nullable<bool> dNCOverride)
         {
             var phoneNumberParameter = phoneNumber != null ?
                 new ObjectParameter("PhoneNumber", phoneNumber) :
@@ -176,7 +176,11 @@ namespace CallCompliance.DAL.Models
                 new ObjectParameter("Notes", notes) :
                 new ObjectParameter("Notes", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddWhitelistPhoneNumber", phoneNumberParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, notesParameter);
+            var dNCOverrideParameter = dNCOverride.HasValue ?
+                new ObjectParameter("DNCOverride", dNCOverride) :
+                new ObjectParameter("DNCOverride", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddWhitelistPhoneNumber", phoneNumberParameter, requestorIdParameter, requestorNameParameter, requestorDepartmentParameter, notesParameter, dNCOverrideParameter);
         }
     
         public virtual int UpdateDNCListsListName(string oldListName, string newListName)
@@ -225,6 +229,15 @@ namespace CallCompliance.DAL.Models
         public virtual ObjectResult<cplxParametersValues> GetParametersValues()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cplxParametersValues>("GetParametersValues");
+        }
+    
+        public virtual ObjectResult<cplxTableNameWherePhoneNumberIsLocated> GetTableNameWherePhoneNumberIsLocated(string phoneNumber)
+        {
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cplxTableNameWherePhoneNumberIsLocated>("GetTableNameWherePhoneNumberIsLocated", phoneNumberParameter);
         }
     }
 }

@@ -40,11 +40,15 @@
           <Parameter Name="RequestorName" Type="varchar" Mode="In" />
           <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
           <Parameter Name="Notes" Type="varchar" Mode="In" />
+          <Parameter Name="DNCOverride" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetDNCListsListNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetExceptionReasonsNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetParametersValues" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
         <Function Name="GetStudentInfoByPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+          <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetTableNameWherePhoneNumberIsLocated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
           <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UpdateDNCListsListName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
@@ -106,6 +110,7 @@
             <Parameter Name="RequestorName" Mode="In" Type="String" />
             <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
             <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="DNCOverride" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UpdateDNCListsListName">
             <Parameter Name="OldListName" Mode="In" Type="String" />
@@ -121,6 +126,9 @@
             <Parameter Name="ModifiedBy" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetParametersValues" ReturnType="Collection(CallComplianceModel.cplxParametersValues)" />
+          <FunctionImport Name="GetTableNameWherePhoneNumberIsLocated" ReturnType="Collection(CallComplianceModel.cplxTableNameWherePhoneNumberIsLocated)">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cplxExceptionReasonsNames">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -143,6 +151,9 @@
         <ComplexType Name="cplxParametersValues">
           <Property Type="String" Name="ParameterName" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="ParameterValue" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="cplxTableNameWherePhoneNumberIsLocated">
+          <Property Type="String" Name="TableName" Nullable="false" MaxLength="9" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -194,6 +205,13 @@
               <ComplexTypeMapping TypeName="CallComplianceModel.cplxParametersValues">
                 <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
                 <ScalarProperty Name="ParameterValue" ColumnName="ParameterValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTableNameWherePhoneNumberIsLocated" FunctionName="CallComplianceModel.Store.GetTableNameWherePhoneNumberIsLocated">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CallComplianceModel.cplxTableNameWherePhoneNumberIsLocated">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

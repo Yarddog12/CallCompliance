@@ -55,7 +55,7 @@
             })
                 // This would be some AJAX error....
             .fail(function (errorMessage) {
-                msg = 'Phone Number (' + self.model.PhoneNumber + ') *** WAS NOT *** added to whilte list.  Check that you entered a phone number. (ajax error)';
+                msg = 'Phone Number (' + self.model.PhoneNumber + ') *** WAS NOT *** added to white list.  Check that you entered a phone number. (ajax error)';
                 modal({
                     type: 'error',
                     title: 'WhiteList Phone Number failure',

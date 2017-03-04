@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using NLog;
 using NLog.Config;
@@ -23,14 +19,13 @@ namespace CallCompliance.DAL.Logging {
             var config = new LoggingConfiguration();
             var target = new DatabaseTarget("dbtarget");
 
-            //target.ConnectionString = IntegrationLibrary.Settings.ExactTarget_DatabaseConnection.ConnectionString;
 			target.ConnectionString = Settings.CallComplianceDatabaseConnection.ConnectionString;
             target.CommandText = LOG_COMMAND_TEXT;
             target.Parameters.Add(new DatabaseParameterInfo("@thread", new SimpleLayout("${threadid}")));
             target.Parameters.Add(new DatabaseParameterInfo("@level", new SimpleLayout("${level}")));
             target.Parameters.Add(new DatabaseParameterInfo("@logger", new SimpleLayout("${logger}")));
             target.Parameters.Add(new DatabaseParameterInfo("@message", new SimpleLayout("${message}")));
-            target.Parameters.Add(new DatabaseParameterInfo("@exception", new SimpleLayout("${exception}")));
+            target.Parameters.Add(new DatabaseParameterInfo("@exception", new SimpleLayout("${exception:format=toString}")));
 
             var rule = new LoggingRule("*", LogLevel.Trace, target);
             config.LoggingRules.Add(rule);
@@ -44,7 +39,6 @@ namespace CallCompliance.DAL.Logging {
             // LogManager.ThrowConfigExceptions = true;
 
             _logger = LogManager.GetCurrentClassLogger();
-            _logger.Info("Logger initialized.");
 
 			return _logger;
 		}

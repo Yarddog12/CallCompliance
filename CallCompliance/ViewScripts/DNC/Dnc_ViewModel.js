@@ -1,4 +1,4 @@
-﻿Declare("Uma.Dnc", {
+﻿ Declare("Uma.Dnc", {
     serverModel: null,
     self: null,
     model: ko.observable(),

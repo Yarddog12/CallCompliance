@@ -66,22 +66,6 @@ namespace CallCompliance.Controllers
 			return Json (result, JsonRequestBehavior.AllowGet);
 		}
 
-		//public ActionResult GetCallCaps() {
-
-		//	AdminViewModel model = new AdminViewModel();
-
-		//	try {
-		//		var repo = new AdminRepository ();
-		//		var ret = repo.GetCallCap();
-		//		model = MapToModel(ret);
-
-		//	} catch (Exception ex) {
-		//		_logger.Error (ex, "Failed in GetCallCaps, AdminController");
-		//	}
-
-		//	return View(model);
-		//}
-
 	    private AdminViewModel MapToModel(List<cplxParametersValues> model) {
 
 			AdminViewModel mod = new AdminViewModel();

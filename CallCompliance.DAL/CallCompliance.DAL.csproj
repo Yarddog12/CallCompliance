@@ -109,6 +109,7 @@
     <Compile Include="Repository\Admin\AdminRepository.cs" />
     <Compile Include="Repository\CoolDown\CoolDownNumberRepository.cs" />
     <Compile Include="Repository\DNC\DncRepository.cs" />
+    <Compile Include="Repository\Misc\MiscRepository.cs" />
     <Compile Include="Repository\Reporting\ReportingRepository.cs" />
     <Compile Include="Repository\Unblock\UnBlockNumberRepository.cs" />
     <Compile Include="Repository\UserManagementBase.cs" />

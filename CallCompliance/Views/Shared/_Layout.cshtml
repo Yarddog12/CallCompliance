@@ -23,9 +23,9 @@
                 <span class="navbar-brand">@MyHelpers.UserFullName(), Sorry but you don't have rights to use Call Compliance.</span>
             }
             <span class="nav-item col-sm-3 pull-right">
-                    <i class="fa fa-search" onclick="alert('clickme')"></i>
+                    <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
                     <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">
-                </span>
+            </span>
         </div>
     </div>
 </nav>
@@ -87,62 +87,203 @@
 
     function FindPhoneNumber () {
 
-        var url = '/Home/FindPhoneNumber/';
+        var url = '/Home/GetTableName/';
         var phoneNumber = $("#phoneNumSearch").val();
-        alert(phoneNumber);
 
-        $.ajax({
-                url: url,
-                data: data,
-                dataType: "json",
-                type: "POST",
-                contentType: "application/json; charset=utf-8"
-            })
+        var jsonData = ko.toJSON({ "phoneNumber": phoneNumber });
 
-            // look this up...new in JQuery 3.0
-            .done(function(x) {
+        var result = postJSON(url, jsonData, false);
 
-                if (x) {
-                    modal({
-                        type: x.Status ? 'error' : 'inverted',
-                        title: x.Title,
-                        text: x.Message,
-                        size: 'normal',
-                        buttons: [
-                            {
-                                text: 'OK',
-                                val: 'ok',
-                                eKey: true,
-                                addClass: 'btn-light-blue'
-                            }
-                        ]
-                    });
-                }
-            })
-            // This would be some AJAX error....
-            .fail(function(errorMessage) {
-                msg = 'Phone Number (' +
-                    self.model.PhoneNumber +
-                    ') *** WAS NOT *** added to whilte list.  Check that you entered a phone number. (ajax error)';
-                modal({
-                    type: 'error',
-                    title: 'WhiteList Phone Number failure',
-                    text: msg,
-                    size: 'normal',
-                    buttons: [
-                        {
-                            text: 'OK',
-                            val: 'ok',
-                            eKey: true,
-                            addClass: 'btn-light-blue'
-                        }
-                    ]
-                });
-                console.log(errorMessage);
-            })
-            .always(function() {
-                //self.toggleSaveLoader(false);
+        if (result === null) {
+            return;
+        }
+
+        if (result.length === 0) {
+            return;
+
+        } else if (result.length === 1) {
+            var menu = result[0].TableName.toUpperCase();
+            switch (menu) {
+            case "COOLDOWN":
+                $("#menu-cooldown").addClass("active");
+                break;
+            case "EXCEPTION":
+                $("#menu-unblock").addClass("active");
+                break;
+            case "WHITELIST":
+                $("#menu-whitelist").addClass("active");
+                break;
+            case "DNC":
+                $("#menu-dnc").addClass("active");
+                break;
+            }
+        } else {
+            var menuItems = [];
+            var maxItems = result.length;
+
+            for (i = 0; i < 10 && i < maxItems; i++) {
+                menuItems.push("Phone Number " + phoneNumber + " found in table (" + result[i].TableName + ")</br>");
+            }
+            modal({
+                type: 'inverted',
+                title: "Phone Number found in multiple tables.",
+                text: menuItems,
+                size: 'normal',
+                buttons: [
+                    {
+                        text: 'OK',
+                        val: 'ok',
+                        eKey: true,
+                        addClass: 'btn-light-blue'
+                    }
+                ]
             });
+        }
+
+
+        //$.ajax({
+        //    url: url,
+        //    data: JSON.stringify(data),
+        //    dataType: "json",
+        //    type: "POST",
+        //    contentType: "application/json; charset=utf-8",
+        //    success: function(data) {
+        //        alert("success");
+        //    }
+        //});
+
+            //// look this up...new in JQuery 3.0
+            //.done(function(x) {
+
+            //    if (x) {
+            //        modal({
+            //            type: x.Status ? 'error' : 'inverted',
+            //            title: x.Title,
+            //            text: x.Message,
+            //            size: 'normal',
+            //            buttons: [
+            //                {
+            //                    text: 'OK',
+            //                    val: 'ok',
+            //                    eKey: true,
+            //                    addClass: 'btn-light-blue'
+            //                }
+            //            ]
+            //        });
+            //    }
+            //})
+            //// This would be some AJAX error....
+            //.fail(function(errorMessage) {
+            //    msg = 'Phone Number (' +
+            //        self.model.PhoneNumber +
+            //        ') *** WAS NOT *** added to whilte list.  Check that you entered a phone number. (ajax error)';
+            //    modal({
+            //        type: 'error',
+            //        title: 'WhiteList Phone Number failure',
+            //        text: msg,
+            //        size: 'normal',
+            //        buttons: [
+            //            {
+            //                text: 'OK',
+            //                val: 'ok',
+            //                eKey: true,
+            //                addClass: 'btn-light-blue'
+            //            }
+            //        ]
+            //    });
+            //    console.log(errorMessage);
+            //})
+            //.always(function() {
+            //    //self.toggleSaveLoader(false);
+        //});
+
+        //
+        // this method is now allows you to do a post sync or async. 
+        // the sync method works as it always did, just need to pass in
+        // address, json and async set to true - false.
+        // the async call requires the a callback method and 
+        // showBusy set to true if you want to block the UI
+        //
+        function postJSON(address, json, async, asyncCallBackFn, showBusy) {
+            var ajaxUrl = address;
+            var args;
+            var result;
+
+            args = Array.prototype.slice.call(arguments, 5);
+
+            if (async === null) {
+                async = false;
+            }
+            if (async && asyncCallBackFn === null) {
+                //throw new UserException('async method called with no callback method', '');
+            }
+            if (showBusy === null) {
+                showBusy = false;
+            }
+            if (!async) {
+                try {
+                    $.ajax({
+                        url: ajaxUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: json,
+                        async: false,
+                        contentType: 'application/json;charset=utf-8',
+                        traditional: true,
+                        success: function (data) {
+                            result = data;
+                        },
+                        error: function (data) {
+                            //alert('Json Post Error : ' + data);
+                            result = data;
+                            //throw new UserException('AjaxException', result);
+                        }
+                    }
+                    );
+                } catch (ex) {
+                    //showDialog('error', 'An exception has occurred. ' + ex.exceptionName);
+                    //alert('An exception has occurred. ' + ex.exceptionName);
+                    //postException(ex.exceptionName);
+                    return result;
+                }
+                //Need to check the success message here?
+                return result;
+            }
+            else {
+                try {
+                    //uma.common.busy(showBusy);
+                    $.ajax({
+                        url: ajaxUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: json,
+                        async: true,
+                        contentType: 'application/json;charset=utf-8',
+                        traditional: true,
+                        success: function (data) {
+                            //uma.common.busy(false);
+                            args.splice(0, 0, data);
+                            asyncCallBackFn.apply(this, args);
+                        },
+                        error: function (data) {
+                           // uma.common.busy(false);
+                            //alert('Json Post Error : ' + data);
+                            result = data;
+                            //throw new UserException('AsyncException', result);
+                        }
+                    }
+                    );
+                } catch (ex) {
+                    //showDialog('error', 'An exception has occurred. ' + ex.exceptionName);
+                    //alert('An exception has occurred. ' + ex.exceptionName);
+                    //postException(ex.exceptionName);
+                    return result;
+                }
+                //Need to check the success message here?
+                return result;
+            }
+        }
+
 
     }
 </script>

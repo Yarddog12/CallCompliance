@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.DirectoryServices.AccountManagement;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace CallCompliance {
 	public class RouteConfig {
@@ -15,6 +17,8 @@ namespace CallCompliance {
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
 			);
+
+			var x = User.Ide
 		}
 	}
 }

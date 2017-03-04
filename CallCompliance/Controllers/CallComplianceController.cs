@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.DirectoryServices.AccountManagement;
-using System.Linq;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 using CallCompliance.DAL.Logging;
 using NLog;
@@ -43,7 +40,7 @@ namespace CallCompliance.Controllers {
 					_logger.Error(ex, "Error getting AD information");
 				}
 
-				return ad;
+				return ad; 
 			}
 		}
 

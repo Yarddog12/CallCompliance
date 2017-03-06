@@ -36,7 +36,7 @@ namespace CallCompliance.Controllers {
 			}
 
 			// Tell the modal what happened when we tried to save.
-			string message = "Phone number: " + vm.PhoneNumber;
+			string message = "Phone number: (" + vm.PhoneNumber.Substring (0, 3) + ") " + vm.PhoneNumber.Substring (3, 3) + "-" + vm.PhoneNumber.Substring (6);
 			message += (status == 0 ? " was successfully Cooled Down by user " + fullName : " was NOT Cooled Down by user " + fullName);
 
 			string title = (status == 0 ? "Success on Cooled Down phone number " + vm.PhoneNumber : "Error on Cooled Down phone number " + vm.PhoneNumber);

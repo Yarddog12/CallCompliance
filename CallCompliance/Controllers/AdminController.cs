@@ -34,8 +34,6 @@ namespace CallCompliance.Controllers
 			var ad = GetAdInfo ();
 
 			string fullName = ad [0];
-			string loginIdentity = ad [1];
-			string department = ad [2];
 
 			try {
 				var repo = new AdminRepository();

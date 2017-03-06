@@ -76,6 +76,10 @@
         }
     },
 
+    phoneNumberFormatter: function(phoneNumber) {
+        return '(' + phoneNumber.substr(0, 3) + ')' + phoneNumber.substr(3, 3) + '-' + phoneNumber.substr(6, 4);
+    },
+
     // Validate that all of the necessary parts for the address exist.
     //
     //

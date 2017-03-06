@@ -22,10 +22,16 @@
             else {
                 <span class="navbar-brand">@MyHelpers.UserFullName(), Sorry but you don't have rights to use Call Compliance.</span>
             }
-            <span class="nav-item col-sm-3 pull-right">
+            @*<span class="nav-item col-sm-3 pull-right">
                     <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
                     <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">
-            </span>
+            </span>*@
+            <span class="inner-addon left-addon">
+                <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
+                <input type="text" class="form-control" />
+                @*<i class="fa fa-search" onclick="FindPhoneNumber()"></i>
+                <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">*@
+        </span>
         </div>
     </div>
 </nav>
@@ -141,62 +147,7 @@
         }
 
 
-        //$.ajax({
-        //    url: url,
-        //    data: JSON.stringify(data),
-        //    dataType: "json",
-        //    type: "POST",
-        //    contentType: "application/json; charset=utf-8",
-        //    success: function(data) {
-        //        alert("success");
-        //    }
-        //});
-
-            //// look this up...new in JQuery 3.0
-            //.done(function(x) {
-
-            //    if (x) {
-            //        modal({
-            //            type: x.Status ? 'error' : 'inverted',
-            //            title: x.Title,
-            //            text: x.Message,
-            //            size: 'normal',
-            //            buttons: [
-            //                {
-            //                    text: 'OK',
-            //                    val: 'ok',
-            //                    eKey: true,
-            //                    addClass: 'btn-light-blue'
-            //                }
-            //            ]
-            //        });
-            //    }
-            //})
-            //// This would be some AJAX error....
-            //.fail(function(errorMessage) {
-            //    msg = 'Phone Number (' +
-            //        self.model.PhoneNumber +
-            //        ') *** WAS NOT *** added to whilte list.  Check that you entered a phone number. (ajax error)';
-            //    modal({
-            //        type: 'error',
-            //        title: 'WhiteList Phone Number failure',
-            //        text: msg,
-            //        size: 'normal',
-            //        buttons: [
-            //            {
-            //                text: 'OK',
-            //                val: 'ok',
-            //                eKey: true,
-            //                addClass: 'btn-light-blue'
-            //            }
-            //        ]
-            //    });
-            //    console.log(errorMessage);
-            //})
-            //.always(function() {
-            //    //self.toggleSaveLoader(false);
-        //});
-
+      
         //
         // this method is now allows you to do a post sync or async. 
         // the sync method works as it always did, just need to pass in

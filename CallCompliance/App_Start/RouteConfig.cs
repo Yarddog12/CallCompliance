@@ -17,8 +17,6 @@ namespace CallCompliance {
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
 			);
-
-			var x = User.Ide
 		}
 	}
 }

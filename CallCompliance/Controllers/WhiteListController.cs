@@ -39,7 +39,7 @@ namespace CallCompliance.Controllers
 			}
 
 			// Tell the modal what happened when we tried to save.
-			string message = "Phone number: " + vm.PhoneNumber;
+			string message = "Phone number: (" + vm.PhoneNumber.Substring (0, 3) + ") " + vm.PhoneNumber.Substring (3, 3) + "-" + vm.PhoneNumber.Substring (6);
 			if (additionalErrInfo == string.Empty) {
 				additionalErrInfo = " was NOT added to white list by user ";
 			}

@@ -41,6 +41,9 @@ namespace CallCompliance.Controllers
 			string loginIdentity = ad [1];
 			string department = ad [2];
 
+			// for now, we are defalting to the global DNC = 1  Once the dropdown is back in place, we remove this.
+			vm.DncNameId = 1;
+
 			try {
 				var repo = new DncRepository();
 				repo.AddDncPhoneNumber(vm.PhoneNumber, loginIdentity, fullName, department, vm.DncNameId);
@@ -58,7 +61,7 @@ namespace CallCompliance.Controllers
 			}
 
 			// Tell the modal what happened when we tried to save.
-			string message = "Phone number: " + vm.PhoneNumber;
+			string message = "Phone number: (" + vm.PhoneNumber.Substring (0, 3) + ") " + vm.PhoneNumber.Substring (3, 3) + "-" + vm.PhoneNumber.Substring (6);
 			message += (status == 0 ? " was successfully added to DNC by user " + fullName : additionalErrInfo + fullName);
 
 			string title = (status == 0 ? "Success on adding to DNC, phone number " + vm.PhoneNumber : "Error on DNC phone number " + vm.PhoneNumber);

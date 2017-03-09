@@ -1,4 +1,5 @@
 ﻿using System;
+using static CallCompliance.Fx.Formatters;
 
 namespace CallCompliance.DAL.Repository.CoolDown {
 	public class CoolDownNumberRepository : UserManagementBase {
@@ -25,9 +26,12 @@ namespace CallCompliance.DAL.Repository.CoolDown {
 
 			DateTime? dt = DateTime.Now;
 
+			
+
 			try {
+				string formattedPhone = Helpers.FormatPhoneNumber(phoneNumber);
 				_ctx.AddCooldownsPhoneNumber(phoneNumber, dt, reqId, reqName, reqDepartment, notes, studentId, studentName);
-				_logger.Info ("Phone number " + phoneNumber + " successfully Cooled Down by user " + reqName);
+				_logger.Info ("Phone number " + formattedPhone + " successfully Cooled Down by user " + reqName);
 
 			} catch (Exception ex) {
 				_logger.Error (ex, ClassNameError + "AddCooldownsPhoneNumber parameters: " + 

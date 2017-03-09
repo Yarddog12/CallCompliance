@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CallCompliance.DAL.Models;
+using static CallCompliance.Fx.Formatters;
 
 namespace CallCompliance.DAL.Repository.Unblock {
 	public class UnBlockNumberRepository : UserManagementBase {
@@ -30,6 +31,7 @@ namespace CallCompliance.DAL.Repository.Unblock {
 			
 			List<cplxStudentInfoByPhoneNumber> ret = new List<cplxStudentInfoByPhoneNumber>();
 			try {
+
 				ret = _ctx.GetStudentInfoByPhoneNumber(phoneNumber).ToList();
 
 			} catch (Exception ex) {
@@ -64,8 +66,10 @@ namespace CallCompliance.DAL.Repository.Unblock {
 			DateTime? dt = DateTime.Now;
 
 			try {
+
+				string formattedPhone = Helpers.FormatPhoneNumber(phoneNumber);
 				_ctx.AddExceptionsPhoneNumber(phoneNumber, dt, reqId, reqName, reqDepartment, reasonId, studentId, nameAssigned, notes, isStudent);
-				_logger.Info ("Phone number " + phoneNumber + " successfully blocked by user " + reqName);
+				_logger.Info ("Phone number " + formattedPhone + " successfully blocked by user " + reqName);
 
 			} catch (Exception ex) {
 				_logger.Error (ex, ClassNameError + "AddExceptionsPhoneNumber parameters: " + 

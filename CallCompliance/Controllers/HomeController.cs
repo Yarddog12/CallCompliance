@@ -13,18 +13,18 @@ namespace CallCompliance.Controllers {
 
 		[HttpPost]
 		public ActionResult GetTableName (string phoneNumber) {
-			var factory = new MiscFactory();
-			var repo = new MiscRepository();
+			var factory = new SearchPhoneFactory();
+			var repo = new SearchPhoneRepository();
 
-			// Map the Exception Reason names from the cplx EF class to the ExceptionReasonNamesModel
+			// Map the Table names from the cplx EF class to the SearchPhoneViewModel
 			var data = repo
 				.GetTableName (phoneNumber)
 				.ToList ()
 				.Select (x => factory.Create (x));
 
-			var model = new MiscViewModel();
+			var model = new SearchPhoneViewModel();
 
-			// Put the list of Exception Reasons in the List for the drop down.
+			// Put the list of Tables that the phone number was found in.
 			model.TableNameList.AddRange (data);
 			return Json(model.TableNameList);
 		}

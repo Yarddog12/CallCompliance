@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using CallCompliance.DAL.Repository.WhiteList;
 using CallCompliance.Models;
+using static CallCompliance.Fx.Formatters;
 
 namespace CallCompliance.Controllers
 {
@@ -39,13 +40,15 @@ namespace CallCompliance.Controllers
 			}
 
 			// Tell the modal what happened when we tried to save.
-			string message = "Phone number: (" + vm.PhoneNumber.Substring (0, 3) + ") " + vm.PhoneNumber.Substring (3, 3) + "-" + vm.PhoneNumber.Substring (6);
+			string formattedPhone = Helpers.FormatPhoneNumber(vm.PhoneNumber);
+
+			string message = "Phone number: " + formattedPhone;
 			if (additionalErrInfo == string.Empty) {
 				additionalErrInfo = " was NOT added to white list by user ";
 			}
 			message += (status == 0 ? " was successfully added to white list by user " + fullName : additionalErrInfo + fullName);
 
-			string title = (status == 0 ? "Success on adding phone number " + vm.PhoneNumber : "Error on adding phone number " + vm.PhoneNumber);
+			string title = (status == 0 ? "Success on adding phone number " + formattedPhone : "Error on adding phone number " + formattedPhone);
 
 			var result = new { Status = status, Title = title, Message = message };
 			return Json (result, JsonRequestBehavior.AllowGet);

@@ -109,7 +109,7 @@
     <Compile Include="Repository\Admin\AdminRepository.cs" />
     <Compile Include="Repository\CoolDown\CoolDownNumberRepository.cs" />
     <Compile Include="Repository\DNC\DncRepository.cs" />
-    <Compile Include="Repository\Misc\MiscRepository.cs" />
+    <Compile Include="Repository\Misc\SearchPhoneRepository.cs" />
     <Compile Include="Repository\Reporting\ReportingRepository.cs" />
     <Compile Include="Repository\Unblock\UnBlockNumberRepository.cs" />
     <Compile Include="Repository\UserManagementBase.cs" />
@@ -138,7 +138,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Models\CallComplianceModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -160,6 +159,12 @@
       <LastGenOutput>CallComplianceReportingModel.cs</LastGenOutput>
       <DependentUpon>CallComplianceReportingModel.edmx</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CallCompliance.Fx\CallCompliance.Fx.csproj">
+      <Project>{30b80d9d-8670-4cf1-97a2-7a1d57832c15}</Project>
+      <Name>CallCompliance.Fx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

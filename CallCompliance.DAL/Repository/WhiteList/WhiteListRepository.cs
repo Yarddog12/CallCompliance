@@ -1,4 +1,5 @@
 ﻿using System;
+using static CallCompliance.Fx.Formatters;
 
 namespace CallCompliance.DAL.Repository.WhiteList {
 	public class WhiteListRepository : UserManagementBase {
@@ -15,8 +16,9 @@ namespace CallCompliance.DAL.Repository.WhiteList {
 			DateTime? dt = DateTime.Now;
 
 			try {
+				string formattedPhone = Helpers.FormatPhoneNumber(phoneNumber);
 				_ctx.AddWhitelistPhoneNumber(phoneNumber, reqId, reqName, reqDepartment, notes, dncOverride);
-				_logger.Info ("Phone number " + phoneNumber + " successfully added to white list by user " + reqName);
+				_logger.Info ("Phone number " + formattedPhone + " successfully added to white list by user " + reqName);
 
 			} catch (Exception ex) {
 				_logger.Error (ex, ClassNameError + "AddWhiteListPhoneNumber parameters: " +

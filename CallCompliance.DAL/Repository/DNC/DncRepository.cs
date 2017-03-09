@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CallCompliance.DAL.Models;
+using static CallCompliance.Fx.Formatters;
 
 namespace CallCompliance.DAL.Repository.DNC {
 	public class DncRepository : UserManagementBase {
@@ -40,8 +41,10 @@ namespace CallCompliance.DAL.Repository.DNC {
 											int dncListId) {
 
 			try {
+
+				string formattedPhone = Helpers.FormatPhoneNumber(phoneNumber);
 				_ctx.AddDNCPhoneNumber(phoneNumber, dncListId, reqId, reqName, reqDepartment);
-				_logger.Info ("Phone number " + phoneNumber + " successfully added to DNC by user " + reqName);
+				_logger.Info ("Phone number " + formattedPhone + " successfully added to DNC by user " + reqName);
 
 			} catch (Exception ex) {
 				_logger.Error(ex, ClassNameError + "AddDNCPhoneNumber parameters: " +

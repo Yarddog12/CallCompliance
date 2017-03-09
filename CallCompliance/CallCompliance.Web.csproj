@@ -197,7 +197,7 @@
     <Compile Include="Controllers\UnblockController.cs" />
     <Compile Include="Controllers\WhiteListController.cs" />
     <Compile Include="FactoryMapping\DncFactory.cs" />
-    <Compile Include="FactoryMapping\MiscFactory.cs" />
+    <Compile Include="FactoryMapping\SearchPhoneFactory.cs" />
     <Compile Include="FactoryMapping\ReportingFactory.cs" />
     <Compile Include="FactoryMapping\UnBlockFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,7 +207,7 @@
     <Compile Include="Models\CoolDownViewModel.cs" />
     <Compile Include="Models\DncViewModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\MiscViewModel.cs" />
+    <Compile Include="Models\SearchPhoneViewModel.cs" />
     <Compile Include="Models\ReportingModel.cs" />
     <Compile Include="Models\UnblockViewModel.cs" />
     <Compile Include="Models\UserManagementModelBase.cs" />
@@ -406,6 +406,10 @@
     <ProjectReference Include="..\CallCompliance.DAL\CallCompliance.DAL.csproj">
       <Project>{0b1dfb09-31d7-436c-b1cf-3a48a0c05069}</Project>
       <Name>CallCompliance.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CallCompliance.Fx\CallCompliance.Fx.csproj">
+      <Project>{30b80d9d-8670-4cf1-97a2-7a1d57832c15}</Project>
+      <Name>CallCompliance.Fx</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using CallCompliance.DAL.Repository.DNC;
 using CallCompliance.FactoryMapping;
 using CallCompliance.Models;
+using static CallCompliance.Fx.Formatters;
 
 namespace CallCompliance.Controllers
 {
@@ -51,7 +52,7 @@ namespace CallCompliance.Controllers
 				status = ControllerReturnStatus.Fail;
 				if (ex.InnerException != null) {
 					if (ex.InnerException.ToString ().Contains ("duplicate")) {
-						additionalErrInfo = " was NOT added to white list because it already is in the white list - by user ";
+						additionalErrInfo = " was NOT added to white list because it already exists. - by user ";
 					}
 				}
 			}
@@ -60,11 +61,13 @@ namespace CallCompliance.Controllers
 				additionalErrInfo = " was NOT added to white list by user ";
 			}
 
+			string formattedPhone = Helpers.FormatPhoneNumber(vm.PhoneNumber);
+
 			// Tell the modal what happened when we tried to save.
-			string message = "Phone number: (" + vm.PhoneNumber.Substring (0, 3) + ") " + vm.PhoneNumber.Substring (3, 3) + "-" + vm.PhoneNumber.Substring (6);
+			string message = "Phone number: " +  formattedPhone;
 			message += (status == 0 ? " was successfully added to DNC by user " + fullName : additionalErrInfo + fullName);
 
-			string title = (status == 0 ? "Success on adding to DNC, phone number " + vm.PhoneNumber : "Error on DNC phone number " + vm.PhoneNumber);
+			string title = (status == 0 ? "Success on adding to DNC, phone number " + formattedPhone : "DNC phone number " + formattedPhone);
 
 			var result = new { Status = status, Title = title, Message = message };
 			return Json (result, JsonRequestBehavior.AllowGet);

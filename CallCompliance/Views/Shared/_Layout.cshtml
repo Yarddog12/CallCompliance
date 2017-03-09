@@ -22,16 +22,16 @@
             else {
                 <span class="navbar-brand">@MyHelpers.UserFullName(), Sorry but you don't have rights to use Call Compliance.</span>
             }
-            @*<span class="nav-item col-sm-3 pull-right">
+            <span class="nav-item col-sm-3 pull-right">
                     <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
                     <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">
-            </span>*@
-            <span class="inner-addon left-addon">
+            </span>
+            @*<span class="inner-addon left-addon">
                 <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
                 <input type="text" class="form-control" />
-                @*<i class="fa fa-search" onclick="FindPhoneNumber()"></i>
-                <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">*@
-        </span>
+                <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
+                <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">
+			</span>*@
         </div>
     </div>
 </nav>
@@ -53,18 +53,20 @@
                     <a id="menu-dnc" class="nav-link" href="/DNC">
                         <span style="width: 55px" class="fa fa-2x fa-user-times"></span> DNC
                     </a>
+				@if (User.IsInRole("Call_Frequency_Admins_SG")) {
                     <a id="menu-whitelist" class="nav-link" href="/WhiteList">
                         <span style="width: 55px" class="fa fa-2x fa-snowflake-o"></span> White List
                     </a>
+				}
                     <a id="menu-reporting" class="nav-link" href="/Reporting">
                         <span style="width: 55px" class="fa fa-2x fa-file-text-o"></span> Reporting
                     </a>
 
-                    @if (User.IsInRole("Call_Frequency_Admins_SG")) {
-                        <a id="menu-admin" class="nav-link" href="/Admin">
-                            <span style="width: 55px" class="fa fa-2x fa-user-circle-o"></span> Admin
-                        </a>
-                    }
+                @if (User.IsInRole("Call_Frequency_Admins_SG")) {
+                    <a id="menu-admin" class="nav-link" href="/Admin">
+                        <span style="width: 55px" class="fa fa-2x fa-user-circle-o"></span> Admin
+                    </a>
+                }
                 </nav>
 
             </div>
@@ -105,22 +107,68 @@
         }
 
         if (result.length === 0) {
-            return;
+			modal({
+				type: 'inverted',
+				title: "Not Found",
+				text: phoneNumber + " not found in any table.",
+				size: 'normal',
+				buttons: [
+					{
+						text: 'OK',
+						val: 'ok',
+						eKey: true,
+						addClass: 'btn-light-blue'
+					}
+				]
+			});
 
         } else if (result.length === 1) {
             var menu = result[0].TableName.toUpperCase();
             switch (menu) {
-            case "COOLDOWN":
-                $("#menu-cooldown").addClass("active");
+				case "COOLDOWN":
+					
+				$("#menu-home").removeClass("active");
+				$("#menu-unblock").removeClass("active");
+				$("#menu-dnc").removeClass("active");
+				$("#menu-whitelist").removeClass("active");
+				$("#menu-reporting").removeClass("active");
+				$("#menu-admin").removeClass("active");
+
+				$("#menu-cooldown").addClass("active");
+
                 break;
             case "EXCEPTION":
-                $("#menu-unblock").addClass("active");
+
+					$("#menu-home").removeClass("active");
+					$("#menu-cooldown").removeClass("active");
+					$("#menu-dnc").removeClass("active");
+					$("#menu-whitelist").removeClass("active");
+					$("#menu-reporting").removeClass("active");
+					$("#menu-admin").removeClass("active");
+
+					$("#menu-unblock").addClass("active");
                 break;
             case "WHITELIST":
-                $("#menu-whitelist").addClass("active");
+
+					$("#menu-home").removeClass("active");
+					$("#menu-unblock").removeClass("active");
+					$("#menu-cooldown").removeClass("active");
+					$("#menu-dnc").removeClass("active");
+					$("#menu-reporting").removeClass("active");
+					$("#menu-admin").removeClass("active");
+
+					$("#menu-whitelist").addClass("active");
                 break;
             case "DNC":
-                $("#menu-dnc").addClass("active");
+
+					$("#menu-home").removeClass("active");
+					$("#menu-unblock").removeClass("active");
+					$("#menu-cooldown").removeClass("active");
+					$("#menu-whitelist").removeClass("active");
+					$("#menu-reporting").removeClass("active");
+					$("#menu-admin").removeClass("active");
+
+					$("#menu-dnc").addClass("active");
                 break;
             }
         } else {

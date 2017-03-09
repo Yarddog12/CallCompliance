@@ -1,4 +1,4 @@
-﻿ Declare("Uma.Dnc", {
+﻿  Declare("Uma.Dnc", {
     serverModel: null,
     self: null,
     model: ko.observable(),
@@ -39,7 +39,7 @@
 
                 if (x) {
                     modal({
-                        type: x.Status ? 'error' : 'inverted',
+                        type: 'inverted',
                         title: x.Title,
                         text: x.Message,
                         size: 'normal',

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using CallCompliance.DAL.Repository.CoolDown;
 using CallCompliance.Models;
+using static CallCompliance.Fx.Formatters;
 
 namespace CallCompliance.Controllers {
 	public class CoolDownController : CallComplianceController {
@@ -23,9 +24,9 @@ namespace CallCompliance.Controllers {
 
 			var ad = GetAdInfo ();
 
-			string fullName = ad [0];
-			string loginIdentity = ad [1];
-			string department = ad [2];
+			string fullName			= ad [0];
+			string loginIdentity	= ad [1];
+			string department	= ad [2];
 
 			try {
 				var repo = new CoolDownNumberRepository();
@@ -35,11 +36,13 @@ namespace CallCompliance.Controllers {
 				status = ControllerReturnStatus.Fail;
 			}
 
+			string formattedPhone = Helpers.FormatPhoneNumber(vm.PhoneNumber);
+
 			// Tell the modal what happened when we tried to save.
-			string message = "Phone number: (" + vm.PhoneNumber.Substring (0, 3) + ") " + vm.PhoneNumber.Substring (3, 3) + "-" + vm.PhoneNumber.Substring (6);
+			string message = "Phone number: " + formattedPhone;
 			message += (status == 0 ? " was successfully Cooled Down by user " + fullName : " was NOT Cooled Down by user " + fullName);
 
-			string title = (status == 0 ? "Success on Cooled Down phone number " + vm.PhoneNumber : "Error on Cooled Down phone number " + vm.PhoneNumber);
+			string title = (status == 0 ? "Success on Cooled Down phone number " + formattedPhone : "Error on Cooled Down phone number " + formattedPhone);
 
 			var result = new { Status = status, Title = title, Message = message };
 			return Json (result, JsonRequestBehavior.AllowGet);

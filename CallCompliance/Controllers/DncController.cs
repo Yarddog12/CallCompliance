@@ -52,13 +52,13 @@ namespace CallCompliance.Controllers
 				status = ControllerReturnStatus.Fail;
 				if (ex.InnerException != null) {
 					if (ex.InnerException.ToString ().Contains ("duplicate")) {
-						additionalErrInfo = " was NOT added to white list because it already exists. - by user ";
+						additionalErrInfo = " was NOT added to DNC because it already exists. - by user ";
 					}
 				}
 			}
 
 			if (additionalErrInfo == string.Empty) {
-				additionalErrInfo = " was NOT added to white list by user ";
+				additionalErrInfo = " was NOT added to DNC by user ";
 			}
 
 			string formattedPhone = Helpers.FormatPhoneNumber(vm.PhoneNumber);

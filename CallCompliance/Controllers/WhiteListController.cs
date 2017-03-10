@@ -46,7 +46,7 @@ namespace CallCompliance.Controllers
 			if (additionalErrInfo == string.Empty) {
 				additionalErrInfo = " was NOT added to white list by user ";
 			}
-			message += (status == 0 ? " was successfully added to white list by user " + fullName : additionalErrInfo + fullName);
+			message += (status == 0 ? " was successfully added to white list by user " + fullName + " DNC-Override set to:" + vm.DncOverride : additionalErrInfo + fullName + " DNC-Override set to:" + vm.DncOverride);
 
 			string title = (status == 0 ? "Success on adding phone number " + formattedPhone : "Error on adding phone number " + formattedPhone);
 

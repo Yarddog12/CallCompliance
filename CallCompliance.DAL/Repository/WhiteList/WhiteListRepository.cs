@@ -18,7 +18,7 @@ namespace CallCompliance.DAL.Repository.WhiteList {
 			try {
 				string formattedPhone = Helpers.FormatPhoneNumber(phoneNumber);
 				_ctx.AddWhitelistPhoneNumber(phoneNumber, reqId, reqName, reqDepartment, notes, dncOverride);
-				_logger.Info ("Phone number " + formattedPhone + " successfully added to white list by user " + reqName);
+				_logger.Info ("Phone number " + formattedPhone + " successfully added to white list by user " + reqName + " with DNC-Override set to: " + dncOverride);
 
 			} catch (Exception ex) {
 				_logger.Error (ex, ClassNameError + "AddWhiteListPhoneNumber parameters: " +

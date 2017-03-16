@@ -6,9 +6,9 @@ namespace CallCompliance {
 		// For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
 		public static void RegisterBundles (BundleCollection bundles) {
 			bundles.Add (new ScriptBundle ("~/bundles/jquery").Include (
-						"~/Scripts/tether.min.js",
 						"~/Scripts/jquery-{version}.js",
 						"~/Scripts/jquery.modal.js",
+						"~/Scripts/tether.js",
 						"~/Scripts/Uma.Core.js"));
 
 			bundles.Add (new ScriptBundle ("~/bundles/jqueryval").Include (
@@ -23,13 +23,13 @@ namespace CallCompliance {
 			bundles.Add (new ScriptBundle ("~/bundles/bootstrap").Include (
 					  "~/Scripts/bootstrap.js",
 					  "~/Scripts/respond.js",
-                      "~/Scripts/knockout-3.4.0.js",
+					  "~/Scripts/knockout-{version}.js",
                       "~/Scripts/knockout.mapping-latest.js",
 					  "~/Scripts/KnockOutExtensions.js",
 					  "~/Scripts/Uma.validation.js"));
 
 			bundles.Add (new StyleBundle ("~/Content/css").Include (
-					  "~/Content/tether.min.cs",
+					  "~/Content/tether.css",
 					  "~/Content/Bootstrap/bootstrap.css",
 					  "~/Content/font-awesome.css",
                       "~/Content/site.css",

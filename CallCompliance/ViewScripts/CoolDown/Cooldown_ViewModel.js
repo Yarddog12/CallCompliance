@@ -75,7 +75,7 @@ Declare("Uma.CoolDown", {
             })
             .always(function () {
                 //self.toggleSaveLoader(false);
-            });
+            })
 
         } else {
             var message = "<div>Please review the following errors:</div><br/><ul>";

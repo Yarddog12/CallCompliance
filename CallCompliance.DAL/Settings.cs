@@ -11,7 +11,7 @@ namespace CallCompliance.DAL {
 		public static ConnectionStringSettings CallComplianceDatabaseConnection {
 			get {
 				try {
-					ConnectionStringSettings connection = ConfigurationManager.ConnectionStrings["UMATeleCom"];
+					ConnectionStringSettings connection = ConfigurationManager.ConnectionStrings["CallCompliance"];
 					return connection;
 				}
 				catch (Exception ex) {

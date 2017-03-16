@@ -12,16 +12,16 @@
             <div class="form-group row">
                 <label class="col-sm-5 col-form-label">Enter phone number for submission to white list:</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="inputPhoneUnBlock" data-bind="phoneNumber: PhoneNumber" placeholder="(000) 000-0000" maxlength="20" a href="#" data-toggle="popover" data-trigger="hover" title="Phone Number" data-content="Enter the phone number you want to white list.">
+                    <input type="text" class="form-control" id="inputPhoneUnBlock" data-bind="phoneNumber: PhoneNumber" placeholder="(000) 000-0000" maxlength="20" data-toggle="popover" data-trigger="hover" data-container="body" data-title="Phone Number" data-content="Enter the phone number you want to white list.">
                 </div>
                 <div class="col-sm-1">
-                    <input type="checkbox" class="form-control" id="chkDncOverride" data-bind="checked: DncOverride">DNC OverRide
+                    <input type="checkbox" class="form-control" id="chkDncOverride" data-bind="checked: DncOverride" data-toggle="popover" data-trigger="hover" data-container="body" title="DNC Override" data-content="Checking this box allows the phone number to be prioritized over DNC checks.  Allowing calls to the phone number, even if the phone number is also listed on the DNC lists">DNC OverRide
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-5 col-form-label">Add details/reason number should be white listed.</label>
                 <div class="col-sm-5">
-                    <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: Notes" minlenght="10" maxlength="500" a href="#" data-toggle="popover" data-trigger="hover" title="Notes" data-content="You must enter a detailed reason why you want to white list this phone number."></textarea>
+                    <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: Notes" minlenght="10" maxlength="500" data-toggle="popover" data-trigger="hover" data-container="body" title="Notes" data-content="You must enter a detailed reason why you want to white list this phone number."></textarea>
                 </div>
             </div>
             <div class="form-inline row">
@@ -44,15 +44,13 @@
 
     <script>
         
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover(); 
-        });
+        $(function () {
 
-        $(function() {
             Uma.WhiteList.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
             Uma.WhiteList.init();
 
             $("#menu-whitelist").addClass("active");
+
         });
     </script>
 }

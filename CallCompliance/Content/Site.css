@@ -127,5 +127,9 @@ body {
   border-radius: 50%;
 }
 
+.popover {
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
+
 
 

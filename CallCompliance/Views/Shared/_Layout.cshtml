@@ -44,26 +44,26 @@
                     <a id="menu-home" class="nav-link" href="/Home">
                         <span style="width: 55px" class="fa fa-2x fa fa-home"></span> Home
                     </a>
-                    <a id="menu-unblock" class="nav-link" href="/Unblock">
-                        <span style="width: 55px" class="fa fa-2x fa-thumbs-up"  a href="#" data-toggle="popover" title="Exception Cap" data-content="Daily Exception Call Cap"></span>Exception Call Cap
+                    <a id="menu-unblock" class="nav-link" href="/Unblock" data-toggle="popover" data-trigger="hover" data-container = "body" role="button" title="Exception Call Cap" data-content="Phone number needing temporary override.">
+                        <span style="width: 55px" class="fa fa-2x fa-thumbs-up"></span>Exception Call Cap
                     </a>
-                    <a id="menu-cooldown" class="nav-link" href="/CoolDown">
+                    <a id="menu-cooldown" class="nav-link" href="/CoolDown" data-toggle="popover" data-trigger="hover" data-container = "body" title="No Call Period" data-content="Places phone number on no call period of 24 hours.">
                         <span style="width: 55px" class="fa fa-2x fa-shower"></span> No Call Period
                     </a>
-                    <a id="menu-dnc" class="nav-link" href="/DNC">
+                    <a id="menu-dnc" class="nav-link" href="/DNC" data-toggle="popover" data-trigger="hover" data-container = "body" title="DNC" data-content="Add phone numbers to Global DNC list.">
                         <span style="width: 55px" class="fa fa-2x fa-user-times"></span> DNC
                     </a>
 				@if (User.IsInRole("Call_Frequency_Admins_SG")) {
-                    <a id="menu-whitelist" class="nav-link" href="/WhiteList">
+                    <a id="menu-whitelist" class="nav-link" href="/WhiteList" data-toggle="popover" data-trigger="hover" data-container = "body" title="White List" data-content="To ensure businesses do not reach maximum calls per day. An exception is for students who are currently on the global DNC list, who want to recieved calls from UMA. (See DNC Override checkbox)">
                         <span style="width: 55px" class="fa fa-2x fa-snowflake-o"></span> White List
                     </a>
 				}
-                    <a id="menu-reporting" class="nav-link" href="/Reporting">
+                    <a id="menu-reporting" class="nav-link" href="/Reporting" data-toggle="popover" data-trigger="hover" data-container = "body" title="Reporting" data-content="Runs SSRS reports for Call Compliance.">
                         <span style="width: 55px" class="fa fa-2x fa-file-text-o"></span> Reporting
                     </a>
 
                 @if (User.IsInRole("Call_Frequency_Admins_SG")) {
-                    <a id="menu-admin" class="nav-link" href="/Admin">
+                    <a id="menu-admin" class="nav-link" href="/Admin" data-toggle="popover" data-trigger="hover" data-container = "body" title="Admin" data-content="Modify daily dial caps and daily exception caps.">
                         <span style="width: 55px" class="fa fa-2x fa-user-circle-o"></span> Admin
                     </a>
                 }
@@ -88,10 +88,9 @@
 </html>
 
 <script>
-    $(document)
-        .ready(function() {
-            $('[data-toggle="popover"]').popover();
-        });
+    $(function () {
+        $("[data-toggle='popover']").popover()
+    });
 
     function FindPhoneNumber () {
 

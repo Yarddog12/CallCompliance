@@ -22,7 +22,7 @@ namespace CallCompliance.Controllers
 			} catch (Exception ex) {
 				_logger.Error (ex, "Failed in GetCallCaps, AdminController");
 			}
-
+			
 			return View (model);
         }
 

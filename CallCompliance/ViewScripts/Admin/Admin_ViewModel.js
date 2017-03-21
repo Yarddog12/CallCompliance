@@ -48,10 +48,17 @@ Declare("Uma.Admin", {
                                 text: 'OK',
                                 val: 'ok',
                                 eKey: true,
-                                addClass: 'btn-light-blue'
+                                addClass: 'btn-light-blue',
+                                buttons: {
+                                    Ok: function () {
+                                        $(this).dialog("close");
+                                    }
+                                },
                             }
                         ]
                     });
+                    // Clear the page by calling Reset button.
+                    Uma.Admin.doReset();
                 }
             })
                 // This would be some AJAX error....

@@ -52,6 +52,9 @@
                             }
                         ]
                     });
+
+                    // Clear the page by calling Reset button.
+                    Uma.Dnc.doReset();
                 }
             })
                 // This would be some AJAX error....

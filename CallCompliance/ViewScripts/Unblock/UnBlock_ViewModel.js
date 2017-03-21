@@ -52,6 +52,9 @@ Declare("Uma.UnBlock", {
                             }
                         ]
                     });
+
+                    // Clear the page by calling Reset button.
+                    Uma.UnBlock.doReset();
                 }
             })
                 // This would be some AJAX error....

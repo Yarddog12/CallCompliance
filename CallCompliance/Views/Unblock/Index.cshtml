@@ -39,14 +39,14 @@
                     </div>
                 </div>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="inputPhoneUxnBlock" data-bind="value: NameAssigned" maxlength="100" data-toggle="popover" data-trigger="hover" data-container="body" title="Student Name or Business" data-content="Is this the students phone number, or where they work">
+                    <input type="text" class="form-control" id="inputPhoneUxnBlock" data-bind="value: NameAssigned" maxlength="100" data-toggle="popover" data-trigger="hover" data-container="body" title="Student/Employer name." data-content="Type student name or employer name.">
                 </div>
             </div>
             <div class="form-group row"></div>
             <div class="form-group row">
                 <label class="col-sm-5 col-form-label">If Student, enter SyStudentId</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="inputStudentId" data-bind="value: StudentId" maxlength="100" data-toggle="popover" data-trigger="hover" data-container="body" title="Student Id" data-content="This is the student Id">
+                    <input type="text" class="form-control" id="inputStudentId" data-bind="value: StudentId" maxlength="100" data-toggle="popover" data-trigger="hover" data-container="body" title="Student Id" data-content="If not a student, leave this box blank.">
                 </div>
             </div>
             <div class="form-group row">
@@ -58,10 +58,10 @@
             <div class="form-inline row">
 
                 <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doSaveUnblock">Save</button>
+                    <button id="saveUnblock" type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doSaveUnblock">Save</button>
                 </div>
                 <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doReset">Reset</button>
+                    <button id="resetUnblock" type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doReset">Reset</button>
                 </div>
             </div>
 

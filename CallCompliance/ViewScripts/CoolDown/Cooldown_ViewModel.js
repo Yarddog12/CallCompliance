@@ -52,6 +52,8 @@ Declare("Uma.CoolDown", {
                             }
                         ]
                     });
+                    // Clear the page by calling Reset button.
+                    Uma.CoolDown.doReset();
                 }
             })
                 // This would be some AJAX error....

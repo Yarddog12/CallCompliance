@@ -22,16 +22,12 @@
             else {
                 <span class="navbar-brand">@MyHelpers.UserFullName(), Sorry but you don't have rights to use Call Compliance.</span>
             }
-            <span class="nav-item col-sm-3 pull-right">
+            <div class="input-group">
+                <input type="text" class="form-control" id="phoneNumSearch" maxlength="12">
+                <span class="input-group-addon">
                     <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
-                    <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">
-            </span>
-            @*<span class="inner-addon left-addon">
-                <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
-                <input type="text" class="form-control" />
-                <i class="fa fa-search" onclick="FindPhoneNumber()"></i>
-                <input type="text" class="nav-inline" id="phoneNumSearch" maxlength="100">
-			</span>*@
+                </span>
+            </div>
         </div>
     </div>
 </nav>
@@ -78,7 +74,6 @@
     </div>
 </div>
 
-
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap")
@@ -96,6 +91,10 @@
 
         var url = '/Home/GetTableName/';
         var phoneNumber = $("#phoneNumSearch").val();
+
+        if (phoneNumber.length == 0) {
+            phoneNumber = $("#phoneNumSearchHome").val();
+        }
 
         var jsonData = ko.toJSON({ "phoneNumber": phoneNumber });
 
@@ -133,7 +132,9 @@
 				$("#menu-reporting").removeClass("active");
 				$("#menu-admin").removeClass("active");
 
-				$("#menu-cooldown").addClass("active");
+                $("#menu-cooldown").addClass("active");
+                var url = "/CoolDown/";
+                document.location.href = url;
 
                 break;
             case "EXCEPTION":
@@ -145,7 +146,10 @@
 					$("#menu-reporting").removeClass("active");
 					$("#menu-admin").removeClass("active");
 
-					$("#menu-unblock").addClass("active");
+                    $("#menu-unblock").addClass("active");
+                    var url = "/UnBlock/";
+                    document.location.href = url;
+
                 break;
             case "WHITELIST":
 
@@ -167,16 +171,26 @@
 					$("#menu-reporting").removeClass("active");
 					$("#menu-admin").removeClass("active");
 
-					$("#menu-dnc").addClass("active");
+                    $("#menu-dnc").addClass("active");
+                    var url = "/DNC/";
+                    document.location.href = url;
                 break;
             }
         } else {
             var menuItems = [];
             var maxItems = result.length;
+            var buf = "";
 
             for (i = 0; i < 10 && i < maxItems; i++) {
-                menuItems.push("Phone Number " + phoneNumber + " found in table (" + result[i].TableName + ")</br>");
-            }
+
+                // If on the DNC you must have an Administrator use the White List with the DNC override
+                @*if (!@User.IsInRole("Call_Frequency_Admins_SG") && User.IsInRole("Call_Frequency_Users_SG") && result[i].TableName.toUpperCase() == "DNC") {
+                    buf = "Phone Number " + phoneNumber + " is in DNC list and you only have User privilages.  An administrator can use the White List and use the DNC override. \n";*@
+                    menuItems.push(buf);
+                    //} else {
+                    menuItems.push("Phone Number " + phoneNumber + " found in table (" + result[i].TableName + ")</br>");
+                    //  }
+                }
             modal({
                 type: 'inverted',
                 title: "Phone Number found in multiple tables.",
@@ -192,8 +206,6 @@
                 ]
             });
         }
-
-
       
         //
         // this method is now allows you to do a post sync or async. 

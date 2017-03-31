@@ -114,7 +114,6 @@
     <Compile Include="Repository\UserManagementBase.cs" />
     <Compile Include="Repository\WhiteList\WhiteListRepository.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="SQL\UserManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

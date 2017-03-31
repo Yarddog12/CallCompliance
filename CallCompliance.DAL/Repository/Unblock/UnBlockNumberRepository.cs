@@ -15,16 +15,16 @@ namespace CallCompliance.DAL.Repository.Unblock {
 		/// <returns></returns>
 		public IEnumerable<cplxExceptionReasonsNames> GetExceptionReasonNames() {
 
-			List<cplxExceptionReasonsNames> ret = new List<cplxExceptionReasonsNames>();
+			//List<cplxExceptionReasonsNames> ret = new List<cplxExceptionReasonsNames>();
 			try {
-				ret = _ctx.GetExceptionReasonsNames().ToList();
+				return _ctx.GetExceptionReasonsNames().ToList();
 			}
 			catch (Exception ex) {
 				_logger.Error(ex, ClassNameError + "GetExceptionReasonNames()");
 				throw;
 			}
 
-			return ret;
+			//return ret;
 		}
 
 		public IEnumerable<cplxStudentInfoByPhoneNumber> GetStudentInfoByPhoneNumbers(string phoneNumber) {

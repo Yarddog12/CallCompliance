@@ -14,7 +14,7 @@
         ko.applyBindings(self.model);
     },
 
-    doSaveWhiteList: function () {
+    doSaveWhiteList: function (string var1, int var2, double var3, lak) {
 
         var self = Uma.WhiteList;
         var url = '/WhiteList/SaveWhiteListNumber/';

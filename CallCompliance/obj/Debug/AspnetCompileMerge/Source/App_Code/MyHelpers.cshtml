@@ -1,0 +1,25 @@
+﻿@using System.DirectoryServices.AccountManagement
+@using System.Threading
+
+
+@helper UserFullName () {
+
+string fullName = "Default";
+
+
+try {
+
+    using (var context = new PrincipalContext (ContextType.Domain)) {
+
+
+        var principal = UserPrincipal.FindByIdentity (context, User.Identity.Name);
+        if (principal != null) {
+            fullName = principal.DisplayName;
+            @fullName
+        }
+    }
+} catch (Exception ex) {
+    fullName = "Debug";
+        @fullName
+    }
+}

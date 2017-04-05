@@ -1,0 +1,14 @@
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\CallCompliance.DAL.dll.config
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\CallCompliance.DAL.dll
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\CallCompliance.DAL.pdb
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\CallCompliance.Fx.dll
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\EntityFramework.dll
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\NLog.dll
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\CallCompliance.Fx.pdb
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\EntityFramework.xml
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projects\CallCompliance\CallCompliance.DAL\bin\Debug\NLog.xml
+C:\Projects\CallCompliance\CallCompliance.DAL\obj\Debug\CallCompliance.DAL.csprojResolveAssemblyReference.cache
+C:\Projects\CallCompliance\CallCompliance.DAL\obj\Debug\CallCompliance.DAL.dll
+C:\Projects\CallCompliance\CallCompliance.DAL\obj\Debug\CallCompliance.DAL.pdb

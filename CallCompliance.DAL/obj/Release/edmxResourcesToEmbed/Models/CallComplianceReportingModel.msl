@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <Alias Key="Model" Value="CallComplianceReportingModel" />
+  <Alias Key="Target" Value="CallComplianceReportingModel.Store" />
+  <EntityContainerMapping CdmEntityContainer="CallComplianceReportingModelContainer" StorageEntityContainer="CallComplianceReportingModelStoreContainer">
+    <FunctionImportMapping FunctionImportName="GetCallComplianceReports" FunctionName="CallComplianceReportingModel.Store.UMA_GetCallComplianceReports">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CallComplianceReportingModel.cplxCallComplianceReports">
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

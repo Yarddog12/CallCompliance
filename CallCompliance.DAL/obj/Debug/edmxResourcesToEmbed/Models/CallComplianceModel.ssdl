@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CallComplianceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="AddCooldownsPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+    <Parameter Name="DateTimeInitiated" Type="datetime" Mode="In" />
+    <Parameter Name="RequestorId" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorName" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
+    <Parameter Name="Notes" Type="varchar" Mode="In" />
+    <Parameter Name="SyStudentId" Type="int" Mode="In" />
+    <Parameter Name="StudentName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AddDNCPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+    <Parameter Name="DNCListId" Type="int" Mode="In" />
+    <Parameter Name="RequestorId" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorName" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AddExceptionsPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+    <Parameter Name="DateTimeExceptionGranted" Type="datetime" Mode="In" />
+    <Parameter Name="RequestorId" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorName" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
+    <Parameter Name="ExceptionReasonId" Type="int" Mode="In" />
+    <Parameter Name="SyStudentId" Type="int" Mode="In" />
+    <Parameter Name="NameAssigned" Type="varchar" Mode="In" />
+    <Parameter Name="Notes" Type="varchar" Mode="In" />
+    <Parameter Name="IsStudent" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="AddWhitelistPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorId" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorName" Type="varchar" Mode="In" />
+    <Parameter Name="RequestorDepartment" Type="varchar" Mode="In" />
+    <Parameter Name="Notes" Type="varchar" Mode="In" />
+    <Parameter Name="DNCOverride" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="GetDNCListsListNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
+  <Function Name="GetExceptionReasonsNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
+  <Function Name="GetParametersValues" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance" />
+  <Function Name="GetStudentInfoByPhoneNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="GetTableNameWherePhoneNumberIsLocated" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="PhoneNumber" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateDNCListsListName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="OldListName" Type="varchar" Mode="In" />
+    <Parameter Name="NewListName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateExceptionReasonsName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="OldReasonName" Type="varchar" Mode="In" />
+    <Parameter Name="NewReasonName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="UpdateParametersValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Compliance">
+    <Parameter Name="ParameterName" Type="varchar" Mode="In" />
+    <Parameter Name="ParameterValue" Type="int" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="CallComplianceModelStoreContainer" />
+</Schema>

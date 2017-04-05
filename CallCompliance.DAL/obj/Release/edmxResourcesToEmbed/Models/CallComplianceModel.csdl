@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="CallComplianceModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="CallComplianceModelContainer" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="AddExceptionsPhoneNumber">
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="DateTimeExceptionGranted" Mode="In" Type="DateTime" />
+      <Parameter Name="RequestorId" Mode="In" Type="String" />
+      <Parameter Name="RequestorName" Mode="In" Type="String" />
+      <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
+      <Parameter Name="ExceptionReasonId" Mode="In" Type="Int32" />
+      <Parameter Name="SyStudentId" Mode="In" Type="Int32" />
+      <Parameter Name="NameAssigned" Mode="In" Type="String" />
+      <Parameter Name="Notes" Mode="In" Type="String" />
+      <Parameter Name="IsStudent" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="GetExceptionReasonsNames" ReturnType="Collection(CallComplianceModel.cplxExceptionReasonsNames)" />
+    <FunctionImport Name="GetStudentInfoByPhoneNumber" ReturnType="Collection(CallComplianceModel.cplxStudentInfoByPhoneNumber)">
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddDNCPhoneNumber">
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="DNCListId" Mode="In" Type="Int32" />
+      <Parameter Name="RequestorId" Mode="In" Type="String" />
+      <Parameter Name="RequestorName" Mode="In" Type="String" />
+      <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDNCListsListNames" ReturnType="Collection(CallComplianceModel.cplxDNCListsListNames)" />
+    <FunctionImport Name="AddCooldownsPhoneNumber">
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="DateTimeInitiated" Mode="In" Type="DateTime" />
+      <Parameter Name="RequestorId" Mode="In" Type="String" />
+      <Parameter Name="RequestorName" Mode="In" Type="String" />
+      <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
+      <Parameter Name="Notes" Mode="In" Type="String" />
+      <Parameter Name="SyStudentId" Mode="In" Type="Int32" />
+      <Parameter Name="StudentName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AddWhitelistPhoneNumber">
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="RequestorId" Mode="In" Type="String" />
+      <Parameter Name="RequestorName" Mode="In" Type="String" />
+      <Parameter Name="RequestorDepartment" Mode="In" Type="String" />
+      <Parameter Name="Notes" Mode="In" Type="String" />
+      <Parameter Name="DNCOverride" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateDNCListsListName">
+      <Parameter Name="OldListName" Mode="In" Type="String" />
+      <Parameter Name="NewListName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateExceptionReasonsName">
+      <Parameter Name="OldReasonName" Mode="In" Type="String" />
+      <Parameter Name="NewReasonName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateParametersValue">
+      <Parameter Name="ParameterName" Mode="In" Type="String" />
+      <Parameter Name="ParameterValue" Mode="In" Type="Int32" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetParametersValues" ReturnType="Collection(CallComplianceModel.cplxParametersValues)" />
+    <FunctionImport Name="GetTableNameWherePhoneNumberIsLocated" ReturnType="Collection(CallComplianceModel.cplxTableNameWherePhoneNumberIsLocated)">
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="cplxExceptionReasonsNames">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="ReasonName" Nullable="false" MaxLength="25" />
+    <Property Type="DateTime" Name="DateTimeAdded" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="DateTimeModified" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="ActiveFlag" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="cplxStudentInfoByPhoneNumber">
+    <Property Type="Int32" Name="SyStudentId" Nullable="false" />
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="51" />
+  </ComplexType>
+  <ComplexType Name="cplxDNCListsListNames">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="ListName" Nullable="false" MaxLength="25" />
+    <Property Type="DateTime" Name="DateTimeAdded" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="DateTimeModified" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="ActiveFlag" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="cplxParametersValues">
+    <Property Type="String" Name="ParameterName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ParameterValue" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="cplxTableNameWherePhoneNumberIsLocated">
+    <Property Type="String" Name="TableName" Nullable="false" MaxLength="9" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,68 @@
+﻿@using Newtonsoft.Json
+@model CallCompliance.Models.CoolDownViewModel
+
+@{
+    ViewBag.Title = "Cool Down";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    @if (User.IsInRole("Call_Frequency_Users_SG") || User.IsInRole("Call_Frequency_Admins_SG")) {
+        <form>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Enter phone number for 24 hour Cool Down</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" data-bind="phoneNumber: PhoneNumber" placeholder="(000) 000-0000" maxlength="20" data-toggle="popover" data-trigger="hover" data-container="body" title="Phone Number" data-content="Enter the phone number you want to stop calling for a 24 hour period.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Enter Student Name (as appears in CampusNexus)</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" data-bind="value: StudentName" maxlength="50" data-toggle="popover" data-trigger="hover" data-container="body" title="Student Name" data-content="Optional to enter the student’s name here.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Enter SyStudentId (from CampusNexus)</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" data-bind="value: StudentId" maxlength="10" data-toggle="popover" data-trigger="hover" data-container="body" title="Student Id" data-content="If not a student, leave this box blank.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Add details/reason number should be placed on cool down.</label>
+                <div class="col-sm-5">
+                    <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: Notes"  maxlength="500" data-toggle="popover" data-trigger="hover" data-container="body" title="Notes" data-content="You must enter a detailed reason why you want to limit calling this phone number."></textarea>
+                </div>
+            </div>
+            <div class="form-inline row">
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary" data-bind="click: Uma.CoolDown.doSaveUnblock">Save</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary" data-bind="click: Uma.CoolDown.doReset">Reset</button>
+                </div>
+            </div>
+        </form>
+    }
+</div>
+
+@section scripts {
+
+    <script src="~/ViewScripts/CoolDown/CoolDown_ViewModel.js"></script>
+
+    <script>
+
+        $(function() {
+            Uma.CoolDown.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.CoolDown.init();
+
+            $("#menu-cooldown").addClass("active");
+        });
+    </script>
+}
+
+
+
+
+
+
+

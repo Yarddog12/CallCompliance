@@ -1,0 +1,4 @@
+C:\Projects\CallCompliance\CallCompliance.Fx\bin\Release\CallCompliance.Fx.dll
+C:\Projects\CallCompliance\CallCompliance.Fx\bin\Release\CallCompliance.Fx.pdb
+C:\Projects\CallCompliance\CallCompliance.Fx\obj\Release\CallCompliance.Fx.dll
+C:\Projects\CallCompliance\CallCompliance.Fx\obj\Release\CallCompliance.Fx.pdb

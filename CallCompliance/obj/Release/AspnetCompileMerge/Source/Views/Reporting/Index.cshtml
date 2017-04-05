@@ -1,0 +1,40 @@
+﻿
+@using Newtonsoft.Json
+@model CallCompliance.Models.ReportingModel
+
+@{
+    ViewBag.Title = "Reporting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    @if (User.IsInRole("Call_Frequency_Users_SG") || User.IsInRole("Call_Frequency_Admins_SG")) {
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Report Type:</label>
+            <div class="col-sm-5">
+                <select class="custom-select col-sm-3 form-control" data-bind="options: ReportListNames, optionsText: 'ReportName', optionsValue: 'ReportName', value: SelectedReportName, optionsCaption: 'Choose a Report...'" data-toggle="popover" data-trigger="hover" data-container="body" title="SSRS Report" data-content="Click a SSRS report you would like to run."></select>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section scripts {
+
+    <script src="~/ViewScripts/Reporting/Reporting_ViewModel.js"></script>
+
+    <script>
+
+        $(function() {
+            Uma.Reporting.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.Reporting.init();
+
+            $("#menu-reporting").addClass("active");
+        });
+
+    </script>
+}
+
+
+
+

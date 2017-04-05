@@ -1,0 +1,32 @@
+﻿@using System.DirectoryServices.AccountManagement
+
+
+@helper UserFullName () {
+
+string fullName = "Default";
+
+
+try {
+
+    using (var context = new PrincipalContext (ContextType.Domain, "ULTIMATEMEDICAL.LOCAL")) {
+
+
+        var principal = UserPrincipal.FindByIdentity (context, User.Identity.Name);
+        if (principal != null) {
+            fullName = principal.DisplayName;
+            @fullName
+
+            //MyAuth.FullName = fullName;
+           // MyAuth.LoginIdentity = principal.SamAccountName.ToUpper();
+            //string [] buf = principal?.DistinguishedName.Split (new [] { "OU=" }, StringSplitOptions.None);
+            //string department = buf? [3].Substring (0, buf [3].Length - 1);
+
+            //MyAuth.Department = department;
+        }
+    }
+} catch (Exception ex) {
+    fullName = "Debug";
+        @fullName
+    }
+}
+    

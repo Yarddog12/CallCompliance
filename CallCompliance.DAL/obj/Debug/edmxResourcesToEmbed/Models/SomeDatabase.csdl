@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="SomeDatabase" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="SomeDatabaseContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="NumberUnBlock" EntityType="SomeDatabase.NumberUnBlock" />
+    <EntitySet Name="ReasonToOverride" EntityType="SomeDatabase.ReasonToOverride" />
+  </EntityContainer>
+  <EntityType Name="NumberUnBlock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReasonOverrideId" Type="Int32" Nullable="false" />
+    <Property Name="StudentTypeId" Type="Int32" Nullable="false" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="Notes" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ReasonToOverride">
+    <Key>
+      <PropertyRef Name="ReasonOverrideId" />
+    </Key>
+    <Property Name="ReasonOverrideId" Type="Int32" Nullable="false" />
+    <Property Name="ReasonOverride" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

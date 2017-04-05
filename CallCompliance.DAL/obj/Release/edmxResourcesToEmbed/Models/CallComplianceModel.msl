@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+  <Alias Key="Model" Value="CallComplianceModel" />
+  <Alias Key="Target" Value="CallComplianceModel.Store" />
+  <EntityContainerMapping CdmEntityContainer="CallComplianceModelContainer" StorageEntityContainer="CallComplianceModelStoreContainer">
+    <FunctionImportMapping FunctionImportName="AddExceptionsPhoneNumber" FunctionName="CallComplianceModel.Store.AddExceptionsPhoneNumber" />
+    <FunctionImportMapping FunctionImportName="GetExceptionReasonsNames" FunctionName="CallComplianceModel.Store.GetExceptionReasonsNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CallComplianceModel.cplxExceptionReasonsNames">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReasonName" ColumnName="ReasonName" />
+          <ScalarProperty Name="DateTimeAdded" ColumnName="DateTimeAdded" />
+          <ScalarProperty Name="DateTimeModified" ColumnName="DateTimeModified" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStudentInfoByPhoneNumber" FunctionName="CallComplianceModel.Store.GetStudentInfoByPhoneNumber">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CallComplianceModel.cplxStudentInfoByPhoneNumber">
+          <ScalarProperty Name="SyStudentId" ColumnName="SyStudentId" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddDNCPhoneNumber" FunctionName="CallComplianceModel.Store.AddDNCPhoneNumber" />
+    <FunctionImportMapping FunctionImportName="GetDNCListsListNames" FunctionName="CallComplianceModel.Store.GetDNCListsListNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CallComplianceModel.cplxDNCListsListNames">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ListName" ColumnName="ListName" />
+          <ScalarProperty Name="DateTimeAdded" ColumnName="DateTimeAdded" />
+          <ScalarProperty Name="DateTimeModified" ColumnName="DateTimeModified" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AddCooldownsPhoneNumber" FunctionName="CallComplianceModel.Store.AddCooldownsPhoneNumber" />
+    <FunctionImportMapping FunctionImportName="AddWhitelistPhoneNumber" FunctionName="CallComplianceModel.Store.AddWhitelistPhoneNumber" />
+    <FunctionImportMapping FunctionImportName="UpdateDNCListsListName" FunctionName="CallComplianceModel.Store.UpdateDNCListsListName" />
+    <FunctionImportMapping FunctionImportName="UpdateExceptionReasonsName" FunctionName="CallComplianceModel.Store.UpdateExceptionReasonsName" />
+    <FunctionImportMapping FunctionImportName="UpdateParametersValue" FunctionName="CallComplianceModel.Store.UpdateParametersValue" />
+    <FunctionImportMapping FunctionImportName="GetParametersValues" FunctionName="CallComplianceModel.Store.GetParametersValues">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CallComplianceModel.cplxParametersValues">
+          <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+          <ScalarProperty Name="ParameterValue" ColumnName="ParameterValue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTableNameWherePhoneNumberIsLocated" FunctionName="CallComplianceModel.Store.GetTableNameWherePhoneNumberIsLocated">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CallComplianceModel.cplxTableNameWherePhoneNumberIsLocated">
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

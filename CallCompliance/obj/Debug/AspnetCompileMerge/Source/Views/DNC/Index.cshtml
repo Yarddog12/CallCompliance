@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Global Do Not Call ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DNC - No wireframe and requirements except talking to Rob</h2>
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#menu-dnc").addClass("active");
+            ko.applyBindings();
+        })
+    </script>
+}

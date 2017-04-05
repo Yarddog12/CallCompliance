@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/>
+<div class="jumbotron">
+    <h3>Welcome to the Call Compliance Portal, @MyHelpers.UserFullName()!</h3>
+    <br />
+    <h4>If looking to unlock a phone number, please search to see what list it is on.</h4>
+    @*<br />
+    <h5><strong>DNC - </strong>If on DNC, you need Admin rights to use the White List with DNC override.</h5>
+    <h5><strong>WhiteList - </strong>To unlock phone number, search to see what list it is on.</h5>
+    <h5><strong>Exception Call Cap - </strong>If on Call Cap List, use Exception Call Cap.</h5>
+    <h5><strong>No Call Period - </strong>If on No Call Period, number will come off list 24 hours.</h5>*@
+    <br />
+    <div class="input-group">
+        <input type="text" class="form-control" id="phoneNumSearchHome" maxlength="12"/>
+        <span class="input-group-addon">
+            <i class="fa fa-search"  onclick="FindPhoneNumber()"></i>
+        </span>
+    </div>
+</div>
+    @section scripts {
+
+        <script>
+            $(function () {
+                $("#menu-home").addClass("active");
+            })
+        </script>
+    }
+

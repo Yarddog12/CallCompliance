@@ -1,0 +1,82 @@
+﻿@using Newtonsoft.Json
+@model CallCompliance.Models.UnblockViewModel
+
+@{
+    ViewBag.Title = "Unblock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="unBlockcontainer">
+    <form>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Enter phone number needing temporary override:</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputPhoneUnBlock" data-bind="phoneNumber: PhoneNumber" placeholder="(000) 000-0000" maxlength="20">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Reason for overriding daily dial limit cap:</label>
+            <div class="col-sm-3"> <!-- this was missing and messed me up-->
+                <select class="custom-select col-sm-3 form-control" data-bind="options: ExceptionReasonNames, optionsText: 'ReasonName', optionsValue: 'Id', value: ReasonId, optionsCaption: 'Choose...'"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-5">
+                <div class="form-inline">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsRadios" id="optStudentName" value="option2">
+                            Student name
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optionsRadios" id="optEmployerName" value="option2">
+                            Employer name
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputPhoneUxnBlock" data-bind="value: NameAssigned" maxlength="100">
+            </div>
+        </div>
+        <div class="form-group row"></div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">If Student, enter studentId</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputStudentId"  data-bind="value: StudentId" maxlength="100">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Include additional details (student name, system student number, business reason, etc...)</label>
+            <div class="col-sm-3">
+                <textarea type="text" class="form-control" id="txtAreaNotes" rows="3" data-bind="value: Notes" maxlength="500"></textarea>
+            </div>
+        </div>
+        <div class="form-inline row">
+
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doSaveUnblock">Save</button>
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary" data-bind="click: Uma.UnBlock.doReset">Reset</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+@section scripts {
+
+    <script src="~/ViewScripts/Unblock/UnBlock_ViewModel.js"></script>
+
+    <script>
+        $(function () {
+            Uma.UnBlock.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.UnBlock.init();
+
+            $("#menu-unblock").addClass("active");
+        })
+    </script>
+}

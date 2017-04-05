@@ -1,0 +1,27 @@
+﻿
+@using Newtonsoft.Json
+@model CallCompliance.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<p><i>Welcome to the Call Compliance Portal @MyHelpers.UserFullName()!</i></p>
+
+@section scripts {
+
+    <script src="~/ViewScripts/Login/Login_ViewModel.js"></script>
+
+    <script>
+        $(function () {
+            Uma.Login.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.Login.init();
+
+            
+
+            $("#menu-home").addClass("active");
+        })
+    </script>
+} 

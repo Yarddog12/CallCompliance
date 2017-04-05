@@ -1,0 +1,51 @@
+﻿@using Newtonsoft.Json
+@model CallCompliance.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<br />
+<p><i>I need to authenticate you...</i></p>
+
+@using (Html.BeginForm("Index", "Login")) {
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <br/>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">UserName</label>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Password</label>
+            <div class="col-sm-2">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-inline row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+
+    <script src="~/ViewScripts/Login/Login_ViewModel.js"></script>
+
+    <script>
+        $(function () {
+            Uma.Login.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            Uma.Login.init();
+
+            //$("#menu-home").addClass("active");
+        })
+    </script>
+}
+

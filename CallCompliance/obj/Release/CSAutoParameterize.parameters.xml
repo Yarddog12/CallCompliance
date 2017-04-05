@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CallComplianceModelContainer-Web.config Connection String" description="CallComplianceModelContainer Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.CallComplianceModel.csdl|res://*/Models.CallComplianceModel.ssdl|res://*/Models.CallComplianceModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=MLK-CCP-P-SQ01;initial catalog=CallCompliance;User Id=CallFrqncy-SQL-PROD-W;Password=C@llf1lter01!;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\CallCompliance\\CallCompliance\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CallComplianceModelContainer']/@connectionString" />
+  </parameter>
+  <parameter name="CallComplianceReportingModelContainer-Web.config Connection String" description="CallComplianceReportingModelContainer Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.CallComplianceReportingModel.csdl|res://*/Models.CallComplianceReportingModel.ssdl|res://*/Models.CallComplianceReportingModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=MLK-SSR-P-SQ03;initial catalog=ReportServer;persist security info=True;user id=CallFrqncy-SQL-PROD-W;password=C@llf1lter01!;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\CallCompliance\\CallCompliance\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CallComplianceReportingModelContainer']/@connectionString" />
+  </parameter>
+  <parameter name="CallCompliance-Web.config Connection String" description="CallCompliance Connection String used in web.config by the application to access the database." defaultValue="Data Source=MLK-CCP-P-SQ01;Initial Catalog=CallCompliance;Persist Security Info=True;User Id=CallFrqncy-SQL-PROD-W;Password=C@llf1lter01!" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\CallCompliance\\CallCompliance\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CallCompliance']/@connectionString" />
+  </parameter>
+</parameters>

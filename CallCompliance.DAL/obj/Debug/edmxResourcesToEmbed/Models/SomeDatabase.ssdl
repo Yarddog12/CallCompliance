@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SomeDatabase.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="NumberUnBlock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReasonOverrideId" Type="int" Nullable="false" />
+    <Property Name="StudentTypeId" Type="int" Nullable="false" />
+    <Property Name="StudentId" Type="int" />
+    <Property Name="Notes" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" Nullable="false" />
+    <Property Name="DateModified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReasonToOverride">
+    <Key>
+      <PropertyRef Name="ReasonOverrideId" />
+    </Key>
+    <Property Name="ReasonOverrideId" Type="int" Nullable="false" />
+    <Property Name="ReasonOverride" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedBy" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" Nullable="false" />
+    <Property Name="DateModified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="SomeDatabaseStoreContainer">
+    <EntitySet Name="NumberUnBlock" EntityType="Self.NumberUnBlock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReasonToOverride" EntityType="Self.ReasonToOverride" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

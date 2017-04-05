@@ -1,0 +1,5 @@
+C:\Projects\CallCompliance\CallCompliance.Fx\bin\Debug\CallCompliance.Fx.dll
+C:\Projects\CallCompliance\CallCompliance.Fx\bin\Debug\CallCompliance.Fx.pdb
+C:\Projects\CallCompliance\CallCompliance.Fx\obj\Debug\CallCompliance.Fx.csprojResolveAssemblyReference.cache
+C:\Projects\CallCompliance\CallCompliance.Fx\obj\Debug\CallCompliance.Fx.dll
+C:\Projects\CallCompliance\CallCompliance.Fx\obj\Debug\CallCompliance.Fx.pdb

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="CallComplianceReportingModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="CallComplianceReportingModelContainer" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="GetCallComplianceReports" ReturnType="Collection(CallComplianceReportingModel.cplxCallComplianceReports)" />
+  </EntityContainer>
+  <ComplexType Name="cplxCallComplianceReports">
+    <Property Type="String" Name="ReportName" Nullable="false" MaxLength="425" />
+  </ComplexType>
+</Schema>
